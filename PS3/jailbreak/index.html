@@ -879,7 +879,7 @@ function minVer()
     }
     else
     {
-        showResult("<h3>Checking VSH...</h3>");
+        showResult("<h3>Memeriksa VSH...</h3>");
         vshchk=checkMemory(0x8A500000,0x302000,0x302000);
         setTimeout(checkVsh,10000);
     }
@@ -907,7 +907,7 @@ function checkHash()
 function dumpFlash()
 {
     document.getElementById("init").disabled = true;
-    showResult('<h3>Dumping '+ftype+' flash memory to '+dump_path+dump_file+'...<br>Ini mungkin memakan waktu beberapa 15-20 menit.</h3>');
+    showResult('<h3>Dumping '+ftype+' flash memory to '+dump_path+dump_file+'...<br>Ini mungkin memakan waktu beberapa menit.</h3>');
     setTimeout(trigger,50,jump_1_addr_3);
     if (ftype == "NAND")
     {
@@ -928,13 +928,13 @@ function writePatch()
     var sfc=checkMemory(stack_frame2_addr-0x4,0x20000,stack_frame2.length);
     if (sfc===stack_frame2)
     {
-       showResult('<h3>Patching '+ftype+' flash memory...<br>Ini mungkin memakan waktu beberapa 15-20 menit. <span style="color:red">Do not power off your console.</span></h3>');
+       showResult('<h3>Patching '+ftype+' flash memory...<br>Ini mungkin memakan waktu 15-20 menit. <span style="color:red">Jangan matikan ps3 Anda.</span></h3>');
        setTimeout(trigger,50,jump_1_addr_2);
        setTimeout(showResult,1000,"<h3><span style='color:green'>Operasi tambalan berhasil!</span><br>Selesai, Anda sekarang dapat mem-boot ulang PS3 Anda dan menginstal firmware khusus CFW pilihan Anda. TERIMAKASIH.</h3>");
     }
     else
     {
-       showResult('<h3><span style="color:red">An unexpected error occurred.</span><br>Mulai ulang browser dan coba lagi.</h3>');
+       showResult('<h3><span style="color:red">Terjadi kesalahan tak terduga.</span><br>Mulai ulang browser dan coba lagi.</h3>');
     }
 }
 function listener()
