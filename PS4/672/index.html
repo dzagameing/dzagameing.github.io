@@ -297,7 +297,7 @@ opacity:0.7;
         color: #C84B31;
         margin: 5% 0 5% 0;
       ">
-		<marquee width="30%">Auto Exploit goldhen v2.4b13 Fw672</marquee>
+		<marquee width="30%">Auto Exploit goldhen v2.4b13 Fw6.72</marquee>
 		
 		</h1>
     <hr>
@@ -317,11 +317,20 @@ window.passCounter.innerHTML=localStorage.passcount;
 if (localStorage.failcount == null) localStorage.failcount=0;
 window.failCounter.innerHTML=localStorage.failcount;
 
-function load_goldhen2.4b14() {
-PLfile='goldhen_2.4b14.bin';
-msgs2.innerHTML="GoldHEN Loading... please wait"; LoadedMSG="GoldHEN Loaded";
+function load_hen(x) {
+PLfile=x;
+msgs2.innerHTML="Jailbreaking... please wait"; LoadedMSG="Payload Loaded";
 setTimeout(function(){var script = document.createElement('script');script.src ="exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);},3000);
 setTimeout(jailbreak,500);
+}
+function load_binloader(){
+msgs2.innerHTML="Binloader loading... please wait"; LoadedMSG="Payload Loaded ,Send Payload To Port 9021";
+var script = document.createElement('script');script.src = "pl_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+function load_Pl(x){
+PLfile=x;
+msgs2.innerHTML="Payload loading... please wait"; LoadedMSG="Payload Loaded";
+var script = document.createElement('script');script.src = "pls_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
 }
 </script>
     <br><br>
