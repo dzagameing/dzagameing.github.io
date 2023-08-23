@@ -8,11 +8,11 @@
 function DLProgress(e){
 	parent.ScrOverlay.style.display="block";
 	Percent=(Math.round(e.loaded / e.total * 100));
-	parent.cacheUPDtxt.innerHTML="Menginstal Offline Cache: " + Percent + "%";
+	parent.cacheUPDtxt.innerHTML="Menginstal Cache Offline: " + Percent + "%";
 	parent.CacheBar.style.width=Percent + '%';
 }
 function DisplayCacheProgress(){
-	setTimeout(function(){parent.cacheUPDtxt.innerHTML="Cache Berhasil Diinstal. Buka Kembali Halaman !!"; }, 1500);localStorage.cached672="yes";};
+	setTimeout(function(){parent.cacheUPDtxt.innerHTML="Cache Berhasil Diinstal. Silahkan Tekan Tombol Tengah DiStik Matikan Internet Dan Buka kembali Browser ini!!"; }, 1500);localStorage.cached672="yes";};
 	window.applicationCache.addEventListener("progress",DLProgress,false);
 	window.applicationCache.oncached=function(e){DisplayCacheProgress();};
 	window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
@@ -20,10 +20,9 @@ function DisplayCacheProgress(){
     window.applicationCache.onerror=function(){localStorage.cached672="yes";};
 </script>
 </head>
-<body onload="if(localStorage.cached672=='yes')setTimeout(load_goldhen23,50);" style='background-color:#000000'>
+<body onload="if(localStorage.cached672=='yes')setTimeout(load_goldhen23,50);" style='background-color:#191970'>
 <div id=ScrOverlay class=cacheUPDbg><pre id=cacheUPDtxt class=cacheUPD></pre>
 <div id=CacheProgress><div id=CacheBar></div></div></div>
-<script type='text/javascript' src='https://cdn.prinsh.com/NathanPrinsley-effect/efek-salju.js'></script>
 <h1 style="
         text-shadow: 10px 10px 10px black;
         font-size: 50px;
