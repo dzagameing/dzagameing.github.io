@@ -1,50 +1,42 @@
 <html manifest="Cache.manifest">
-
 <head>
-    <style>
-        html,
-        body {
-            margin: auto;
-            font-family: sans-serif;
-            font-size: 20px;
-            font-weight: lighter;
-            text-align: left;
-            color: #ffff;
-            background-size: cover;
-        }
-
-        .title {
-            font-size: 40px;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-weight: bolder;
-            margin-bottom: 10px;
-        }
-
-        hr {
-            padding: 0;
-            margin: 0 100px;
-            opacity: 0.7;
-        }
-
-        #progress {
-            font-weight: bold;
-            text-shadow: 4px 4px 4px black;
-            font-size: 17px;
-        }
-		.content {
-  width:80%;
-  height:12%;
-  margin-left:7.5%;
-  background:#191970;
+<style>
+    html, body{
+margin:auto;
+font-family:sans-serif;
+font-size:20px;
+font-weight:lighter;
+text-align: center;
+color:#FFFFFF;
+background-size:cover;
+overflow: hidden;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+ .content {
+  width:90%;
+  height:15%;
+  margin-left:3.5%;
+  background:rgba(0,0,0,0.5);
   color:white;
-  margin-top:1%;
+  margin-top:0%;
   font-size:25px;
   text-align:center;
   border-radius:30px;
   padding:20px;
   line-height:12px;
+  position:absolute;bottom:0px;
  }
  .title {
   font-size:40px;
@@ -137,7 +129,7 @@
   display:flex;
   position: absolute;
   
-  background: #A9A9A9;
+  background: rgba(0, 0, 0, 0.500);
   border-radius: 2em;
   border: none;
   padding: 0.8em;
@@ -166,7 +158,7 @@
   animation-duration: 0.4s
 }
 button {
-            background:#008B8B;
+            background:rgba(0,0,0,0.5);
 			box-shadow: 0 5px 20px 0 white;
             border: 2px solid black;
             border-radius: 10px;
@@ -195,8 +187,32 @@ opacity:0.7;
 }
 .pointer {cursor: pointer;}
 
+h1 {
+text-shadow: 0.1em 0.1em 0.2em black;
+font-size: 25px;
+text-align: center;
+color: white;
+}
 
- }
+.TextCaption{
+display: block;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+a img {
+    display: inline-block;  text-decoration: none;
+}
+
+a {
+    display: inline-block;  text-decoration: none;
+}
+
+a:hover img, a:hover .TextCaption{
+transform: scale(1.1)
+}
+
     </style>
 <meta charset="utf-8">
 <title>Dza Auto Exploit GoldHen new Webkit 900fw</title>
@@ -242,7 +258,10 @@ function allset() {
 window.progress.innerHTML= LoadedMSG
 }
 </script>
- </script>
+<script src="./int64.js"></script>
+<script src="./rop.js"></script>
+<script src="./kexploit.js"></script>
+<script type=module src="./alert.mjs"></script>
 </head>
 <body onload="if(localStorage.cachedG=='yes')setTimeout(poc,50);"style="background-color: #191970">
     <h1 style="
@@ -263,7 +282,7 @@ window.progress.innerHTML= LoadedMSG
         color: #C84B31;
         margin: 5% 0 5% 0;
       ">
-		Auto goldhen Fw9.00
+		Auto goldhen v2.4b16 Fw9.00
 		
 		</h1>
     <hr>
@@ -276,32 +295,17 @@ window.progress.innerHTML= LoadedMSG
         Proses Jailbreak.. Mohon tunggu....
     </h1>
     <hr>
+	</div>
 
-<script src="./int64.js"></script>
-<script src="./rop.js"></script>
-<script src="./kexploit.js"></script>
-<script type=module src="./alert.mjs"></script>
-</head>
-<body style='background-color:#00008B'>
-<h1 style='text-shadow: 4px 4px 4px black;font-size:30px;text-align:center;text-shadow: 4px 4px 4px black;color:yellow;'>Dza Auto Exploit GoldHen new Webkit 900fw</h1>
-<h1 id=progress style='font-size:25px;text-align:center;text-shadow: 4px 4px 4px black;color:white;'>Proses jailbrek....</h1><br>
-<div style="text-align:center;display:none">
-<button id="button-Payload" onMouseOver="progress.innerHTML='GoldHen v2.4 Beta 16 2 by SISTR0 for PS4 9.00 Fw'"; onmouseout="progress.innerHTML='Status'" type="button" onclick="goldhen()" style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:#CEC52A' > GoldHenV2.4b162</button>
-</div>
-
-<div id=all style="display:none" class="content" >
+ </script>
+    <br><br>
+	<div class="content" >
  	    <div class="text" >
- 	        <br><span style="text-shadow: 4px 4px 4px black;" class="yellow" >Reedit by :</span >&nbsp;&nbsp; <span style="text-shadow: 4px 4px 4px black;" class="hue" >Ibnu Hiban</span>
- 	        <br><br><br><br><span style="text-shadow: 4px 4px 4px black;" class="yellow" >Super Special Thanks To :</span >&nbsp;&nbsp; <a style="font-size:30px;text-align:center;text-shadow: 4px 4px 4px black;color:white;">Karp, Sleirsgoevy , Al Azif , ChendoChap , SiSTRo ,Specter ,Znullptr ... </a>
+ 	        <br><span style="text-shadow: 1px 1px 1px black;" class="yellow" ></span >&nbsp;&nbsp; <span style="text-shadow: 1px 1px 1px black;" class="hue" >Ibnu Hiban</span>
+ 	        <br>
+			<br><br><br><br><span style="text-shadow: 1px 1px 1px black;" class="yellow" >Terimakasih KePada :</span >&nbsp;&nbsp; <a style="font-size:20px;text-align:center;text-shadow: 1px 1px 1px black;color:white;">Karo, Sleirsgoevy , Al Azif , ChendoChap , SiSTRo ,Specter ,Znullptr ,hippie68 </a>
 	    </div>
 </div>
-<div id=all2 class="content" >
- 	    <div class="text" >
- 	        <br><span style="text-shadow: 4px 4px 4px black;" class="yellow" >Reedit by :</span >&nbsp;&nbsp; <a style="font-size:30px;text-align:center;text-shadow: 4px 4px 4px black;color:yellow;">Ibnu Hiban</a>
- 	        <br><br><br><br><span style="text-shadow: 4px 4px 4px black;" class="yellow" >Super Special Thanks To :</span >&nbsp;&nbsp; <a style="font-size:30px;text-align:center;text-shadow: 4px 4px 4px black;color:white;">Karo, Sleirsgoevy , Al Azif , ChendoChap , SiSTRo ,Specter ,Znullptr ... </a>
-	    </div>
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 
 </html>
