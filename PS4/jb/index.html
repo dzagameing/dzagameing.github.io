@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .card {
+            background-color: #1e1e1e;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+        }
+        .status {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .info { color: #0088ff; }
+        .error { color: #ff4d4d; }
+        .ua-box {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #aaa;
+            word-break: break-all;
+            background: #111;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div id="result" class="status info">Cek firmware...</div>
+        <div id="user-agent" class="ua-box"></div>
+    </div>
+
+    <script>
+        function processDevice() {
+            const userAgent = navigator.userAgent;
+            const resultElement = document.getElementById('result');
+            const uaElement = document.getElementById('user-agent');
+
+            uaElement.innerHTML = "<strong>User-Agent Terdeteksi:</strong><br>" + userAgent;
+
+            const isPS4 = /PlayStation 4|PS4/i.test(userAgent);
+
+            if (isPS4) {
+                const fwMatch = userAgent.match(/(?:PlayStation 4|PS4)[\s\/]+([\d\.]+)/i);
+
+                if (fwMatch && fwMatch[1]) {
+                    const firmware = parseFloat(fwMatch[1]);
+                    resultElement.innerText = `Terdeteksi PS4 (FW ${firmware.toFixed(2)})`;
+
+                    if (firmware >= 5.00 && firmware <= 9.60) {
+                        resultElement.innerText += "";
+                        setTimeout(() => {
+                            window.location.href = "505_960/index.html";
+                        }, 1000);
+                    } 
+                    else if (firmware >= 10.00 && firmware <= 11.02) {
+                        resultElement.innerText += "";
+                        setTimeout(() => {
+                            window.location.href = "1000_1102/index.html";
+                        }, 1000);
+                    } 
+                    else {
+                        resultElement.className = "status error";
+                        resultElement.innerText = `PS4 FW ${firmware.toFixed(2)} belum support, namun Anda bisa pakai BD-JB, beli di id.shp.ee/czwbVnLh`;
+                    }
+                } else {
+                    resultElement.className = "status error";
+                    resultElement.innerText = "Terdeteksi PS4, tetapi gagal membaca versi Firmware secara spesifik.";
+                }
+            } else {
+                resultElement.className = "status error";
+                resultElement.innerText = "❌ Perangkat ini bukan PlayStation 4.";
+            }
+        }
+
+        window.onload = processDevice;
+    </script>
+
+</body>
+</html>
