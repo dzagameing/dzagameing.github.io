@@ -172,7 +172,7 @@ let allDone = false;
               + (payload[0] === 0xe9 ? "e9-jmp-rel32" : "NOT-e9")
             : "MISSING");
 
-        state("running the primitive...", "warn");
+        state("Proses jailbreak mohon tunggu...", "warn");
         await new Promise(r => setTimeout(r, 0));
 
         const PRIMITIVE_LOUD = /FAIL|ERROR|THREW|RETRY|ABORT|PASS/i;
@@ -2443,11 +2443,11 @@ let allDone = false;
                 + " reached=" + (triplets ? "triplets" : committed ? "commit" : "none"));
         }
 
-        state(allDone ? "ALL DONE"
+        state(allDone ? "selesai jailbreak berhasil..."
               : kv ? "KERNEL R/W -- REBOOT NEEDED"
-              : kernelBase ? "FAILED IN make_karw -- REBOOT"
-              : triplets ? "FAILED IN leak_kqueue (triple free was OK) -- REBOOT"
-              : committed ? "FAILED IN triple free -- REBOOT"
+              : kernelBase ? "GAGAL DI make_karw -- matikan dan nyalakan ulang ps anda"
+              : triplets ? "GAGAL DI leak_kqueue (triple free was OK) -- matikan dan nyalakan ulang ps anda"
+              : committed ? "GAGAL DI triple free -- matikan dan nyalakan ulang ps anda"
               : "no commit", allDone ? "ok" : kv ? "warn" : "bad");
     } catch (e) {
         mark("STEP10-FAILED", (e && e.message) ? e.message : String(e));
