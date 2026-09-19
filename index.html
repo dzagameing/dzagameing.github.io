@@ -1,28 +1,1160 @@
-<html manifest="offlinexmb.cache">
+<!DOCTYPE html>
+<html lang="id" class="dark">
 <head>
-<meta charset="utf-8">
-<title>DZA Host Ps3 Ps4</title>
-<link rel="stylesheet prefetch" href="Style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DZA GAMESTORE - Katalog Game PS2, PS3, PS4 & PS5 Mobile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        ps2: '#002B66',
+                        ps3: '#1A1A1A',
+                        ps4: '#003791',
+                        ps5: '#0070D1',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #070913;
+            color: #f3f4f6;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Custom Scrollbar Mobile Friendly */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 2px;
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px -3px rgba(99, 102, 241, 0.25);
+        }
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-header {
+            background: rgba(11, 15, 25, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
-<body style='background-color:#006400'>
-<div id=ScrOverlay class=cacheUPDbg><pre id=cacheUPDtxt class=cacheUPD></pre>
-<div id=CacheProgress><div id=CacheBar></div></div></div>
-<br><span id="date" ></span><span id="clock" ></span><h1 style='font-size:25px;text-align:center;text-shadow: 4px 4px 4px black;color:yellow;'><a class="button" style="color: green;text-shadow: 4px 4px 4px black;font-size:120%; font-weight: bold;"><span id=passCounter></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selamat Datang di Host Ps3/Ps4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a  class="button2" style="color: red;text-shadow: 4px 4px 4px black;font-size:120%; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id=failCounter></span> </a>
-<br>
-<h1 id=msgs2 style='font-size:25px;text-align:center;text-shadow: 4px 4px 4px black;color:white;'>Silahkan Pilih Alat Yang Anda Butuhkan</h1>
-<div style="text-align:center"  id="MyItems">
-<br>
-<a href="PS3/index.html"><button style='font-size:15px;text-align:center;color:#FF7F50' class="pointer" onMouseOver="msgs2.innerHTML='Untuk Ps3 Hen/Downgrade'"; onmouseout="msgs2.innerHTML='Status'"  type="button"><B>PS3 HEN/CFW</B></button></a>
-<a href="PS4/index.html"><button style='font-size:15px;text-align:center;color:yellow' class="pointer" onMouseOver="msgs2.innerHTML='Untuk Ps4 FW 6.72/9.00'"; onmouseout="msgs2.innerHTML='Status'"  type="button"><B>PS4 HEN</B></button></a>
-<a href="listgame/index.html"><button style='font-size:15px;text-align:center;color:#FF7F50' class="pointer" onMouseOver="msgs2.innerHTML='Untuk Ps3 Hen/Downgrade'"; onmouseout="msgs2.innerHTML='Status'"  type="button"><B>WEB</B></button></a>
+<body class="min-h-screen flex flex-col justify-between pb-20 selection:bg-brand-500 selection:text-white">
 
-<br><br><br>
+    <!-- Mobile Header -->
+    <header class="sticky top-0 z-40 glass-header px-4 py-3 shadow-md flex items-center justify-between">
+        <div class="flex items-center gap-2.5 cursor-pointer" onclick="resetFilters()">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-cyan-400 flex items-center justify-center text-white shadow-md shadow-brand-500/30">
+                <i class="fa-solid font-bold fa-gamepad text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-base font-black tracking-wider text-white flex items-center gap-1.5 leading-none">
+                    DZA <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-cyan-400">GAMESTORE</span>
+                </h1>
+                <p class="text-[9px] text-gray-400 tracking-wider uppercase font-semibold mt-0.5">Mobile Game Catalog</p>
+            </div>
+        </div>
 
-</div>
-</div>
-<h5 id=msgs2 style='font-size:20px;text-align:center;text-shadow: 4px 4px 4px black;color:white;'>** Host Ini Sudah Saya edit Dengan Bahasa Indonesia
-   Agar Mudah Di Pahami **</h5>
-</div>
+        <!-- Header Actions Right -->
+        <div class="flex items-center gap-2">
+            <!-- Admin Toggle Button -->
+            <button onclick="toggleAdminModal()" class="w-9 h-9 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-white active:scale-95 transition-all">
+                <i id="headerAdminIcon" class="fa-solid fa-lock text-xs"></i>
+            </button>
+            <!-- Cart Quick Button -->
+            <button onclick="toggleCartModal()" class="relative w-9 h-9 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-200 active:scale-95 transition-all">
+                <i class="fa-solid fa-cart-shopping text-brand-400 text-sm"></i>
+                <span id="cartBadge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="px-3.5 py-4 flex-1 w-full max-w-lg mx-auto space-y-4">
+        <!-- Compact Search Bar -->
+        <div class="relative w-full">
+            <input type="text" id="searchInput" oninput="filterGames()" placeholder="Cari judul game (misal: GTA, PES, God of War)..." 
+                class="w-full bg-gray-900/90 text-xs text-gray-200 placeholder-gray-500 rounded-xl pl-9 pr-8 py-2.5 border border-gray-800 focus:outline-none focus:border-brand-500 shadow-inner">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white text-xs">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Horizontal Platform Filter Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1">
+            <button onclick="setPlatformFilter('ALL')" id="btn-filter-ALL" class="platform-tab active px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-brand-600 text-white shadow-md shadow-brand-600/30">
+                🎮 Semua
+            </button>
+            <button onclick="setPlatformFilter('PS2')" id="btn-filter-PS2" class="platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-900 text-gray-300 border border-gray-800">
+                🟦 PS2
+            </button>
+            <button onclick="setPlatformFilter('PS3')" id="btn-filter-PS3" class="platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-900 text-gray-300 border border-gray-800">
+                ⬛ PS3
+            </button>
+            <button onclick="setPlatformFilter('PS4')" id="btn-filter-PS4" class="platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-900 text-gray-300 border border-gray-800">
+                🔷 PS4
+            </button>
+            <button onclick="setPlatformFilter('PS5')" id="btn-filter-PS5" class="platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-900 text-gray-300 border border-gray-800">
+                ⚪ PS5
+            </button>
+        </div>
+
+        <!-- Filter Sub-Row (Genre & Sort) -->
+        <div class="flex items-center justify-between gap-2 text-xs">
+            <select id="genreSelect" onchange="filterGames()" class="bg-gray-900 text-gray-300 rounded-xl px-2.5 py-2 border border-gray-800 focus:outline-none flex-1">
+                <option value="ALL">Semua Genre</option>
+                <option value="Action">Action</option>
+                <option value="Sports">Sports</option>
+                <option value="Racing">Racing</option>
+                <option value="RPG">RPG</option>
+                <option value="Fighting">Fighting</option>
+                <option value="Horror">Horror</option>
+            </select>
+
+            <select id="sortSelect" onchange="filterGames()" class="bg-gray-900 text-gray-300 rounded-xl px-2.5 py-2 border border-gray-800 focus:outline-none flex-1">
+                <option value="popular">Terpopuler</option>
+                <option value="name-asc">Nama (A-Z)</option>
+                <option value="price-asc">Termurah</option>
+                <option value="price-desc">Termahal</option>
+            </select>
+        </div>
+
+        <!-- Info Count / Reset -->
+        <div class="flex items-center justify-between text-[11px] text-gray-400 px-1">
+            <span>Ditemukan <strong id="displayedCount" class="text-white">0</strong> game <span id="activeFilterLabel" class="text-brand-400"></span></span>
+            <button onclick="resetFilters()" class="text-brand-400 underline">Reset</button>
+        </div>
+
+        <!-- Game Cards Mobile Optimized Grid (2 Columns) -->
+        <div id="gameGrid" class="grid grid-cols-2 gap-3">
+            <!-- Cards injected via JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden py-12 text-center space-y-3">
+            <div class="w-14 h-14 bg-gray-900 rounded-full flex items-center justify-center mx-auto text-gray-600 text-xl border border-gray-800">
+                <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <h3 class="text-sm font-bold text-gray-300">Game Tidak Ditemukan</h3>
+            <p class="text-xs text-gray-500 max-w-xs mx-auto">Coba kata kunci lain atau ubah filter kategori.</p>
+            <button onclick="resetFilters()" class="px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-semibold">Reset Pencarian</button>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Bar (Thumb Friendly) -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 glass-nav h-16 px-4 flex items-center justify-around shadow-2xl">
+        <button onclick="resetFilters()" class="flex flex-col items-center justify-center text-brand-400 flex-1 py-1 active:scale-95 transition-all">
+            <i class="fa-solid fa-house text-base mb-1"></i>
+            <span class="text-[10px] font-semibold">Katalog</span>
+        </button>
+        <button onclick="toggleCartModal()" class="flex flex-col items-center justify-center text-gray-400 hover:text-white flex-1 py-1 relative active:scale-95 transition-all">
+            <i class="fa-solid fa-cart-shopping text-base mb-1"></i>
+            <span class="text-[10px] font-medium">Keranjang</span>
+        </button>
+        <button onclick="openWhatsAppContact()" class="flex flex-col items-center justify-center text-emerald-400 flex-1 py-1 active:scale-95 transition-all">
+            <i class="fa-brands fa-whatsapp text-lg mb-0.5"></i>
+            <span class="text-[10px] font-semibold">Chat WA</span>
+        </button>
+        <button onclick="toggleAdminModal()" class="flex flex-col items-center justify-center text-gray-400 hover:text-white flex-1 py-1 active:scale-95 transition-all">
+            <i id="bottomAdminIcon" class="fa-solid fa-user-shield text-base mb-1"></i>
+            <span id="bottomAdminLabel" class="text-[10px] font-medium">Admin</span>
+        </button>
+    </nav>
+
+    <!-- QUICK VIEW MODAL -->
+    <div id="quickViewModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-gray-900 border-t sm:border border-gray-800 w-full max-w-lg rounded-t-3xl sm:rounded-2xl overflow-hidden shadow-2xl relative max-h-[85vh] flex flex-col animate-in slide-in-from-bottom duration-300">
+            <!-- Close Button -->
+            <button onclick="closeQuickView()" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 text-gray-300 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="overflow-y-auto p-4 sm:p-6 space-y-4">
+                <div class="flex gap-4 items-center">
+                    <div class="relative w-28 h-36 flex-shrink-0 rounded-xl overflow-hidden border border-gray-800">
+                        <img id="modalImg" src="" alt="Cover" class="w-full h-full object-cover">
+                        <span id="modalPlatformBadge" class="absolute top-1 left-1 px-2 py-0.5 rounded text-[9px] font-bold text-white bg-brand-600"></span>
+                    </div>
+                    <div class="space-y-1.5 flex-1">
+                        <span id="modalGenre" class="text-[10px] uppercase font-bold text-brand-400"></span>
+                        <h3 id="modalTitle" class="text-base font-extrabold text-white leading-snug"></h3>
+                        <div class="text-xs text-gray-300 space-y-1 pt-1">
+                            <div>Ukuran: <strong id="modalSize" class="text-white"></strong></div>
+                            <div>Format: <strong class="text-white">HDD / ISO / Flashdisk</strong></div>
+                            <div>Status: <strong class="text-emerald-400">Ready & Tested</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Quick Image Edit Controls -->
+                <div id="quickViewAdminControls" class="bg-gray-800/80 p-2.5 rounded-xl border border-gray-700 space-y-2 hidden">
+                    <span class="text-[10px] font-bold text-brand-400 block"><i class="fa-solid fa-shield-halved"></i> Kontrol Admin (Ubah Kover):</span>
+                    <div class="flex gap-2">
+                        <label class="flex-1 bg-brand-600 text-white text-[10px] font-semibold py-1.5 px-2 rounded-lg text-center cursor-pointer flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-upload"></i> Upload
+                            <input type="file" accept="image/*" class="hidden" onchange="handleModalImageUpload(event)">
+                        </label>
+                        <button onclick="promptChangeImageURL()" class="flex-1 bg-gray-700 text-gray-200 text-[10px] font-semibold py-1.5 px-2 rounded-lg text-center flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-link"></i> Link URL
+                        </button>
+                    </div>
+                </div>
+
+                <p id="modalDesc" class="text-xs text-gray-400 leading-relaxed"></p>
+
+                <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+                    <div>
+                        <span class="text-[10px] text-gray-400 block">Harga Isian:</span>
+                        <span id="modalPrice" class="text-base font-black text-emerald-400"></span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="modalAddToCartBtn" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl text-xs border border-gray-700">
+                            + Keranjang
+                        </button>
+                        <button id="modalDirectOrderBtn" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs shadow-lg shadow-emerald-600/30 flex items-center gap-1.5">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Order WA
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHOPPING CART DRAWER -->
+    <div id="cartModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex justify-end">
+        <div class="bg-gray-900 border-l border-gray-800 w-full max-w-sm h-full flex flex-col justify-between p-4 shadow-2xl relative">
+            <div>
+                <div class="flex items-center justify-between pb-3 border-b border-gray-800">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-cart-shopping text-brand-500 text-base"></i>
+                        <h3 class="text-sm font-bold text-white">Keranjang Game Anda</h3>
+                    </div>
+                    <button onclick="toggleCartModal()" class="text-gray-400 hover:text-white">
+                        <i class="fa-solid fa-xmark text-base"></i>
+                    </button>
+                </div>
+
+                <div id="cartItemsContainer" class="mt-3 space-y-2.5 max-h-[42vh] overflow-y-auto pr-1">
+                    <!-- Cart items injected here -->
+                </div>
+
+                <div id="cartEmptyState" class="text-center py-16 text-gray-500 space-y-2">
+                    <i class="fa-solid fa-basket-shopping text-3xl mb-1 text-gray-700"></i>
+                    <p class="text-xs font-medium">Keranjang masih kosong</p>
+                    <p class="text-[10px] text-gray-600">Pilih game favoritmu dari katalog</p>
+                </div>
+            </div>
+
+            <div id="cartFooter" class="border-t border-gray-800 pt-3 space-y-3 hidden">
+                <div class="space-y-1">
+                    <label class="text-[10px] text-gray-400 block">Nama / Konsol / Catatan:</label>
+                    <input type="text" id="customerNote" placeholder="Contoh: Andi - PS3 Slim Hen" 
+                        class="w-full bg-gray-800 text-xs text-gray-200 placeholder-gray-500 rounded-xl px-3 py-2 border border-gray-700 focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[10px] text-gray-400 block">Media Isian Game:</label>
+                    <select id="mediaTypeSelect" class="w-full bg-gray-800 text-xs text-gray-200 rounded-xl px-3 py-2 border border-gray-700 focus:outline-none focus:border-brand-500">
+                        <option value="Harddisk Eksternal / Flashdisk">Harddisk / Flashdisk Eksternal</option>
+                        <option value="Isi Langsung ke Console">Isi Langsung ke Console Toko</option>
+                        <option value="Kirim via Link Download / Cloud">Kirim Link Google Drive / Cloud</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center justify-between text-xs pt-1">
+                    <span class="text-gray-400">Total Harga:</span>
+                    <span id="cartTotalPrice" class="text-base font-extrabold text-emerald-400">Rp 0</span>
+                </div>
+
+                <button onclick="sendCartToWhatsApp()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> Kirim Pesanan ke WhatsApp
+                </button>
+                <button onclick="clearCart()" class="w-full py-1.5 text-[11px] text-red-400 text-center">
+                    Kosongkan Keranjang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL MODAL -->
+    <div id="adminModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-3">
+        <div class="bg-gray-900 border border-gray-800 w-full max-w-lg rounded-2xl p-4 shadow-2xl relative space-y-4 max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between pb-2 border-b border-gray-800">
+                <div class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-sliders text-brand-500 text-sm"></i>
+                    <h3 class="text-sm font-bold text-white">Panel Admin Toko</h3>
+                </div>
+                <button onclick="toggleAdminModal()" class="text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+            <!-- PIN Login State -->
+            <div id="adminLoginForm" class="py-8 px-2 space-y-4 text-center my-auto">
+                <div class="w-14 h-14 bg-brand-600/20 text-brand-400 rounded-full flex items-center justify-center mx-auto border border-brand-500/30 text-xl shadow">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-white">Verifikasi PIN Admin</h4>
+                    <p class="text-[11px] text-gray-400 mt-0.5">Masukkan PIN untuk mengelola katalog & pengaturan toko.</p>
+                </div>
+                
+                <div class="max-w-xs mx-auto space-y-2.5">
+                    <input type="password" id="adminPinInput" placeholder="PIN (Default: 1234)" 
+                        onkeydown="if(event.key==='Enter') verifyAdminPin()"
+                        class="w-full text-center tracking-widest text-base font-mono bg-gray-800 text-white rounded-xl px-3 py-2 border border-gray-700 focus:outline-none focus:border-brand-500">
+                    <button onclick="verifyAdminPin()" class="w-full py-2 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl text-xs shadow">
+                        Masuk Admin
+                    </button>
+                    <p class="text-[10px] text-gray-500">PIN Bawaan: <strong class="text-brand-400">1234</strong></p>
+                </div>
+            </div>
+
+            <!-- Logged In Admin Content -->
+            <div id="adminPanelContent" class="hidden space-y-3 flex-1 flex flex-col overflow-hidden">
+                <div class="flex items-center justify-between bg-emerald-950/40 border border-emerald-800/40 px-3 py-1.5 rounded-xl text-[11px]">
+                    <span class="text-emerald-400 font-medium flex items-center gap-1">
+                        <i class="fa-solid fa-circle-check"></i> Admin Aktif
+                    </span>
+                    <button onclick="logoutAdmin()" class="text-red-400 font-semibold flex items-center gap-1">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </button>
+                </div>
+
+                <div class="flex border-b border-gray-800 gap-3 text-[11px] font-bold">
+                    <button id="tabBtnManage" onclick="switchAdminTab('manage')" class="pb-1.5 text-brand-400 border-b-2 border-brand-500">Kelola Game</button>
+                    <button id="tabBtnAdd" onclick="switchAdminTab('add')" class="pb-1.5 text-gray-400">Tambah Game</button>
+                    <button id="tabBtnSettings" onclick="switchAdminTab('settings')" class="pb-1.5 text-gray-400">Pengaturan</button>
+                </div>
+
+                <!-- Tab 1: Manage -->
+                <div id="tabContentManage" class="space-y-2.5 overflow-y-auto flex-1 pr-1 text-xs">
+                    <p class="text-[11px] text-gray-400">Ganti kover atau edit detail game:</p>
+                    <div id="adminGamesList" class="space-y-2"></div>
+                    <div class="pt-2 border-t border-gray-800">
+                        <button onclick="resetToInitialGames()" class="text-[11px] text-red-400">
+                            <i class="fa-solid fa-rotate-left"></i> Reset Katalog Default
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Add Game -->
+                <div id="tabContentAdd" class="space-y-2.5 hidden overflow-y-auto flex-1 pr-1 text-xs">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] text-gray-400 block mb-0.5">Judul:</label>
+                            <input type="text" id="newTitle" placeholder="Misal: GTA" class="w-full bg-gray-800 text-xs text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-400 block mb-0.5">Konsol:</label>
+                            <select id="newPlatform" class="w-full bg-gray-800 text-xs text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                                <option value="PS2">PS2</option>
+                                <option value="PS3">PS3</option>
+                                <option value="PS4">PS4</option>
+                                <option value="PS5">PS5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] text-gray-400 block mb-0.5">Harga (Rp):</label>
+                            <input type="number" id="newPrice" placeholder="5000" class="w-full bg-gray-800 text-xs text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-400 block mb-0.5">Ukuran:</label>
+                            <input type="text" id="newSize" placeholder="4 GB" class="w-full bg-gray-800 text-xs text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] text-gray-400 block mb-0.5">Genre:</label>
+                            <select id="newGenre" class="w-full bg-gray-800 text-xs text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                                <option value="Action">Action</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Racing">Racing</option>
+                                <option value="RPG">RPG</option>
+                                <option value="Fighting">Fighting</option>
+                                <option value="Horror">Horror</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-400 block mb-0.5">Kover:</label>
+                            <label class="bg-brand-600 text-white text-[11px] font-semibold py-1.5 px-3 rounded-xl cursor-pointer block text-center">
+                                Upload File <input type="file" accept="image/*" class="hidden" onchange="handleNewGameImageUpload(event)">
+                            </label>
+                        </div>
+                    </div>
+                    <input type="text" id="newImg" placeholder="Atau paste URL Gambar..." class="w-full bg-gray-800 text-xs text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                    
+                    <button onclick="addNewGame()" class="w-full py-2 bg-emerald-600 text-white text-xs font-bold rounded-xl shadow">
+                        Simpan & Tambah Game
+                    </button>
+                </div>
+
+                <!-- Tab 3: Settings -->
+                <div id="tabContentSettings" class="space-y-3 hidden overflow-y-auto flex-1 pr-1 text-xs">
+                    <div class="space-y-1 bg-gray-800/50 p-3 rounded-xl border border-gray-700">
+                        <label class="text-gray-300 block font-semibold text-[11px]">No WhatsApp Admin (62...):</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="storeWaInput" placeholder="6287878844020" class="flex-1 bg-gray-800 text-xs text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                            <button onclick="saveStoreSettings()" class="px-3 py-1.5 bg-brand-600 text-white text-[11px] rounded-xl">Simpan</button>
+                        </div>
+                    </div>
+                    <div class="space-y-1 bg-gray-800/50 p-3 rounded-xl border border-gray-700">
+                        <label class="text-gray-300 block font-semibold text-[11px]">Ubah PIN Admin:</label>
+                        <div class="flex gap-2">
+                            <input type="password" id="newAdminPin" placeholder="PIN Baru" class="flex-1 bg-gray-800 text-xs text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                            <button onclick="changeAdminPin()" class="px-3 py-1.5 bg-emerald-600 text-white text-[11px] rounded-xl">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT SINGLE GAME MODAL -->
+    <div id="editSingleGameModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-3">
+        <div class="bg-gray-900 border border-gray-800 w-full max-w-sm rounded-2xl p-4 shadow-2xl relative space-y-3 text-xs">
+            <div class="flex items-center justify-between pb-2 border-b border-gray-800">
+                <h3 class="font-bold text-white">Edit Detail Game</h3>
+                <button onclick="closeEditSingleGameModal()" class="text-gray-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <input type="hidden" id="editGameId">
+            <div class="space-y-2">
+                <div>
+                    <label class="text-gray-400 block mb-0.5">Judul:</label>
+                    <input type="text" id="editGameTitle" class="w-full bg-gray-800 text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="text-gray-400 block mb-0.5">Platform:</label>
+                        <select id="editGamePlatform" class="w-full bg-gray-800 text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                            <option value="PS2">PS2</option>
+                            <option value="PS3">PS3</option>
+                            <option value="PS4">PS4</option>
+                            <option value="PS5">PS5</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-gray-400 block mb-0.5">Harga (Rp):</label>
+                        <input type="number" id="editGamePrice" class="w-full bg-gray-800 text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="text-gray-400 block mb-0.5">Ukuran:</label>
+                        <input type="text" id="editGameSize" class="w-full bg-gray-800 text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                    </div>
+                    <div>
+                        <label class="text-gray-400 block mb-0.5">Genre:</label>
+                        <select id="editGameGenre" class="w-full bg-gray-800 text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                            <option value="Action">Action</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Racing">Racing</option>
+                            <option value="RPG">RPG</option>
+                            <option value="Fighting">Fighting</option>
+                            <option value="Horror">Horror</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-gray-400 block mb-0.5">URL Gambar:</label>
+                    <input type="text" id="editGameImgUrl" class="w-full bg-gray-800 text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                </div>
+            </div>
+            <div class="pt-2 flex gap-2">
+                <button onclick="saveSingleGameChanges()" class="flex-1 py-2 bg-emerald-600 text-white font-bold rounded-xl">Simpan</button>
+                <button onclick="closeEditSingleGameModal()" class="px-3 py-2 bg-gray-800 text-gray-300 rounded-xl">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed top-4 left-4 right-4 z-50 transform -translate-y-24 transition-transform duration-300 bg-gray-800 text-white border border-brand-500/40 px-3 py-2.5 rounded-xl shadow-2xl flex items-center gap-2.5 mx-auto max-w-sm">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMessage" class="text-xs font-medium">Pesan</span>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, updateDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'dza-gamestore-mobile';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' 
+            ? JSON.parse(__firebase_config) 
+            : {
+                 apiKey: "AIzaSyAMgyJIkmgtkaebOs3UaOuJ93SGttkXs4c",
+                 authDomain: "dza-gamestore-db.firebaseapp.com",
+                 projectId: "dza-gamestore-db",
+                 storageBucket: "dza-gamestore-db.firebasestorage.app",
+                 messagingSenderId: "120895796799",
+                 appId: "1:120895796799:web:532747a087955c3e97ea8a"
+            };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const gamesColRef = collection(db, 'artifacts', appId, 'public', 'data', 'games');
+        const settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'storeConfig');
+
+        let storeConfig = {
+            waNumber: "6287878844020",
+            storeName: "DZA GAMESTORE",
+            adminPin: "1234"
+        };
+
+        let isAdminLoggedIn = sessionStorage.getItem('dza_admin_logged_in') === 'true';
+        let cart = [];
+        let currentPlatform = 'ALL';
+        let currentQuickViewGameId = null;
+        let pendingNewGameImgData = null;
+        let currentUser = null;
+
+        const initialGames = [
+            { id: 'ps2-1', title: 'Grand Theft Auto: San Andreas', platform: 'PS2', price: 5000, size: '4.2 GB', genre: 'Action', popular: 100, img: 'https://placehold.co/400x550/002B66/ffffff?text=GTA+SA+PS2' },
+            { id: 'ps2-2', title: 'God of War II', platform: 'PS2', price: 5000, size: '7.9 GB', genre: 'Action', popular: 98, img: 'https://placehold.co/400x550/002B66/ffffff?text=GoW+2+PS2' },
+            { id: 'ps2-3', title: 'Bully', platform: 'PS2', price: 5000, size: '2.7 GB', genre: 'Action', popular: 95, img: 'https://placehold.co/400x550/002B66/ffffff?text=Bully+PS2' },
+            { id: 'ps2-4', title: 'Need for Speed: Most Wanted', platform: 'PS2', price: 5000, size: '3.1 GB', genre: 'Racing', popular: 94, img: 'https://placehold.co/400x550/002B66/ffffff?text=NFS+MW+PS2' },
+            { id: 'ps2-5', title: 'Resident Evil 4', platform: 'PS2', price: 5000, size: '4.3 GB', genre: 'Horror', popular: 96, img: 'https://placehold.co/400x550/002B66/ffffff?text=RE4+PS2' },
+            { id: 'ps2-6', title: 'Naruto Shippuden: Ultimate Ninja 5', platform: 'PS2', price: 5000, size: '3.8 GB', genre: 'Fighting', popular: 92, img: 'https://placehold.co/400x550/002B66/ffffff?text=Naruto+5+PS2' },
+            { id: 'ps2-7', title: 'PES / Winning Eleven Terbaru', platform: 'PS2', price: 10000, size: '4.1 GB', genre: 'Sports', popular: 99, img: 'https://placehold.co/400x550/002B66/ffffff?text=PES+PS2' },
+            { id: 'ps2-8', title: 'Downhill Domination', platform: 'PS2', price: 5000, size: '2.4 GB', genre: 'Racing', popular: 93, img: 'https://placehold.co/400x550/002B66/ffffff?text=Downhill+PS2' },
+
+            { id: 'ps3-1', title: 'Grand Theft Auto V (GTA V)', platform: 'PS3', price: 15000, size: '18 GB', genre: 'Action', popular: 100, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=GTA+V+PS3' },
+            { id: 'ps3-2', title: 'PES / eFootball Update Terbaru', platform: 'PS3', price: 20000, size: '10 GB', genre: 'Sports', popular: 99, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=PES+PS3' },
+            { id: 'ps3-3', title: 'The Last of Us', platform: 'PS3', price: 15000, size: '32 GB', genre: 'Action', popular: 97, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=TLOU+PS3' },
+            { id: 'ps3-4', title: 'God of War III', platform: 'PS3', price: 15000, size: '40 GB', genre: 'Action', popular: 95, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=GoW+3+PS3' },
+
+            { id: 'ps4-1', title: 'EA Sports FC 24 / 25', platform: 'PS4', price: 30000, size: '45 GB', genre: 'Sports', popular: 100, img: 'https://placehold.co/400x550/003791/ffffff?text=EA+FC+PS4' },
+            { id: 'ps4-2', title: 'God of War Ragnarök', platform: 'PS4', price: 25000, size: '84 GB', genre: 'Action', popular: 99, img: 'https://placehold.co/400x550/003791/ffffff?text=GoW+Rag+PS4' },
+            { id: 'ps4-3', title: 'Spider-Man: Miles Morales', platform: 'PS4', price: 25000, size: '52 GB', genre: 'Action', popular: 96, img: 'https://placehold.co/400x550/003791/ffffff?text=Spider-Man+PS4' },
+
+            { id: 'ps5-1', title: 'Black Myth: Wukong', platform: 'PS5', price: 40000, size: '120 GB', genre: 'Action', popular: 100, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Wukong+PS5' },
+            { id: 'ps5-2', title: 'EA Sports FC 25 Digital', platform: 'PS5', price: 40000, size: '55 GB', genre: 'Sports', popular: 99, img: 'https://placehold.co/400x550/0070D1/ffffff?text=EA+FC+PS5' },
+            { id: 'ps5-3', title: 'Marvel\'s Spider-Man 2', platform: 'PS5', price: 35000, size: '88 GB', genre: 'Action', popular: 98, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Spider-Man+2+PS5' }
+        ];
+
+        let gamesData = [];
+
+        async function initCloudConnection() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    const userCredential = await signInWithCustomToken(auth, __initial_auth_token);
+                    currentUser = userCredential.user;
+                } else {
+                    const userCredential = await signInAnonymously(auth);
+                    currentUser = userCredential.user;
+                }
+
+                if (!currentUser) return;
+
+                onSnapshot(gamesColRef, async (snapshot) => {
+                    if (snapshot.empty) {
+                        await seedInitialGames();
+                    } else {
+                        gamesData = snapshot.docs.map(docSnap => ({
+                            id: docSnap.id,
+                            ...docSnap.data()
+                        }));
+                        filterGames();
+                        if (isAdminLoggedIn) renderAdminGamesList();
+                    }
+                }, (err) => console.error(err));
+
+                onSnapshot(settingsDocRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        storeConfig = { ...storeConfig, ...docSnap.data() };
+                    } else {
+                        setDoc(settingsDocRef, storeConfig);
+                    }
+                    const waInput = document.getElementById('storeWaInput');
+                    if (waInput) waInput.value = storeConfig.waNumber;
+                }, (err) => console.error(err));
+
+            } catch (error) {
+                console.error(error);
+                gamesData = [...initialGames];
+                filterGames();
+            }
+        }
+
+        async function seedInitialGames() {
+            if (!currentUser) return;
+            for (const game of initialGames) {
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', game.id), game);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initCloudConnection();
+            updateAdminUIState();
+        });
+
+        function formatRupiah(amount) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(amount);
+        }
+
+        function verifyAdminPin() {
+            const pinVal = document.getElementById('adminPinInput').value.trim();
+            if (pinVal === storeConfig.adminPin) {
+                isAdminLoggedIn = true;
+                sessionStorage.setItem('dza_admin_logged_in', 'true');
+                document.getElementById('adminPinInput').value = '';
+                updateAdminUIState();
+                showToast("Login Admin Berhasil!");
+            } else {
+                showToast("PIN Admin Salah!");
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            sessionStorage.removeItem('dza_admin_logged_in');
+            updateAdminUIState();
+            toggleAdminModal();
+            showToast("Admin Logout.");
+        }
+
+        async function changeAdminPin() {
+            if (!isAdminLoggedIn || !currentUser) return;
+            const newPin = document.getElementById('newAdminPin').value.trim();
+            if (newPin.length >= 4) {
+                storeConfig.adminPin = newPin;
+                await setDoc(settingsDocRef, { adminPin: newPin }, { merge: true });
+                document.getElementById('newAdminPin').value = '';
+                showToast("PIN Admin diperbarui!");
+            } else {
+                showToast("Minimal 4 karakter!");
+            }
+        }
+
+        function updateAdminUIState() {
+            const headerIcon = document.getElementById('headerAdminIcon');
+            const bottomIcon = document.getElementById('bottomAdminIcon');
+            const bottomLabel = document.getElementById('bottomAdminLabel');
+            const loginForm = document.getElementById('adminLoginForm');
+            const panelContent = document.getElementById('adminPanelContent');
+            const quickViewControls = document.getElementById('quickViewAdminControls');
+
+            if (isAdminLoggedIn) {
+                if (headerIcon) headerIcon.className = "fa-solid fa-user-check text-emerald-400 text-xs";
+                if (bottomIcon) bottomIcon.className = "fa-solid fa-user-check text-emerald-400 text-base mb-1";
+                if (bottomLabel) bottomLabel.innerText = "Admin (OK)";
+                if (loginForm) loginForm.classList.add('hidden');
+                if (panelContent) {
+                    panelContent.classList.remove('hidden');
+                    renderAdminGamesList();
+                }
+                if (quickViewControls) quickViewControls.classList.remove('hidden');
+            } else {
+                if (headerIcon) headerIcon.className = "fa-solid fa-lock text-xs";
+                if (bottomIcon) bottomIcon.className = "fa-solid fa-user-shield text-base mb-1";
+                if (bottomLabel) bottomLabel.innerText = "Admin";
+                if (loginForm) loginForm.classList.remove('hidden');
+                if (panelContent) panelContent.classList.add('hidden');
+                if (quickViewControls) quickViewControls.classList.add('hidden');
+            }
+        }
+
+        function toggleAdminModal() {
+            const modal = document.getElementById('adminModal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden') && isAdminLoggedIn) {
+                switchAdminTab('manage');
+            }
+        }
+
+        async function saveStoreSettings() {
+            if (!isAdminLoggedIn || !currentUser) return;
+            const waVal = document.getElementById('storeWaInput').value.trim();
+            if (waVal) {
+                const formatted = waVal.replace('+', '').replace('-', '');
+                storeConfig.waNumber = formatted;
+                await setDoc(settingsDocRef, { waNumber: formatted }, { merge: true });
+                showToast("No WhatsApp disimpan!");
+            }
+        }
+
+        function setPlatformFilter(platform) {
+            currentPlatform = platform;
+            document.querySelectorAll('.platform-tab').forEach(btn => {
+                btn.className = "platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-900 text-gray-300 border border-gray-800";
+            });
+            const activeBtn = document.getElementById(`btn-filter-${platform}`);
+            if (activeBtn) {
+                activeBtn.className = "platform-tab active px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-brand-600 text-white shadow-md shadow-brand-600/30";
+            }
+            filterGames();
+        }
+
+        function filterGames() {
+            const searchVal = (document.getElementById('searchInput')?.value || '').toLowerCase();
+            const genreVal = document.getElementById('genreSelect')?.value || 'ALL';
+            const sortVal = document.getElementById('sortSelect')?.value || 'popular';
+
+            const clearBtn = document.getElementById('clearSearchBtn');
+            if (clearBtn) {
+                if (searchVal.length > 0) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
+            }
+
+            let filtered = gamesData.filter(game => {
+                const matchPlatform = (currentPlatform === 'ALL') || (game.platform === currentPlatform);
+                const matchSearch = game.title.toLowerCase().includes(searchVal);
+                const matchGenre = (genreVal === 'ALL') || (game.genre === genreVal);
+                return matchPlatform && matchSearch && matchGenre;
+            });
+
+            if (sortVal === 'popular') filtered.sort((a, b) => (b.popular || 0) - (a.popular || 0));
+            else if (sortVal === 'name-asc') filtered.sort((a, b) => a.title.localeCompare(b.title));
+            else if (sortVal === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+            else if (sortVal === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+
+            const displayedCount = document.getElementById('displayedCount');
+            const activeFilterLabel = document.getElementById('activeFilterLabel');
+            if (displayedCount) displayedCount.innerText = filtered.length;
+            if (activeFilterLabel) activeFilterLabel.innerText = currentPlatform !== 'ALL' ? `(${currentPlatform})` : '';
+
+            renderGamesGrid(filtered);
+        }
+
+        function renderGamesGrid(list = gamesData) {
+            const grid = document.getElementById('gameGrid');
+            const empty = document.getElementById('emptyState');
+            if (!grid) return;
+
+            grid.innerHTML = '';
+            if (list.length === 0) {
+                if (empty) empty.classList.remove('hidden');
+                return;
+            } else {
+                if (empty) empty.classList.add('hidden');
+            }
+
+            list.forEach(game => {
+                let badgeBg = 'bg-brand-600';
+                if (game.platform === 'PS2') badgeBg = 'bg-blue-900';
+                if (game.platform === 'PS3') badgeBg = 'bg-zinc-800';
+                if (game.platform === 'PS4') badgeBg = 'bg-blue-700';
+                if (game.platform === 'PS5') badgeBg = 'bg-cyan-600';
+
+                const card = document.createElement('div');
+                card.className = "bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden flex flex-col justify-between shadow";
+                
+                card.innerHTML = `
+                    <div class="relative overflow-hidden cursor-pointer" onclick="openQuickView('${game.id}')">
+                        <img src="${game.img}" alt="${game.title}" class="w-full h-40 object-cover" loading="lazy" onerror="this.src='https://placehold.co/400x550/111827/ffffff?text=No+Cover'">
+                        <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded text-[9px] font-black text-white ${badgeBg} shadow uppercase">
+                            ${game.platform}
+                        </span>
+                        <span class="absolute bottom-1.5 right-1.5 bg-black/70 px-1.5 py-0.5 rounded text-[9px] text-gray-300 font-mono">
+                            ${game.size}
+                        </span>
+                    </div>
+
+                    <div class="p-2.5 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <span class="text-[9px] uppercase font-bold text-gray-500">${game.genre || 'Action'}</span>
+                            <h3 onclick="openQuickView('${game.id}')" class="text-xs font-bold text-white line-clamp-2 mt-0.5 cursor-pointer">
+                                ${game.title}
+                            </h3>
+                        </div>
+
+                        <div class="pt-1 border-t border-gray-800/80 flex items-center justify-between">
+                            <span class="text-xs font-black text-emerald-400">${formatRupiah(game.price)}</span>
+                            <button onclick="addToCart('${game.id}')" class="w-7 h-7 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center border border-brand-500/30 active:scale-90">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openQuickView(gameId) {
+            const game = gamesData.find(g => g.id === gameId);
+            if (!game) return;
+
+            currentQuickViewGameId = gameId;
+            document.getElementById('modalImg').src = game.img;
+            document.getElementById('modalTitle').innerText = game.title;
+            document.getElementById('modalPlatformBadge').innerText = game.platform;
+            document.getElementById('modalGenre').innerText = `Genre: ${game.genre || 'Action'}`;
+            document.getElementById('modalSize').innerText = game.size;
+            document.getElementById('modalPrice').innerText = formatRupiah(game.price);
+            document.getElementById('modalDesc').innerText = `Isi game ${game.title} untuk console ${game.platform}. Bergaransi dan tested langsung di DZA GAMESTORE!`;
+
+            const addBtn = document.getElementById('modalAddToCartBtn');
+            addBtn.onclick = () => { addToCart(game.id); closeQuickView(); };
+
+            const directBtn = document.getElementById('modalDirectOrderBtn');
+            directBtn.onclick = () => {
+                const text = `Halo Admin DZA GAMESTORE, saya mau pesan:\n\n🎮 *${game.title}* [${game.platform}]\n💰 *Harga:* ${formatRupiah(game.price)}\n\nMohon info selanjutnya. Terima kasih!`;
+                window.open(`https://wa.me/${storeConfig.waNumber}?text=${encodeURIComponent(text)}`, '_blank');
+            };
+
+            document.getElementById('quickViewModal').classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickViewModal').classList.add('hidden');
+        }
+
+        async function updateGameCoverImage(gameId, newImgSource) {
+            if (!isAdminLoggedIn || !currentUser) return;
+            const gameDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'games', gameId);
+            await updateDoc(gameDocRef, { img: newImgSource });
+            const modalImg = document.getElementById('modalImg');
+            if (modalImg) modalImg.src = newImgSource;
+            showToast("Kover game diperbarui!");
+        }
+
+        function handleModalImageUpload(e) {
+            if (!currentQuickViewGameId) return;
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) { updateGameCoverImage(currentQuickViewGameId, evt.target.result); };
+            reader.readAsDataURL(file);
+        }
+
+        function promptChangeImageURL() {
+            if (!currentQuickViewGameId) return;
+            const url = prompt("Masukkan URL gambar baru:");
+            if (url && url.trim().length > 0) updateGameCoverImage(currentQuickViewGameId, url.trim());
+        }
+
+        function switchAdminTab(tabName) {
+            const manageTab = document.getElementById('tabContentManage');
+            const addTab = document.getElementById('tabContentAdd');
+            const settingsTab = document.getElementById('tabContentSettings');
+
+            const btnManage = document.getElementById('tabBtnManage');
+            const btnAdd = document.getElementById('tabBtnAdd');
+            const btnSettings = document.getElementById('tabBtnSettings');
+
+            [manageTab, addTab, settingsTab].forEach(el => el.classList.add('hidden'));
+            [btnManage, btnAdd, btnSettings].forEach(el => el.className = "pb-1.5 text-gray-400 font-bold text-[11px]");
+
+            if (tabName === 'manage') {
+                manageTab.classList.remove('hidden');
+                btnManage.className = "pb-1.5 text-brand-400 border-b-2 border-brand-500 font-bold text-[11px]";
+                renderAdminGamesList();
+            } else if (tabName === 'add') {
+                addTab.classList.remove('hidden');
+                btnAdd.className = "pb-1.5 text-brand-400 border-b-2 border-brand-500 font-bold text-[11px]";
+            } else {
+                settingsTab.classList.remove('hidden');
+                btnSettings.className = "pb-1.5 text-brand-400 border-b-2 border-brand-500 font-bold text-[11px]";
+            }
+        }
+
+        function renderAdminGamesList() {
+            const container = document.getElementById('adminGamesList');
+            if (!container) return;
+            container.innerHTML = '';
+
+            gamesData.forEach(game => {
+                const item = document.createElement('div');
+                item.className = "flex items-center justify-between gap-2 bg-gray-800/90 p-2 rounded-xl border border-gray-700";
+                item.innerHTML = `
+                    <div class="flex items-center gap-2 overflow-hidden">
+                        <img src="${game.img}" class="w-8 h-11 object-cover rounded flex-shrink-0">
+                        <div class="overflow-hidden">
+                            <span class="text-[8px] px-1 bg-brand-600 text-white font-bold rounded">${game.platform}</span>
+                            <h4 class="text-[11px] font-bold text-white truncate mt-0.5">${game.title}</h4>
+                            <div class="text-[10px] text-gray-400">${formatRupiah(game.price)}</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 flex-shrink-0">
+                        <button onclick="openEditSingleGameModal('${game.id}')" class="bg-gray-700 text-gray-200 text-[10px] px-2 py-1 rounded">Edit</button>
+                        <button onclick="deleteGame('${game.id}')" class="bg-red-900/40 text-red-400 text-[10px] px-2 py-1 rounded">Hapus</button>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function openEditSingleGameModal(gameId) {
+            if (!isAdminLoggedIn) return;
+            const game = gamesData.find(g => g.id === gameId);
+            if (!game) return;
+
+            document.getElementById('editGameId').value = game.id;
+            document.getElementById('editGameTitle').value = game.title;
+            document.getElementById('editGamePlatform').value = game.platform;
+            document.getElementById('editGamePrice').value = game.price;
+            document.getElementById('editGameSize').value = game.size;
+            document.getElementById('editGameGenre').value = game.genre || 'Action';
+            document.getElementById('editGameImgUrl').value = game.img;
+
+            document.getElementById('editSingleGameModal').classList.remove('hidden');
+        }
+
+        function closeEditSingleGameModal() {
+            document.getElementById('editSingleGameModal').classList.add('hidden');
+        }
+
+        async function saveSingleGameChanges() {
+            if (!isAdminLoggedIn || !currentUser) return;
+            const id = document.getElementById('editGameId').value;
+            const title = document.getElementById('editGameTitle').value.trim();
+            const platform = document.getElementById('editGamePlatform').value;
+            const price = parseInt(document.getElementById('editGamePrice').value);
+            const size = document.getElementById('editGameSize').value.trim();
+            const genre = document.getElementById('editGameGenre').value;
+            const img = document.getElementById('editGameImgUrl').value.trim();
+
+            const gameDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'games', id);
+            await updateDoc(gameDocRef, { title, platform, price, size, genre, img });
+            closeEditSingleGameModal();
+            showToast("Game diperbarui!");
+        }
+
+        async function deleteGame(gameId) {
+            if (!isAdminLoggedIn || !currentUser) return;
+            await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', gameId));
+            showToast("Game dihapus!");
+        }
+
+        function handleNewGameImageUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                pendingNewGameImgData = evt.target.result;
+                showToast("Gambar siap!");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function addNewGame() {
+            if (!isAdminLoggedIn || !currentUser) return;
+            const title = document.getElementById('newTitle').value.trim();
+            const platform = document.getElementById('newPlatform').value;
+            const price = parseInt(document.getElementById('newPrice').value);
+            const size = document.getElementById('newSize').value.trim();
+            const genre = document.getElementById('newGenre').value;
+            const urlImg = document.getElementById('newImg').value.trim();
+
+            const finalImg = pendingNewGameImgData || urlImg || 'https://placehold.co/400x550/111827/ffffff?text=Game';
+
+            if (!title || isNaN(price) || !size) {
+                showToast("Lengkapi data game!");
+                return;
+            }
+
+            const newGameId = 'game-' + Date.now();
+            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', newGameId), {
+                id: newGameId, title, platform, price, size, genre, popular: 80, img: finalImg
+            });
+
+            document.getElementById('newTitle').value = '';
+            document.getElementById('newPrice').value = '';
+            document.getElementById('newSize').value = '';
+            document.getElementById('newImg').value = '';
+            pendingNewGameImgData = null;
+            switchAdminTab('manage');
+            showToast("Game baru ditambahkan!");
+        }
+
+        async function resetToInitialGames() {
+            if (!isAdminLoggedIn || !currentUser) return;
+            for (const game of gamesData) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', game.id));
+            }
+            await seedInitialGames();
+            showToast("Katalog direset!");
+        }
+
+        function addToCart(gameId) {
+            const game = gamesData.find(g => g.id === gameId);
+            if (!game) return;
+            if (cart.some(item => item.id === gameId)) {
+                showToast("Game sudah ada di keranjang");
+                toggleCartModal(true);
+                return;
+            }
+            cart.push(game);
+            updateCartUI();
+            showToast("Ditambahkan ke keranjang");
+        }
+
+        function removeFromCart(gameId) {
+            cart = cart.filter(item => item.id !== gameId);
+            updateCartUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            if (badge) badge.innerText = cart.length;
+
+            const container = document.getElementById('cartItemsContainer');
+            const emptyState = document.getElementById('cartEmptyState');
+            const footer = document.getElementById('cartFooter');
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+
+            if (!container) return;
+            if (cart.length === 0) {
+                container.innerHTML = '';
+                if (emptyState) emptyState.classList.remove('hidden');
+                if (footer) footer.classList.add('hidden');
+                return;
+            }
+
+            if (emptyState) emptyState.classList.add('hidden');
+            if (footer) footer.classList.remove('hidden');
+
+            let total = 0;
+            container.innerHTML = '';
+
+            cart.forEach(item => {
+                total += item.price;
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between gap-2 bg-gray-800 p-2.5 rounded-xl border border-gray-700/60 text-xs";
+                div.innerHTML = `
+                    <div class="flex items-center gap-2.5 overflow-hidden">
+                        <img src="${item.img}" class="w-8 h-10 object-cover rounded flex-shrink-0">
+                        <div class="overflow-hidden">
+                            <span class="text-[8px] px-1 bg-brand-600 text-white font-bold rounded">${item.platform}</span>
+                            <h4 class="font-semibold text-white truncate mt-0.5">${item.title}</h4>
+                            <span class="text-[11px] text-emerald-400 font-bold">${formatRupiah(item.price)}</span>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart('${item.id}')" class="text-red-400 p-1"><i class="fa-solid fa-trash text-xs"></i></button>
+                `;
+                container.appendChild(div);
+            });
+            if (totalPriceEl) totalPriceEl.innerText = formatRupiah(total);
+        }
+
+        function sendCartToWhatsApp() {
+            if (cart.length === 0) return;
+            const note = document.getElementById('customerNote')?.value.trim() || '';
+            const mediaType = document.getElementById('mediaTypeSelect')?.value || '';
+
+            let total = 0;
+            let listText = "";
+            cart.forEach((item, index) => {
+                total += item.price;
+                listText += `${index + 1}. *${item.title}* [${item.platform}] - ${formatRupiah(item.price)}\n`;
+            });
+
+            let waText = `*ORDER DZA GAMESTORE (MOBILE)*\n\n*DAFTAR GAME:*\n${listText}\n`;
+            waText += `💾 *Media:* ${mediaType}\n`;
+            if (note) waText += `📝 *Catatan:* ${note}\n`;
+            waText += `💰 *TOTAL:* *${formatRupiah(total)}*\n\nMohon konfirmasi pesanan saya. Terima kasih!`;
+
+            window.open(`https://wa.me/${storeConfig.waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
+        }
+
+        function toggleCartModal(forceOpen = false) {
+            const modal = document.getElementById('cartModal');
+            if (forceOpen) modal.classList.remove('hidden');
+            else modal.classList.toggle('hidden');
+        }
+
+        function openWhatsAppContact() {
+            window.open(`https://wa.me/${storeConfig.waNumber}?text=Halo%20Admin%20DZA%20GAMESTORE,%20saya%20mau%20konsultasi%20isian%20game...`, '_blank');
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            filterGames();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('genreSelect').value = 'ALL';
+            document.getElementById('sortSelect').value = 'popular';
+            setPlatformFilter('ALL');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            if (toastMessage) toastMessage.innerText = msg;
+            if (toast) {
+                toast.classList.remove('-translate-y-24');
+                setTimeout(() => toast.classList.add('-translate-y-24'), 3000);
+            }
+        }
+
+        window.verifyAdminPin = verifyAdminPin;
+        window.logoutAdmin = logoutAdmin;
+        window.changeAdminPin = changeAdminPin;
+        window.toggleAdminModal = toggleAdminModal;
+        window.saveStoreSettings = saveStoreSettings;
+        window.setPlatformFilter = setPlatformFilter;
+        window.filterGames = filterGames;
+        window.openQuickView = openQuickView;
+        window.closeQuickView = closeQuickView;
+        window.handleModalImageUpload = handleModalImageUpload;
+        window.promptChangeImageURL = promptChangeImageURL;
+        window.switchAdminTab = switchAdminTab;
+        window.openEditSingleGameModal = openEditSingleGameModal;
+        window.closeEditSingleGameModal = closeEditSingleGameModal;
+        window.saveSingleGameChanges = saveSingleGameChanges;
+        window.deleteGame = deleteGame;
+        window.handleNewGameImageUpload = handleNewGameImageUpload;
+        window.addNewGame = addNewGame;
+        window.resetToInitialGames = resetToInitialGames;
+        window.clearSearch = clearSearch;
+        window.resetFilters = resetFilters;
+        window.addToCart = addToCart;
+        window.removeFromCart = removeFromCart;
+        window.clearCart = clearCart;
+        window.sendCartToWhatsApp = sendCartToWhatsApp;
+        window.toggleCartModal = toggleCartModal;
+        window.openWhatsAppContact = openWhatsAppContact;
+    </script>
 </body>
 </html>
