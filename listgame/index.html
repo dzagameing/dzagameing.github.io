@@ -40,9 +40,8 @@
         }
     </script>
     
-    <!-- Google Fonts: Roboto & Inter for Android look -->
+    <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -54,7 +53,6 @@
             user-select: none;
         }
         
-        /* Mobile Scrollbar Hide */
         .scrollbar-none::-webkit-scrollbar {
             display: none;
         }
@@ -63,7 +61,6 @@
             scrollbar-width: none;
         }
 
-        /* Android Touch Ripple Effect */
         .touch-ripple {
             position: relative;
             overflow: hidden;
@@ -81,14 +78,12 @@
             transition: transform 0.2s, opacity 0.2s;
         }
 
-        /* Glassmorphism & App Sheet Styling */
         .android-glass {
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
         }
 
-        /* Android Bottom Sheet Animations */
         @keyframes slideUp {
             from { transform: translateY(100%); }
             to { transform: translateY(0); }
@@ -104,11 +99,9 @@
 </head>
 <body class="min-h-full flex flex-col justify-between selection:bg-brand-500 selection:text-white pb-20 md:pb-6">
 
-    <!-- Android App Top Navigation Bar -->
     <header class="sticky top-0 z-40 android-glass border-b border-gray-800/80 shadow-md">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
             
-            <!-- Android App Brand Logo -->
             <div class="flex items-center gap-3 cursor-pointer touch-ripple rounded-xl p-1" onclick="resetFilters()">
                 <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 via-indigo-500 to-cyan-400 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
                     <i class="fa-solid fa-gamepad text-xl"></i>
@@ -121,7 +114,6 @@
                 </div>
             </div>
 
-            <!-- Global Search Bar (Desktop View) -->
             <div class="hidden md:flex flex-1 max-w-md mx-4 relative">
                 <input type="text" id="searchInput" oninput="filterGames()" placeholder="Cari game PS2, PS3, PS4, PS5..." 
                     class="w-full bg-gray-900/90 text-xs text-gray-200 placeholder-gray-500 rounded-2xl pl-10 pr-10 py-2.5 border border-gray-800 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all">
@@ -131,20 +123,16 @@
                 </button>
             </div>
 
-            <!-- Header Action Buttons -->
             <div class="flex items-center gap-2">
-                <!-- Search Toggle Button (Mobile) -->
                 <button onclick="toggleMobileSearchBar()" class="md:hidden w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 text-gray-300 flex items-center justify-center active:scale-95 transition-all">
                     <i class="fa-solid fa-magnifying-glass text-sm"></i>
                 </button>
 
-                <!-- Admin Login Shortcut -->
                 <button id="adminStatusBtn" onclick="handleAdminHeaderClick()" class="bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-md transition-all active:scale-95">
                     <i id="adminStatusIcon" class="fa-solid fa-lock text-xs"></i>
                     <span id="adminStatusText" class="hidden sm:inline">Admin</span>
                 </button>
 
-                <!-- Cart Button Header -->
                 <button onclick="toggleCartModal()" class="relative bg-gray-900 text-gray-200 p-2.5 rounded-xl border border-gray-800 flex items-center gap-2 active:scale-95 transition-all">
                     <i class="fa-solid fa-cart-shopping text-brand-400 text-base"></i>
                     <span id="cartBadge" class="bg-brand-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
@@ -152,7 +140,6 @@
             </div>
         </div>
 
-        <!-- Android Mobile Expandable Search Bar -->
         <div id="mobileSearchBarContainer" class="hidden md:hidden px-4 pb-3 pt-1 border-t border-gray-800/50 bg-gray-900/90">
             <div class="relative w-full">
                 <input type="text" id="mobileSearchInput" oninput="syncMobileSearch(this.value)" placeholder="Cari judul game..." 
@@ -167,7 +154,6 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-1 w-full space-y-5">
 
-        <!-- Android App Banner Card -->
         <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-gray-900 via-indigo-950 to-gray-900 border border-gray-800 p-5 sm:p-6 shadow-2xl">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-brand-600/20 via-transparent to-transparent opacity-70"></div>
             
@@ -176,7 +162,7 @@
                     <span class="inline-flex items-center gap-1 px-3 py-1 bg-brand-500/20 text-brand-300 border border-brand-500/30 text-[11px] font-semibold rounded-full">
                         <i class="fa-solid fa-bolt text-yellow-400"></i> Android App Store UI
                     </span>
-                    <span class="text-[10px] text-gray-400 font-mono">v2.5 Android Edition</span>
+                    <span class="text-[10px] text-gray-400 font-mono">v2.5 Hybrid Offline/Cloud</span>
                 </div>
 
                 <h2 class="text-xl sm:text-3xl font-extrabold text-white leading-tight">
@@ -186,7 +172,6 @@
                     Temukan ribuan game siap diisi ke Harddisk, Flashdisk, Console HEN/CFW/OFW, maupun Akun Digital dengan harga terjangkau!
                 </p>
 
-                <!-- Quick Stats Strip -->
                 <div class="grid grid-cols-4 gap-2 pt-2 text-center border-t border-gray-800/80">
                     <div class="bg-gray-900/60 p-2 rounded-2xl border border-gray-800">
                         <i class="fa-solid fa-compact-disc text-brand-400 text-sm mb-0.5"></i>
@@ -208,10 +193,8 @@
             </div>
         </div>
 
-        <!-- Platform Horizontal Scroll Pills (Android Style) -->
         <section id="katalogSection" class="space-y-4">
             <div class="space-y-3">
-                <!-- Platform Scrollable Tabs -->
                 <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
                     <button onclick="setPlatformFilter('ALL')" id="btn-filter-ALL" class="platform-tab active px-4 py-2 rounded-2xl text-xs font-bold whitespace-nowrap transition-all bg-brand-600 text-white shadow-md active:scale-95">
                         🎮 Semua Game
@@ -230,10 +213,8 @@
                     </button>
                 </div>
 
-                <!-- Secondary Filter Dropdowns -->
                 <div class="flex items-center justify-between gap-2">
                     <div class="flex items-center gap-2 flex-1">
-                        <!-- Genre Select -->
                         <select id="genreSelect" onchange="filterGames()" class="bg-gray-900 text-gray-200 text-xs rounded-xl px-3 py-2 border border-gray-800 focus:outline-none focus:border-brand-500 w-full max-w-[150px]">
                             <option value="ALL">Semua Genre</option>
                             <option value="Action">Action</option>
@@ -244,7 +225,6 @@
                             <option value="Horror">Horror</option>
                         </select>
 
-                        <!-- Sort Select -->
                         <select id="sortSelect" onchange="filterGames()" class="bg-gray-900 text-gray-200 text-xs rounded-xl px-3 py-2 border border-gray-800 focus:outline-none focus:border-brand-500 w-full max-w-[150px]">
                             <option value="popular">Terpopuler</option>
                             <option value="name-asc">A - Z</option>
@@ -259,7 +239,6 @@
                 </div>
             </div>
 
-            <!-- Active Result Summary Bar -->
             <div class="flex items-center justify-between text-xs text-gray-400 px-1 pt-1">
                 <div>
                     Menampilkan <span id="displayedCount" class="font-bold text-white">0</span> game 
@@ -267,12 +246,9 @@
                 </div>
             </div>
 
-            <!-- Android Optimized Game Cards Grid -->
             <div id="gameGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-                <!-- Dynamic cards populated via JavaScript -->
             </div>
 
-            <!-- Empty State -->
             <div id="emptyState" class="hidden py-16 text-center space-y-4">
                 <div class="w-16 h-16 bg-gray-900 border border-gray-800 rounded-full flex items-center justify-center mx-auto text-gray-500 text-2xl">
                     <i class="fa-solid fa-gamepad"></i>
@@ -288,61 +264,49 @@
         </section>
     </main>
 
-    <!-- Android Native Bottom Navigation Bar (Mobile Only) -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 android-glass border-t border-gray-800/80 px-2 py-1.5 flex items-center justify-around">
-        <!-- Home / Katalog -->
         <button onclick="resetFilters(); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex flex-col items-center justify-center w-16 py-1 text-brand-400">
             <i class="fa-solid fa-house text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Katalog</span>
         </button>
 
-        <!-- Search Button Mobile -->
         <button onclick="toggleMobileSearchBar()" class="flex flex-col items-center justify-center w-16 py-1 text-gray-400 active:text-brand-400">
             <i class="fa-solid fa-magnifying-glass text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Cari</span>
         </button>
 
-        <!-- WhatsApp Quick Contact -->
         <button onclick="openWhatsAppContact()" class="flex flex-col items-center justify-center w-16 py-1 text-emerald-400">
             <i class="fa-brands fa-whatsapp text-xl"></i>
             <span class="text-[10px] font-semibold mt-0.5">Chat WA</span>
         </button>
 
-        <!-- Cart Mobile -->
         <button onclick="toggleCartModal()" class="flex flex-col items-center justify-center w-16 py-1 text-gray-400 active:text-brand-400 relative">
             <i class="fa-solid fa-cart-shopping text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Keranjang</span>
             <span id="mobileBottomCartBadge" class="absolute top-0 right-3 bg-brand-600 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
         </button>
 
-        <!-- Admin Access -->
         <button onclick="toggleAdminModal()" class="flex flex-col items-center justify-center w-16 py-1 text-gray-400 active:text-brand-400">
             <i class="fa-solid fa-sliders text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Kelola</span>
         </button>
     </nav>
 
-    <!-- QUICK VIEW MODAL (Android Bottom Sheet Style on Mobile) -->
     <div id="quickViewModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
         <div class="bg-gray-900 border-t sm:border border-gray-800 w-full max-w-2xl rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col animate-bottom-sheet sm:animate-none">
-            
-            <!-- Android Drag Handle Indicator (Mobile) -->
             <div class="w-12 h-1 bg-gray-700 rounded-full mx-auto my-2 sm:hidden"></div>
 
-            <!-- Close Button -->
             <button onclick="closeQuickView()" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 text-gray-300 hover:text-white flex items-center justify-center">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="overflow-y-auto p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-5 gap-5">
-                <!-- Cover Image & Admin Quick Controls -->
                 <div class="sm:col-span-2 space-y-2">
                     <div class="relative group rounded-2xl overflow-hidden border border-gray-800">
                         <img id="modalImg" src="" alt="Cover" class="w-full h-56 sm:h-64 object-cover">
                         <span id="modalPlatformBadge" class="absolute top-2 left-2 px-2.5 py-1 rounded-lg text-xs font-bold text-white bg-brand-600 shadow-md"></span>
                     </div>
 
-                    <!-- Quick Image Upload/Change Controls (Only Visible to Logged-in Admin) -->
                     <div id="quickViewAdminControls" class="bg-gray-800/90 p-2 rounded-2xl border border-gray-700/60 space-y-1.5 hidden">
                         <span class="text-[10px] font-bold text-brand-400 block"><i class="fa-solid fa-shield-halved"></i> Ganti Gambar (Admin):</span>
                         <div class="flex gap-1.5">
@@ -357,7 +321,6 @@
                     </div>
                 </div>
 
-                <!-- Game Details -->
                 <div class="sm:col-span-3 space-y-3 flex flex-col justify-between">
                     <div>
                         <span id="modalGenre" class="text-[10px] uppercase font-extrabold text-brand-400 tracking-wider"></span>
@@ -401,11 +364,10 @@
         </div>
     </div>
 
-    <!-- SHOPPING CART MODAL / DRAWER -->
+    <!-- SHOPPING CART MODAL -->
     <div id="cartModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex justify-end">
         <div class="bg-gray-900 border-l border-gray-800 w-full max-w-md h-full flex flex-col justify-between p-5 sm:p-6 shadow-2xl relative">
             <div>
-                <!-- Cart Header -->
                 <div class="flex items-center justify-between pb-4 border-b border-gray-800">
                     <div class="flex items-center gap-2">
                         <i class="fa-solid fa-cart-shopping text-brand-400 text-lg"></i>
@@ -416,9 +378,7 @@
                     </button>
                 </div>
 
-                <!-- Cart List Items -->
                 <div id="cartItemsContainer" class="mt-4 space-y-2.5 max-h-[55vh] overflow-y-auto pr-1">
-                    <!-- Cart items injected via JavaScript -->
                 </div>
 
                 <div id="cartEmptyState" class="text-center py-12 text-gray-500 space-y-2">
@@ -428,7 +388,6 @@
                 </div>
             </div>
 
-            <!-- Cart Summary & WhatsApp Order Button -->
             <div id="cartFooter" class="border-t border-gray-800 pt-3 space-y-3 hidden">
                 <div class="space-y-1.5">
                     <label class="text-[11px] text-gray-400 font-semibold block">Catatan Tambahan / Tipe Console:</label>
@@ -473,7 +432,6 @@
                 </button>
             </div>
 
-            <!-- PIN LOGIN FORM -->
             <div id="adminLoginForm" class="py-6 px-4 space-y-4 text-center my-auto">
                 <div class="w-14 h-14 bg-brand-600/20 text-brand-400 rounded-2xl flex items-center justify-center mx-auto border border-brand-500/30 text-xl shadow-md">
                     <i class="fa-solid fa-user-shield"></i>
@@ -494,7 +452,6 @@
                 </div>
             </div>
 
-            <!-- PROTECTED ADMIN PANEL CONTENT -->
             <div id="adminPanelContent" class="hidden space-y-3 flex-1 flex flex-col overflow-hidden">
                 <div class="flex items-center justify-between bg-emerald-950/40 border border-emerald-800/40 px-3 py-2 rounded-2xl text-xs">
                     <span class="text-emerald-400 font-bold flex items-center gap-1.5">
@@ -505,7 +462,6 @@
                     </button>
                 </div>
 
-                <!-- Tabs Navigation -->
                 <div class="flex border-b border-gray-800 gap-3 text-xs font-bold">
                     <button id="tabBtnManage" onclick="switchAdminTab('manage')" class="pb-2 text-brand-400 border-b-2 border-brand-500 flex items-center gap-1">
                         <i class="fa-solid fa-list-check"></i> Kelola Katalog
@@ -518,10 +474,8 @@
                     </button>
                 </div>
 
-                <!-- TAB 1: Manage / Edit List -->
                 <div id="tabContentManage" class="space-y-3 overflow-y-auto flex-1 pr-1">
                     <div id="adminGamesList" class="space-y-2">
-                        <!-- Items generated via JS -->
                     </div>
                     <div class="pt-2 border-t border-gray-800 text-right">
                         <button onclick="resetToInitialGames()" class="text-[11px] text-red-400 hover:text-red-300 font-semibold">
@@ -530,7 +484,6 @@
                     </div>
                 </div>
 
-                <!-- TAB 2: Add New Game -->
                 <div id="tabContentAdd" class="space-y-3 hidden overflow-y-auto flex-1 pr-1">
                     <div class="grid grid-cols-2 gap-2">
                         <div>
@@ -590,7 +543,6 @@
                     </button>
                 </div>
 
-                <!-- TAB 3: Settings -->
                 <div id="tabContentSettings" class="space-y-3 hidden overflow-y-auto flex-1 pr-1">
                     <div class="space-y-2 bg-gray-950 p-3 rounded-2xl border border-gray-800">
                         <label class="text-xs text-gray-300 block font-bold">Nomor WhatsApp Admin (Format 62...):</label>
@@ -691,13 +643,11 @@
         </div>
     </div>
 
-    <!-- Toast Notification (Android Snackbar Style) -->
     <div id="toast" class="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-gray-900/95 text-white border border-brand-500/40 px-4 py-2.5 rounded-2xl shadow-2xl flex items-center gap-2.5 max-w-sm w-[90%] sm:w-auto">
         <i class="fa-solid fa-circle-check text-emerald-400 text-base flex-shrink-0"></i>
         <span id="toastMessage" class="text-xs font-semibold truncate">Notifikasi</span>
     </div>
 
-    <!-- JavaScript Application Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -706,29 +656,22 @@
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'dza-gamestore-app';
         const firebaseConfig = typeof __firebase_config !== 'undefined' 
             ? JSON.parse(__firebase_config) 
-            : {
-                apiKey: "AIzaSyDemoConfigKeyForPlaceholder",
-                authDomain: "dza-gamestore.firebaseapp.com",
-                projectId: "dza-gamestore",
-                storageBucket: "dza-gamestore.appspot.com",
-                messagingSenderId: "123456789",
-                appId: "1:123456789:web:abcdef"
-            };
+            : null;
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        let db = null;
+        let auth = null;
+        let gamesColRef = null;
+        let settingsDocRef = null;
+        let isFirebaseActive = false;
 
-        const gamesColRef = collection(db, 'artifacts', appId, 'public', 'data', 'games');
-        const settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'storeConfig');
-
-        // State Management
+        // Default Store Configuration
         let storeConfig = {
             waNumber: "6281234567890",
             storeName: "DZA GAMESTORE",
             adminPin: "1234"
         };
 
+        // State Management Variables
         let isAdminLoggedIn = sessionStorage.getItem('dza_admin_logged_in') === 'true';
         let cart = [];
         let currentPlatform = 'ALL';
@@ -736,7 +679,7 @@
         let pendingNewGameImgData = null;
         let currentUser = null;
 
-        // Default Catalog Initial Data
+        // Default Game Catalog Data
         const initialGames = [
             { id: 'ps2-1', title: 'Grand Theft Auto: San Andreas', platform: 'PS2', price: 5000, size: '4.2 GB', genre: 'Action', popular: 100, img: 'https://placehold.co/400x550/002B66/ffffff?text=GTA+San+Andreas+PS2' },
             { id: 'ps2-2', title: 'God of War II', platform: 'PS2', price: 5000, size: '7.9 GB', genre: 'Action', popular: 98, img: 'https://placehold.co/400x550/002B66/ffffff?text=God+of+War+2+PS2' },
@@ -762,8 +705,65 @@
 
         let gamesData = [];
 
-        async function initCloudConnection() {
+        function loadLocalData() {
             try {
+                const localGames = localStorage.getItem('dza_games_data');
+                if (localGames) {
+                    gamesData = JSON.parse(localGames);
+                } else {
+                    gamesData = [...initialGames];
+                    saveLocalGames();
+                }
+
+                const localSettings = localStorage.getItem('dza_store_config');
+                if (localSettings) {
+                    storeConfig = { ...storeConfig, ...JSON.parse(localSettings) };
+                }
+            } catch (err) {
+                console.warn("LocalStorage Load Error:", err);
+                gamesData = [...initialGames];
+            }
+
+            const waInput = document.getElementById('storeWaInput');
+            if (waInput) waInput.value = storeConfig.waNumber;
+
+            filterGames();
+            updateCounters();
+            if (isAdminLoggedIn) renderAdminGamesList();
+        }
+
+        function saveLocalGames() {
+            try {
+                localStorage.setItem('dza_games_data', JSON.stringify(gamesData));
+            } catch (e) {
+                console.warn("LocalStorage save full/disabled", e);
+            }
+        }
+
+        function saveLocalSettings() {
+            try {
+                localStorage.setItem('dza_store_config', JSON.stringify(storeConfig));
+            } catch (e) {
+                console.warn("LocalStorage config save error", e);
+            }
+        }
+
+        async function initCloudConnection() {
+            loadLocalData(); // Immediately render local catalog first
+
+            if (!firebaseConfig || !firebaseConfig.apiKey || firebaseConfig.apiKey.includes('Placeholder')) {
+                console.log("DZA GAMESTORE: Running in Standalone / Local Storage mode.");
+                return;
+            }
+
+            try {
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                gamesColRef = collection(db, 'artifacts', appId, 'public', 'data', 'games');
+                settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'storeConfig');
+
                 if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                     const userCredential = await signInWithCustomToken(auth, __initial_auth_token);
                     currentUser = userCredential.user;
@@ -773,6 +773,7 @@
                 }
 
                 if (!currentUser) return;
+                isFirebaseActive = true;
 
                 onSnapshot(gamesColRef, async (snapshot) => {
                     if (snapshot.empty) {
@@ -782,33 +783,37 @@
                             id: docSnap.id,
                             ...docSnap.data()
                         }));
+                        saveLocalGames();
                         filterGames();
                         updateCounters();
                         if (isAdminLoggedIn) renderAdminGamesList();
                     }
+                }, (err) => {
+                    console.warn("Firestore snapshot error, falling back to local:", err);
+                    isFirebaseActive = false;
                 });
 
                 onSnapshot(settingsDocRef, (docSnap) => {
                     if (docSnap.exists()) {
                         storeConfig = { ...storeConfig, ...docSnap.data() };
+                        saveLocalSettings();
                     } else {
-                        setDoc(settingsDocRef, storeConfig);
+                        setDoc(settingsDocRef, storeConfig).catch(console.warn);
                     }
                     const waInput = document.getElementById('storeWaInput');
                     if (waInput) waInput.value = storeConfig.waNumber;
-                });
+                }, (err) => console.warn("Firestore settings error:", err));
 
             } catch (error) {
-                console.error("Cloud Connection Error:", error);
-                gamesData = [...initialGames];
-                filterGames();
+                console.warn("Firebase Init fallback to LocalStorage:", error);
+                isFirebaseActive = false;
             }
         }
 
         async function seedInitialGames() {
-            if (!currentUser) return;
+            if (!currentUser || !isFirebaseActive) return;
             for (const game of initialGames) {
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', game.id), game);
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', game.id), game).catch(console.warn);
             }
         }
 
@@ -843,11 +848,14 @@
         }
 
         async function changeAdminPin() {
-            if (!isAdminLoggedIn || !currentUser) return;
+            if (!isAdminLoggedIn) return;
             const newPin = document.getElementById('newAdminPin').value.trim();
             if (newPin.length >= 4) {
                 storeConfig.adminPin = newPin;
-                await setDoc(settingsDocRef, { adminPin: newPin }, { merge: true });
+                saveLocalSettings();
+                if (isFirebaseActive && settingsDocRef) {
+                    await setDoc(settingsDocRef, { adminPin: newPin }, { merge: true }).catch(console.warn);
+                }
                 document.getElementById('newAdminPin').value = '';
                 showToast("PIN Admin Baru Tersimpan!");
             } else {
@@ -889,12 +897,15 @@
         }
 
         async function saveStoreSettings() {
-            if (!isAdminLoggedIn || !currentUser) return;
+            if (!isAdminLoggedIn) return;
             const waVal = document.getElementById('storeWaInput').value.trim();
             if (waVal) {
-                const formatted = waVal.replace('+', '').replace('-', '');
+                const formatted = waVal.replace('+', '').replace('-', '').replace(/\s+/g, '');
                 storeConfig.waNumber = formatted;
-                await setDoc(settingsDocRef, { waNumber: formatted }, { merge: true });
+                saveLocalSettings();
+                if (isFirebaseActive && settingsDocRef) {
+                    await setDoc(settingsDocRef, { waNumber: formatted }, { merge: true }).catch(console.warn);
+                }
                 showToast("Nomor WA Tersimpan!");
             }
         }
@@ -1057,16 +1068,26 @@
         }
 
         async function updateGameCoverImage(gameId, newImgSource) {
-            if (!isAdminLoggedIn || !currentUser) {
+            if (!isAdminLoggedIn) {
                 showToast("Akses Ditolak: Khusus Admin!");
                 return;
             }
 
-            const gameDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'games', gameId);
-            await updateDoc(gameDocRef, { img: newImgSource });
+            const gameIndex = gamesData.findIndex(g => g.id === gameId);
+            if (gameIndex !== -1) {
+                gamesData[gameIndex].img = newImgSource;
+                saveLocalGames();
+                filterGames();
+                if (isAdminLoggedIn) renderAdminGamesList();
+            }
+
+            if (isFirebaseActive && db) {
+                const gameDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'games', gameId);
+                await updateDoc(gameDocRef, { img: newImgSource }).catch(console.warn);
+            }
 
             const modalImg = document.getElementById('modalImg');
-            if (modalImg) modalImg.src = newImgSource;
+            if (modalImg && currentQuickViewGameId === gameId) modalImg.src = newImgSource;
 
             showToast("Gambar Kover Berhasil Diperbarui!");
         }
@@ -1204,7 +1225,7 @@
         }
 
         async function saveSingleGameChanges() {
-            if (!isAdminLoggedIn || !currentUser) return;
+            if (!isAdminLoggedIn) return;
 
             const id = document.getElementById('editGameId').value;
             const title = document.getElementById('editGameTitle').value.trim();
@@ -1214,20 +1235,36 @@
             const genre = document.getElementById('editGameGenre').value;
             const img = document.getElementById('editGameImgUrl').value.trim();
 
-            const gameDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'games', id);
-            await updateDoc(gameDocRef, { title, platform, price, size, genre, img });
+            const index = gamesData.findIndex(g => g.id === id);
+            if (index !== -1) {
+                gamesData[index] = { ...gamesData[index], title, platform, price, size, genre, img };
+                saveLocalGames();
+                filterGames();
+                renderAdminGamesList();
+            }
+
+            if (isFirebaseActive && db) {
+                const gameDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'games', id);
+                await updateDoc(gameDocRef, { title, platform, price, size, genre, img }).catch(console.warn);
+            }
 
             closeEditSingleGameModal();
             showToast("Perubahan Game Disimpan!");
         }
 
         async function deleteGame(gameId) {
-            if (!isAdminLoggedIn || !currentUser) return;
-            const game = gamesData.find(g => g.id === gameId);
-            if (game) {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', gameId));
-                showToast(`Game Dihapus`);
+            if (!isAdminLoggedIn) return;
+            
+            gamesData = gamesData.filter(g => g.id !== gameId);
+            saveLocalGames();
+            filterGames();
+            renderAdminGamesList();
+            updateCounters();
+
+            if (isFirebaseActive && db) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', gameId)).catch(console.warn);
             }
+            showToast(`Game Dihapus`);
         }
 
         function handleNewGameImageUpload(e) {
@@ -1244,7 +1281,7 @@
         }
 
         async function addNewGame() {
-            if (!isAdminLoggedIn || !currentUser) return;
+            if (!isAdminLoggedIn) return;
 
             const title = document.getElementById('newTitle').value.trim();
             const platform = document.getElementById('newPlatform').value;
@@ -1272,7 +1309,14 @@
                 img: finalImg
             };
 
-            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', newGameId), newGameObj);
+            gamesData.unshift(newGameObj);
+            saveLocalGames();
+            filterGames();
+            updateCounters();
+
+            if (isFirebaseActive && db) {
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', newGameId), newGameObj).catch(console.warn);
+            }
 
             document.getElementById('newTitle').value = '';
             document.getElementById('newPrice').value = '';
@@ -1286,12 +1330,18 @@
         }
 
         async function resetToInitialGames() {
-            if (!isAdminLoggedIn || !currentUser) return;
-            showToast("Mereset katalog...");
-            for (const game of gamesData) {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', game.id));
+            if (!isAdminLoggedIn) return;
+            gamesData = [...initialGames];
+            saveLocalGames();
+            filterGames();
+            renderAdminGamesList();
+            updateCounters();
+
+            if (isFirebaseActive && db) {
+                for (const game of gamesData) {
+                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', game.id), game).catch(console.warn);
+                }
             }
-            await seedInitialGames();
             showToast("Katalog Dikembalikan ke Default!");
         }
 
@@ -1452,7 +1502,6 @@
             }
         }
 
-        // Attach Functions to Window Object for Inline HTML Events
         window.verifyAdminPin = verifyAdminPin;
         window.logoutAdmin = logoutAdmin;
         window.changeAdminPin = changeAdminPin;
