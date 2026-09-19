@@ -44,7 +44,6 @@
             color: #f3f4f6;
             -webkit-tap-highlight-color: transparent;
         }
-        /* Custom Scrollbar Mobile Friendly */
         ::-webkit-scrollbar {
             width: 4px;
             height: 4px;
@@ -96,13 +95,10 @@
             </div>
         </div>
 
-        <!-- Header Actions Right -->
         <div class="flex items-center gap-2">
-            <!-- Admin Toggle Button -->
             <button onclick="toggleAdminModal()" class="w-9 h-9 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-white active:scale-95 transition-all">
                 <i id="headerAdminIcon" class="fa-solid fa-lock text-xs"></i>
             </button>
-            <!-- Cart Quick Button -->
             <button onclick="toggleCartModal()" class="relative w-9 h-9 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-200 active:scale-95 transition-all">
                 <i class="fa-solid fa-cart-shopping text-brand-400 text-sm"></i>
                 <span id="cartBadge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow">0</span>
@@ -111,7 +107,6 @@
     </header>
 
     <main class="px-3.5 py-4 flex-1 w-full max-w-lg mx-auto space-y-4">
-        <!-- Compact Search Bar -->
         <div class="relative w-full">
             <input type="text" id="searchInput" oninput="filterGames()" placeholder="Cari judul game (misal: GTA, PES, God of War)..." 
                 class="w-full bg-gray-900/90 text-xs text-gray-200 placeholder-gray-500 rounded-xl pl-9 pr-8 py-2.5 border border-gray-800 focus:outline-none focus:border-brand-500 shadow-inner">
@@ -121,7 +116,6 @@
             </button>
         </div>
 
-        <!-- Horizontal Platform Filter Pills -->
         <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1">
             <button onclick="setPlatformFilter('ALL')" id="btn-filter-ALL" class="platform-tab active px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-brand-600 text-white shadow-md shadow-brand-600/30">
                 🎮 Semua
@@ -140,7 +134,6 @@
             </button>
         </div>
 
-        <!-- Filter Sub-Row (Genre & Sort) -->
         <div class="flex items-center justify-between gap-2 text-xs">
             <select id="genreSelect" onchange="filterGames()" class="bg-gray-900 text-gray-300 rounded-xl px-2.5 py-2 border border-gray-800 focus:outline-none flex-1">
                 <option value="ALL">Semua Genre</option>
@@ -160,18 +153,13 @@
             </select>
         </div>
 
-        <!-- Info Count / Reset -->
         <div class="flex items-center justify-between text-[11px] text-gray-400 px-1">
             <span>Ditemukan <strong id="displayedCount" class="text-white">0</strong> game <span id="activeFilterLabel" class="text-brand-400"></span></span>
             <button onclick="resetFilters()" class="text-brand-400 underline">Reset</button>
         </div>
 
-        <!-- Game Cards Mobile Optimized Grid (2 Columns) -->
-        <div id="gameGrid" class="grid grid-cols-2 gap-3">
-            <!-- Cards injected via JS -->
-        </div>
+        <div id="gameGrid" class="grid grid-cols-2 gap-3"></div>
 
-        <!-- Empty State -->
         <div id="emptyState" class="hidden py-12 text-center space-y-3">
             <div class="w-14 h-14 bg-gray-900 rounded-full flex items-center justify-center mx-auto text-gray-600 text-xl border border-gray-800">
                 <i class="fa-solid fa-gamepad"></i>
@@ -182,7 +170,6 @@
         </div>
     </main>
 
-    <!-- Bottom Navigation Bar (Thumb Friendly) -->
     <nav class="fixed bottom-0 left-0 right-0 z-40 glass-nav h-16 px-4 flex items-center justify-around shadow-2xl">
         <button onclick="resetFilters()" class="flex flex-col items-center justify-center text-brand-400 flex-1 py-1 active:scale-95 transition-all">
             <i class="fa-solid fa-house text-base mb-1"></i>
@@ -205,7 +192,6 @@
     <!-- QUICK VIEW MODAL -->
     <div id="quickViewModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
         <div class="bg-gray-900 border-t sm:border border-gray-800 w-full max-w-lg rounded-t-3xl sm:rounded-2xl overflow-hidden shadow-2xl relative max-h-[85vh] flex flex-col animate-in slide-in-from-bottom duration-300">
-            <!-- Close Button -->
             <button onclick="closeQuickView()" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 text-gray-300 hover:text-white flex items-center justify-center">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -227,7 +213,6 @@
                     </div>
                 </div>
 
-                <!-- Admin Quick Image Edit Controls -->
                 <div id="quickViewAdminControls" class="bg-gray-800/80 p-2.5 rounded-xl border border-gray-700 space-y-2 hidden">
                     <span class="text-[10px] font-bold text-brand-400 block"><i class="fa-solid fa-shield-halved"></i> Kontrol Admin (Ubah Kover):</span>
                     <div class="flex gap-2">
@@ -275,9 +260,7 @@
                     </button>
                 </div>
 
-                <div id="cartItemsContainer" class="mt-3 space-y-2.5 max-h-[42vh] overflow-y-auto pr-1">
-                    <!-- Cart items injected here -->
-                </div>
+                <div id="cartItemsContainer" class="mt-3 space-y-2.5 max-h-[42vh] overflow-y-auto pr-1"></div>
 
                 <div id="cartEmptyState" class="text-center py-16 text-gray-500 space-y-2">
                     <i class="fa-solid fa-basket-shopping text-3xl mb-1 text-gray-700"></i>
@@ -330,7 +313,6 @@
                 </button>
             </div>
 
-            <!-- PIN Login State -->
             <div id="adminLoginForm" class="py-8 px-2 space-y-4 text-center my-auto">
                 <div class="w-14 h-14 bg-brand-600/20 text-brand-400 rounded-full flex items-center justify-center mx-auto border border-brand-500/30 text-xl shadow">
                     <i class="fa-solid fa-user-shield"></i>
@@ -351,7 +333,6 @@
                 </div>
             </div>
 
-            <!-- Logged In Admin Content -->
             <div id="adminPanelContent" class="hidden space-y-3 flex-1 flex flex-col overflow-hidden">
                 <div class="flex items-center justify-between bg-emerald-950/40 border border-emerald-800/40 px-3 py-1.5 rounded-xl text-[11px]">
                     <span class="text-emerald-400 font-medium flex items-center gap-1">
@@ -368,7 +349,6 @@
                     <button id="tabBtnSettings" onclick="switchAdminTab('settings')" class="pb-1.5 text-gray-400">Pengaturan</button>
                 </div>
 
-                <!-- Tab 1: Manage -->
                 <div id="tabContentManage" class="space-y-2.5 overflow-y-auto flex-1 pr-1 text-xs">
                     <p class="text-[11px] text-gray-400">Ganti kover atau edit detail game:</p>
                     <div id="adminGamesList" class="space-y-2"></div>
@@ -379,7 +359,6 @@
                     </div>
                 </div>
 
-                <!-- Tab 2: Add Game -->
                 <div id="tabContentAdd" class="space-y-2.5 hidden overflow-y-auto flex-1 pr-1 text-xs">
                     <div class="grid grid-cols-2 gap-2">
                         <div>
@@ -432,7 +411,6 @@
                     </button>
                 </div>
 
-                <!-- Tab 3: Settings -->
                 <div id="tabContentSettings" class="space-y-3 hidden overflow-y-auto flex-1 pr-1 text-xs">
                     <div class="space-y-1 bg-gray-800/50 p-3 rounded-xl border border-gray-700">
                         <label class="text-gray-300 block font-semibold text-[11px]">No WhatsApp Admin (62...):</label>
@@ -499,8 +477,13 @@
                     </div>
                 </div>
                 <div>
-                    <label class="text-gray-400 block mb-0.5">URL Gambar:</label>
-                    <input type="text" id="editGameImgUrl" class="w-full bg-gray-800 text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                    <label class="text-gray-400 block mb-0.5">URL Gambar / Upload:</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="editGameImgUrl" placeholder="https://..." class="flex-1 bg-gray-800 text-gray-200 rounded-xl px-2.5 py-1.5 border border-gray-700">
+                        <label class="bg-brand-600 text-white px-3 py-1.5 rounded-xl cursor-pointer text-[11px] font-semibold flex items-center justify-center">
+                            File <input type="file" accept="image/*" class="hidden" onchange="handleEditGameImageUpload(event)">
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="pt-2 flex gap-2">
@@ -516,9 +499,10 @@
     </div>
 
     <script type="module">
-        import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, updateDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'dza-gamestore-mobile';
         const firebaseConfig = typeof __firebase_config !== 'undefined' 
             ? JSON.parse(__firebase_config) 
@@ -860,6 +844,17 @@ import { getFirestore } from "firebase/firestore";
             reader.readAsDataURL(file);
         }
 
+        function handleEditGameImageUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                document.getElementById('editGameImgUrl').value = evt.target.result;
+                showToast("Gambar berhasil dimuat ke form!");
+            };
+            reader.readAsDataURL(file);
+        }
+
         function promptChangeImageURL() {
             if (!currentQuickViewGameId) return;
             const url = prompt("Masukkan URL gambar baru:");
@@ -942,15 +937,21 @@ import { getFirestore } from "firebase/firestore";
             const id = document.getElementById('editGameId').value;
             const title = document.getElementById('editGameTitle').value.trim();
             const platform = document.getElementById('editGamePlatform').value;
-            const price = parseInt(document.getElementById('editGamePrice').value);
+            const rawPrice = document.getElementById('editGamePrice').value;
+            const price = rawPrice !== "" ? parseInt(rawPrice) : 0;
             const size = document.getElementById('editGameSize').value.trim();
             const genre = document.getElementById('editGameGenre').value;
             const img = document.getElementById('editGameImgUrl').value.trim();
 
+            if (!title || isNaN(price)) {
+                showToast("Judul atau Harga tidak valid!");
+                return;
+            }
+
             const gameDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'games', id);
             await updateDoc(gameDocRef, { title, platform, price, size, genre, img });
             closeEditSingleGameModal();
-            showToast("Game diperbarui!");
+            showToast("Perubahan game berhasil disimpan!");
         }
 
         async function deleteGame(gameId) {
@@ -974,7 +975,8 @@ import { getFirestore } from "firebase/firestore";
             if (!isAdminLoggedIn || !currentUser) return;
             const title = document.getElementById('newTitle').value.trim();
             const platform = document.getElementById('newPlatform').value;
-            const price = parseInt(document.getElementById('newPrice').value);
+            const rawPrice = document.getElementById('newPrice').value;
+            const price = rawPrice !== "" ? parseInt(rawPrice) : 0;
             const size = document.getElementById('newSize').value.trim();
             const genre = document.getElementById('newGenre').value;
             const urlImg = document.getElementById('newImg').value.trim();
@@ -1137,6 +1139,7 @@ import { getFirestore } from "firebase/firestore";
         window.openQuickView = openQuickView;
         window.closeQuickView = closeQuickView;
         window.handleModalImageUpload = handleModalImageUpload;
+        window.handleEditGameImageUpload = handleEditGameImageUpload;
         window.promptChangeImageURL = promptChangeImageURL;
         window.switchAdminTab = switchAdminTab;
         window.openEditSingleGameModal = openEditSingleGameModal;
