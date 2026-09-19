@@ -76,7 +76,7 @@
 
     <!-- Top Bar / Announcement -->
     <div class="bg-gradient-to-r from-brand-700 via-indigo-600 to-blue-700 text-white text-xs md:text-sm py-2 px-4 text-center font-medium shadow-md">
-        <span>🎮 Welcome to <strong class="underline decoration-wavy">DZA GAMESTORE</strong> — Pengisian Game Flashdisk, Harddisk, ISO & Digital PS2, PS3, PS4, PS5!</span>
+        <span>🎮 Welcome to <strong class="underline decoration-wavy">DZA GAMESTORE</strong> — Pengisian Game Flashdisk, Harddisk, ISO & Digital PS2, PS3, PS4, PS5 Termurah!</span>
     </div>
 
     <!-- Header Navigation -->
@@ -660,29 +660,48 @@
         </div>
     </footer>
 
-    <!-- JavaScript Logic -->
-    <script>
-        // Configuration State
+    <!-- JavaScript Logic with Real-time Cloud Synchronization -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, updateDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'dza-gamestore-app';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' 
+            ? JSON.parse(__firebase_config) 
+            : {
+                apiKey: "AIzaSyDemoConfigKeyForPlaceholder",
+                authDomain: "dza-gamestore.firebaseapp.com",
+                projectId: "dza-gamestore",
+                storageBucket: "dza-gamestore.appspot.com",
+                messagingSenderId: "123456789",
+                appId: "1:123456789:web:abcdef"
+            };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Firestore Paths (Following strict artifact structure)
+        const gamesColRef = collection(db, 'artifacts', appId, 'public', 'data', 'games');
+        const settingsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'storeConfig');
+
+        // State Management
         let storeConfig = {
-            waNumber: "6287878844020", // Default WA Number
+            waNumber: "6287878844020",
             storeName: "DZA GAMESTORE",
-            adminPin: "1774" // Default Admin PIN
+            adminPin: "1234"
         };
 
-        // Admin Auth State
-        let isAdminLoggedIn = false;
-
-        // Cart State
+        let isAdminLoggedIn = sessionStorage.getItem('dza_admin_logged_in') === 'true';
         let cart = [];
-
-        // Active Filters
         let currentPlatform = 'ALL';
         let currentQuickViewGameId = null;
         let pendingNewGameImgData = null;
+        let currentUser = null;
 
-        // Preloaded Game Catalog Data
+        // Default Initial Catalog
         const initialGames = [
-            // PS2 Games
             { id: 'ps2-1', title: 'Grand Theft Auto: San Andreas', platform: 'PS2', price: 5000, size: '4.2 GB', genre: 'Action', popular: 100, img: 'https://placehold.co/400x550/002B66/ffffff?text=GTA+San+Andreas+PS2' },
             { id: 'ps2-2', title: 'God of War II', platform: 'PS2', price: 5000, size: '7.9 GB', genre: 'Action', popular: 98, img: 'https://placehold.co/400x550/002B66/ffffff?text=God+of+War+2+PS2' },
             { id: 'ps2-3', title: 'Bully (Canis Canem Edit)', platform: 'PS2', price: 5000, size: '2.7 GB', genre: 'Action', popular: 95, img: 'https://placehold.co/400x550/002B66/ffffff?text=Bully+PS2' },
@@ -692,59 +711,101 @@
             { id: 'ps2-7', title: 'PES / Winning Eleven Terbaru (Patch PS2)', platform: 'PS2', price: 10000, size: '4.1 GB', genre: 'Sports', popular: 99, img: 'https://placehold.co/400x550/002B66/ffffff?text=PES+Patch+PS2' },
             { id: 'ps2-8', title: 'Downhill Domination', platform: 'PS2', price: 5000, size: '2.4 GB', genre: 'Racing', popular: 93, img: 'https://placehold.co/400x550/002B66/ffffff?text=Downhill+PS2' },
 
-            // PS3 Games
             { id: 'ps3-1', title: 'Grand Theft Auto V (GTA 5)', platform: 'PS3', price: 15000, size: '18 GB', genre: 'Action', popular: 100, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=GTA+V+PS3' },
             { id: 'ps3-2', title: 'PES / eFootball Update Transfer Terbaru', platform: 'PS3', price: 20000, size: '10 GB', genre: 'Sports', popular: 99, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=PES+Update+PS3' },
             { id: 'ps3-3', title: 'The Last of Us', platform: 'PS3', price: 15000, size: '32 GB', genre: 'Action', popular: 97, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=The+Last+of+Us+PS3' },
             { id: 'ps3-4', title: 'God of War III', platform: 'PS3', price: 15000, size: '40 GB', genre: 'Action', popular: 95, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=God+of+War+3+PS3' },
             { id: 'ps3-5', title: 'Tekken 6', platform: 'PS3', price: 12000, size: '12 GB', genre: 'Fighting', popular: 90, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=Tekken+6+PS3' },
-            { id: 'ps3-6', title: 'FIFA 19 Update Mod', platform: 'PS3', price: 15000, size: '9.5 GB', genre: 'Sports', popular: 89, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=FIFA+19+PS3' },
-            { id: 'ps3-7', title: 'Red Dead Redemption', platform: 'PS3', price: 15000, size: '8.5 GB', genre: 'Action', popular: 91, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=RDR+PS3' },
 
-            // PS4 Games
             { id: 'ps4-1', title: 'EA Sports FC 24 / EA FC 25 (PS4 HEN/OFW)', platform: 'PS4', price: 30000, size: '45 GB', genre: 'Sports', popular: 100, img: 'https://placehold.co/400x550/003791/ffffff?text=EA+FC+PS4' },
             { id: 'ps4-2', title: 'God of War Ragnarök', platform: 'PS4', price: 25000, size: '84 GB', genre: 'Action', popular: 99, img: 'https://placehold.co/400x550/003791/ffffff?text=GoW+Ragnarok+PS4' },
             { id: 'ps4-3', title: 'Marvel\'s Spider-Man: Miles Morales', platform: 'PS4', price: 25000, size: '52 GB', genre: 'Action', popular: 96, img: 'https://placehold.co/400x550/003791/ffffff?text=Spider-Man+PS4' },
             { id: 'ps4-4', title: 'Resident Evil 4 Remake', platform: 'PS4', price: 25000, size: '65 GB', genre: 'Horror', popular: 97, img: 'https://placehold.co/400x550/003791/ffffff?text=RE4+Remake+PS4' },
-            { id: 'ps4-5', title: 'eFootball PES Patch Terupdate', platform: 'PS4', price: 25000, size: '42 GB', genre: 'Sports', popular: 98, img: 'https://placehold.co/400x550/003791/ffffff?text=PES+Update+PS4' },
-            { id: 'ps4-6', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', popular: 94, img: 'https://placehold.co/400x550/003791/ffffff?text=Ghost+of+Tsushima+PS4' },
 
-            // PS5 Games
             { id: 'ps5-1', title: 'Black Myth: Wukong', platform: 'PS5', price: 40000, size: '120 GB', genre: 'Action', popular: 100, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Black+Myth+Wukong+PS5' },
             { id: 'ps5-2', title: 'EA Sports FC 25 Digital / Sharing', platform: 'PS5', price: 40000, size: '55 GB', genre: 'Sports', popular: 99, img: 'https://placehold.co/400x550/0070D1/ffffff?text=EA+FC+25+PS5' },
-            { id: 'ps5-3', title: 'Marvel\'s Spider-Man 2', platform: 'PS5', price: 35000, size: '88 GB', genre: 'Action', popular: 98, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Spider-Man+2+PS5' },
-            { id: 'ps5-4', title: 'Elden Ring + DLC Shadow of the Erdtree', platform: 'PS5', price: 35000, size: '70 GB', genre: 'RPG', popular: 97, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Elden+Ring+PS5' },
-            { id: 'ps5-5', title: 'Tekken 8', platform: 'PS5', price: 35000, size: '80 GB', genre: 'Fighting', popular: 95, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Tekken+8+PS5' }
+            { id: 'ps5-3', title: 'Marvel\'s Spider-Man 2', platform: 'PS5', price: 35000, size: '88 GB', genre: 'Action', popular: 98, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Spider-Man+2+PS5' }
         ];
 
         let gamesData = [];
 
-        // Initialize App
+        async function initCloudConnection() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    const userCredential = await signInWithCustomToken(auth, __initial_auth_token);
+                    currentUser = userCredential.user;
+                } else {
+                    const userCredential = await signInAnonymously(auth);
+                    currentUser = userCredential.user;
+                }
+
+                if (!currentUser) return;
+
+                // Realtime Listener for Catalog Games
+                onSnapshot(gamesColRef, async (snapshot) => {
+                    if (snapshot.empty) {
+                        // Seed database if empty
+                        await seedInitialGames();
+                    } else {
+                        gamesData = snapshot.docs.map(docSnap => ({
+                            id: docSnap.id,
+                            ...docSnap.data()
+                        }));
+                        filterGames();
+                        updateCounters();
+                        if (isAdminLoggedIn) renderAdminGamesList();
+                    }
+                }, (err) => {
+                    console.error("Firestore Games Sync Error:", err);
+                });
+
+                // Realtime Listener for Store Settings
+                onSnapshot(settingsDocRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        storeConfig = { ...storeConfig, ...docSnap.data() };
+                    } else {
+                        setDoc(settingsDocRef, storeConfig);
+                    }
+                    const waInput = document.getElementById('storeWaInput');
+                    if (waInput) waInput.value = storeConfig.waNumber;
+                    updateFloatingWhatsAppLink();
+                }, (err) => {
+                    console.error("Firestore Settings Sync Error:", err);
+                });
+
+            } catch (error) {
+                console.error("Cloud Connection Failed:", error);
+                // Fallback to initial games
+                gamesData = [...initialGames];
+                filterGames();
+            }
+        }
+
+        async function seedInitialGames() {
+            if (!currentUser) return;
+            for (const game of initialGames) {
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', game.id), game);
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
-            loadSavedConfig();
-            loadSavedGames();
-            renderGamesGrid();
-            updateCounters();
+            initCloudConnection();
             updateFloatingWhatsAppLink();
             updateAdminUIState();
         });
 
-        function loadSavedConfig() {
-            const saved = localStorage.getItem('dza_store_config');
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                storeConfig = { ...storeConfig, ...parsed };
-            }
-            document.getElementById('storeWaInput').value = storeConfig.waNumber;
+        function formatRupiah(amount) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(amount);
         }
 
         function verifyAdminPin() {
             const pinVal = document.getElementById('adminPinInput').value.trim();
             if (pinVal === storeConfig.adminPin) {
                 isAdminLoggedIn = true;
+                sessionStorage.setItem('dza_admin_logged_in', 'true');
                 document.getElementById('adminPinInput').value = '';
                 updateAdminUIState();
-                showToast("Login Admin Berhasil! Seluruh fitur edit gambar diaktifkan.");
+                showToast("Login Admin Berhasil! Semua perubahan kini tersimpan otomatis di Cloud.");
             } else {
                 showToast("PIN Admin Salah! Silakan coba lagi.");
             }
@@ -752,18 +813,20 @@
 
         function logoutAdmin() {
             isAdminLoggedIn = false;
+            sessionStorage.removeItem('dza_admin_logged_in');
             updateAdminUIState();
             toggleAdminModal();
             showToast("Admin berhasil logout.");
         }
 
-        function changeAdminPin() {
+        async function changeAdminPin() {
+            if (!isAdminLoggedIn || !currentUser) return;
             const newPin = document.getElementById('newAdminPin').value.trim();
             if (newPin.length >= 4) {
                 storeConfig.adminPin = newPin;
-                localStorage.setItem('dza_store_config', JSON.stringify(storeConfig));
+                await setDoc(settingsDocRef, { adminPin: newPin }, { merge: true });
                 document.getElementById('newAdminPin').value = '';
-                showToast("PIN Admin baru berhasil disimpan!");
+                showToast("PIN Admin baru berhasil disimpan ke Cloud!");
             } else {
                 showToast("PIN minimal 4 karakter!");
             }
@@ -777,8 +840,8 @@
             const quickViewControls = document.getElementById('quickViewAdminControls');
 
             if (isAdminLoggedIn) {
-                statusBtnText.innerText = "Admin (Logged In)";
-                statusBtnIcon.className = "fa-solid fa-user-check text-emerald-400";
+                if (statusBtnText) statusBtnText.innerText = "Admin (Logged In)";
+                if (statusBtnIcon) statusBtnIcon.className = "fa-solid fa-user-check text-emerald-400";
                 
                 if (loginForm) loginForm.classList.add('hidden');
                 if (panelContent) {
@@ -787,8 +850,8 @@
                 }
                 if (quickViewControls) quickViewControls.classList.remove('hidden');
             } else {
-                statusBtnText.innerText = "Login Admin";
-                statusBtnIcon.className = "fa-solid fa-lock";
+                if (statusBtnText) statusBtnText.innerText = "Login Admin";
+                if (statusBtnIcon) statusBtnIcon.className = "fa-solid fa-lock";
 
                 if (loginForm) loginForm.classList.remove('hidden');
                 if (panelContent) panelContent.classList.add('hidden');
@@ -796,62 +859,35 @@
             }
         }
 
-        function handleAdminHeaderClick() {
-            toggleAdminModal();
+        function toggleAdminModal() {
+            const modal = document.getElementById('adminModal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden') && isAdminLoggedIn) {
+                switchAdminTab('manage');
+            }
         }
 
-        function openAdminModalWithAuth() {
-            toggleAdminModal();
-        }
-
-        function saveStoreSettings() {
-            if (!isAdminLoggedIn) return;
+        async function saveStoreSettings() {
+            if (!isAdminLoggedIn || !currentUser) return;
             const waVal = document.getElementById('storeWaInput').value.trim();
             if (waVal) {
-                storeConfig.waNumber = waVal.replace('+', '').replace('-', '');
-                localStorage.setItem('dza_store_config', JSON.stringify(storeConfig));
+                const formatted = waVal.replace('+', '').replace('-', '');
+                storeConfig.waNumber = formatted;
+                await setDoc(settingsDocRef, { waNumber: formatted }, { merge: true });
                 updateFloatingWhatsAppLink();
-                showToast("Pengaturan WhatsApp berhasil disimpan!");
+                showToast("Nomor WhatsApp berhasil tersimpan di Cloud!");
             }
         }
 
         function updateFloatingWhatsAppLink() {
             const btn = document.getElementById('floatingWaBtn');
-            btn.href = `https://wa.me/${storeConfig.waNumber}?text=Halo%20Admin%20${encodeURIComponent(storeConfig.storeName)},%20saya%20mau%20tanya%20isian%20game%20konsol...`;
-        }
-
-        function loadSavedGames() {
-            const saved = localStorage.getItem('dza_games_catalog');
-            if (saved) {
-                gamesData = JSON.parse(saved);
-            } else {
-                gamesData = [...initialGames];
+            if (btn) {
+                btn.href = `https://wa.me/${storeConfig.waNumber}?text=Halo%20Admin%20${encodeURIComponent(storeConfig.storeName)},%20saya%20mau%20tanya%20isian%20game%20konsol...`;
             }
         }
 
-        function saveGamesToStorage() {
-            localStorage.setItem('dza_games_catalog', JSON.stringify(gamesData));
-            filterGames();
-            updateCounters();
-            renderAdminGamesList();
-        }
-
-        function resetToInitialGames() {
-            if (confirm("Apakah Anda yakin ingin mengembalikan seluruh katalog game ke tampilan awal?")) {
-                gamesData = [...initialGames];
-                saveGamesToStorage();
-                showToast("Katalog berhasil di-reset ke tampilan awal.");
-            }
-        }
-
-        function formatRupiah(amount) {
-            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(amount);
-        }
-
-        // Platform Filter Switcher
         function setPlatformFilter(platform) {
             currentPlatform = platform;
-            
             document.querySelectorAll('.platform-tab').forEach(btn => {
                 btn.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
                 btn.classList.add('bg-gray-800', 'text-gray-300');
@@ -867,23 +903,25 @@
         }
 
         function filterGames() {
-            const searchVal = (document.getElementById('searchInput').value || document.getElementById('mobileSearchInput').value || '').toLowerCase();
-            const genreVal = document.getElementById('genreSelect').value;
-            const sortVal = document.getElementById('sortSelect').value;
+            const searchVal = (document.getElementById('searchInput')?.value || document.getElementById('mobileSearchInput')?.value || '').toLowerCase();
+            const genreVal = document.getElementById('genreSelect')?.value || 'ALL';
+            const sortVal = document.getElementById('sortSelect')?.value || 'popular';
 
             const clearBtn = document.getElementById('clearSearchBtn');
-            if (searchVal.length > 0) clearBtn.classList.remove('hidden');
-            else clearBtn.classList.add('hidden');
+            if (clearBtn) {
+                if (searchVal.length > 0) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
+            }
 
             let filtered = gamesData.filter(game => {
                 const matchPlatform = (currentPlatform === 'ALL') || (game.platform === currentPlatform);
-                const matchSearch = game.title.toLowerCase().includes(searchVal) || game.genre.toLowerCase().includes(searchVal);
+                const matchSearch = game.title.toLowerCase().includes(searchVal) || (game.genre && game.genre.toLowerCase().includes(searchVal));
                 const matchGenre = (genreVal === 'ALL') || (game.genre === genreVal);
                 return matchPlatform && matchSearch && matchGenre;
             });
 
             if (sortVal === 'popular') {
-                filtered.sort((a, b) => b.popular - a.popular);
+                filtered.sort((a, b) => (b.popular || 0) - (a.popular || 0));
             } else if (sortVal === 'name-asc') {
                 filtered.sort((a, b) => a.title.localeCompare(b.title));
             } else if (sortVal === 'price-asc') {
@@ -892,8 +930,10 @@
                 filtered.sort((a, b) => b.price - a.price);
             }
 
-            document.getElementById('displayedCount').innerText = filtered.length;
-            document.getElementById('activeFilterLabel').innerText = currentPlatform !== 'ALL' ? `(Konsol ${currentPlatform})` : '';
+            const displayedCount = document.getElementById('displayedCount');
+            const activeFilterLabel = document.getElementById('activeFilterLabel');
+            if (displayedCount) displayedCount.innerText = filtered.length;
+            if (activeFilterLabel) activeFilterLabel.innerText = currentPlatform !== 'ALL' ? `(Konsol ${currentPlatform})` : '';
 
             renderGamesGrid(filtered);
         }
@@ -901,14 +941,15 @@
         function renderGamesGrid(list = gamesData) {
             const grid = document.getElementById('gameGrid');
             const empty = document.getElementById('emptyState');
+            if (!grid) return;
 
             grid.innerHTML = '';
 
             if (list.length === 0) {
-                empty.classList.remove('hidden');
+                if (empty) empty.classList.remove('hidden');
                 return;
             } else {
-                empty.classList.add('hidden');
+                if (empty) empty.classList.add('hidden');
             }
 
             list.forEach(game => {
@@ -934,7 +975,7 @@
 
                     <div class="p-3 sm:p-4 flex-1 flex flex-col justify-between space-y-3">
                         <div>
-                            <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider">${game.genre}</span>
+                            <span class="text-[10px] uppercase font-bold text-gray-500 tracking-wider">${game.genre || 'Action'}</span>
                             <h3 onclick="openQuickView('${game.id}')" class="text-xs sm:text-sm font-bold text-white line-clamp-2 mt-0.5 hover:text-brand-400 cursor-pointer transition-colors" title="${game.title}">
                                 ${game.title}
                             </h3>
@@ -966,7 +1007,7 @@
             document.getElementById('modalImg').src = game.img;
             document.getElementById('modalTitle').innerText = game.title;
             document.getElementById('modalPlatformBadge').innerText = game.platform;
-            document.getElementById('modalGenre').innerText = `Genre: ${game.genre}`;
+            document.getElementById('modalGenre').innerText = `Genre: ${game.genre || 'Action'}`;
             document.getElementById('modalSize').innerText = game.size;
             document.getElementById('modalPrice').innerText = formatRupiah(game.price);
             document.getElementById('modalDesc').innerText = `Isi game ${game.title} untuk console ${game.platform}. Kualitas file original, aman, tanpa kaset, dan garansi sampai lancar dimainkan di toko kami DZA GAMESTORE!`;
@@ -995,49 +1036,55 @@
 
         function closeQuickView() {
             document.getElementById('quickViewModal').classList.add('hidden');
-            currentQuickViewGameId = null;
         }
 
-        // Direct Image Change Helpers for Quick View Modal
+        async function updateGameCoverImage(gameId, newImgSource) {
+            if (!isAdminLoggedIn || !currentUser) {
+                showToast("Akses ditolak: Hanya Admin yang dapat mengedit/mengunggah gambar!");
+                return;
+            }
+
+            const gameDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'games', gameId);
+            await updateDoc(gameDocRef, { img: newImgSource });
+
+            const modalImg = document.getElementById('modalImg');
+            if (modalImg) modalImg.src = newImgSource;
+
+            showToast(`Gambar kover berhasil disimpan secara Online!`);
+        }
+
         function handleModalImageUpload(e) {
+            if (!currentQuickViewGameId) return;
             const file = e.target.files[0];
-            if (!file || !currentQuickViewGameId) return;
+            if (!file) return;
 
             const reader = new FileReader();
             reader.onload = function(evt) {
-                const newImgData = evt.target.result;
-                updateGameCoverImage(currentQuickViewGameId, newImgData);
+                updateGameCoverImage(currentQuickViewGameId, evt.target.result);
             };
             reader.readAsDataURL(file);
         }
 
         function promptChangeImageURL() {
             if (!currentQuickViewGameId) return;
-            const newUrl = prompt("Masukkan URL Link Gambar Baru untuk game ini:");
-            if (newUrl && newUrl.trim()) {
-                updateGameCoverImage(currentQuickViewGameId, newUrl.trim());
+            const currentImg = document.getElementById('modalImg').src;
+            const url = prompt("Tempelkan URL/Link Gambar Kover Game Baru:", currentImg);
+            if (url && url.trim().length > 0) {
+                updateGameCoverImage(currentQuickViewGameId, url.trim());
             }
         }
 
-        function updateGameCoverImage(gameId, newImgSource) {
-            if (!isAdminLoggedIn) {
-                showToast("Hanya Admin yang dapat mengubah gambar!");
-                return;
-            }
-            const index = gamesData.findIndex(g => g.id === gameId);
-            if (index !== -1) {
-                gamesData[index].img = newImgSource;
-                saveGamesToStorage();
-                
-                // Update Quick view modal if open
-                const imgEl = document.getElementById('modalImg');
-                if (imgEl) imgEl.src = newImgSource;
+        function handleAdminListImageUpload(e, gameId) {
+            const file = e.target.files[0];
+            if (!file) return;
 
-                showToast(`Gambar kover "${gamesData[index].title}" berhasil diperbarui!`);
-            }
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                updateGameCoverImage(gameId, evt.target.result);
+            };
+            reader.readAsDataURL(file);
         }
 
-        // Admin Tab Switcher
         function switchAdminTab(tabName) {
             const manageTab = document.getElementById('tabContentManage');
             const addTab = document.getElementById('tabContentAdd');
@@ -1089,7 +1136,7 @@
                     <div class="flex items-center gap-1.5 flex-shrink-0">
                         <label class="bg-brand-600/30 hover:bg-brand-600 text-brand-300 hover:text-white text-[11px] font-semibold px-2.5 py-1.5 rounded-lg cursor-pointer transition-all flex items-center gap-1 border border-brand-500/30" title="Upload Gambar Baru dari Device">
                             <i class="fa-solid fa-upload"></i> <span class="hidden sm:inline">Ganti Gambar</span>
-                            <input type="file" accept="image/*" class="hidden" onchange="handleAdminListImageUpload(event, '${game.id}')">
+                            <input type="file" accept="image/*" class="hidden" onchange="window.handleAdminListImageUpload(event, '${game.id}')">
                         </label>
                         <button onclick="openEditSingleGameModal('${game.id}')" class="bg-gray-700 hover:bg-gray-600 text-gray-200 text-[11px] font-semibold p-1.5 sm:px-2.5 rounded-lg transition-all" title="Edit Detail">
                             <i class="fa-solid fa-pen"></i>
@@ -1102,17 +1149,6 @@
 
                 container.appendChild(item);
             });
-        }
-
-        function handleAdminListImageUpload(e, gameId) {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(evt) {
-                updateGameCoverImage(gameId, evt.target.result);
-            };
-            reader.readAsDataURL(file);
         }
 
         function openEditSingleGameModal(gameId) {
@@ -1128,7 +1164,7 @@
             document.getElementById('editGamePlatform').value = game.platform;
             document.getElementById('editGamePrice').value = game.price;
             document.getElementById('editGameSize').value = game.size;
-            document.getElementById('editGameGenre').value = game.genre;
+            document.getElementById('editGameGenre').value = game.genre || 'Action';
             document.getElementById('editGameImgUrl').value = game.img;
             document.getElementById('editGamePreviewImg').src = game.img;
 
@@ -1152,30 +1188,30 @@
             reader.readAsDataURL(file);
         }
 
-        function saveSingleGameChanges() {
-            const id = document.getElementById('editGameId').value;
-            const index = gamesData.findIndex(g => g.id === id);
-            
-            if (index !== -1) {
-                gamesData[index].title = document.getElementById('editGameTitle').value.trim() || gamesData[index].title;
-                gamesData[index].platform = document.getElementById('editGamePlatform').value;
-                gamesData[index].price = parseInt(document.getElementById('editGamePrice').value) || gamesData[index].price;
-                gamesData[index].size = document.getElementById('editGameSize').value.trim() || gamesData[index].size;
-                gamesData[index].genre = document.getElementById('editGameGenre').value;
-                gamesData[index].img = document.getElementById('editGameImgUrl').value.trim() || gamesData[index].img;
+        async function saveSingleGameChanges() {
+            if (!isAdminLoggedIn || !currentUser) return;
 
-                saveGamesToStorage();
-                closeEditSingleGameModal();
-                showToast("Detail game berhasil disimpan!");
-            }
+            const id = document.getElementById('editGameId').value;
+            const title = document.getElementById('editGameTitle').value.trim();
+            const platform = document.getElementById('editGamePlatform').value;
+            const price = parseInt(document.getElementById('editGamePrice').value);
+            const size = document.getElementById('editGameSize').value.trim();
+            const genre = document.getElementById('editGameGenre').value;
+            const img = document.getElementById('editGameImgUrl').value.trim();
+
+            const gameDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'games', id);
+            await updateDoc(gameDocRef, { title, platform, price, size, genre, img });
+
+            closeEditSingleGameModal();
+            showToast("Detail game berhasil diperbarui di Cloud!");
         }
 
-        function deleteGame(gameId) {
+        async function deleteGame(gameId) {
+            if (!isAdminLoggedIn || !currentUser) return;
             const game = gamesData.find(g => g.id === gameId);
-            if (game && confirm(`Apakah Anda yakin ingin menghapus "${game.title}" dari katalog?`)) {
-                gamesData = gamesData.filter(g => g.id !== gameId);
-                saveGamesToStorage();
-                showToast("Game telah dihapus!");
+            if (game) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', gameId));
+                showToast(`"${game.title}" berhasil dihapus dari Cloud!`);
             }
         }
 
@@ -1192,7 +1228,9 @@
             reader.readAsDataURL(file);
         }
 
-        function addNewGame() {
+        async function addNewGame() {
+            if (!isAdminLoggedIn || !currentUser) return;
+
             const title = document.getElementById('newTitle').value.trim();
             const platform = document.getElementById('newPlatform').value;
             const price = parseInt(document.getElementById('newPrice').value);
@@ -1207,8 +1245,9 @@
                 return;
             }
 
+            const newGameId = 'game-' + Date.now();
             const newGameObj = {
-                id: 'custom-' + Date.now(),
+                id: newGameId,
                 title: title,
                 platform: platform,
                 price: price,
@@ -1218,10 +1257,9 @@
                 img: finalImg
             };
 
-            gamesData.unshift(newGameObj);
-            saveGamesToStorage();
-            
-            // Reset inputs
+            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', newGameId), newGameObj);
+
+            // Reset Form Inputs
             document.getElementById('newTitle').value = '';
             document.getElementById('newPrice').value = '';
             document.getElementById('newSize').value = '';
@@ -1230,29 +1268,48 @@
             document.getElementById('newGameImgPreviewContainer').classList.add('hidden');
 
             switchAdminTab('manage');
-            showToast("Game baru berhasil ditambahkan!");
+            showToast("Game baru berhasil ditambahkan secara Online!");
+        }
+
+        async function resetToInitialGames() {
+            if (!isAdminLoggedIn || !currentUser) return;
+            showToast("Memproses reset katalog cloud...");
+            for (const game of gamesData) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'games', game.id));
+            }
+            await seedInitialGames();
+            showToast("Katalog berhasil dikembalikan ke data default!");
         }
 
         function updateCounters() {
-            document.getElementById('totalGameCounter').innerText = `${gamesData.length}+ Game`;
+            const totalCounter = document.getElementById('totalGameCounter');
+            if (totalCounter) totalCounter.innerText = `${gamesData.length}+ Game`;
         }
 
         function syncMobileSearch(val) {
-            document.getElementById('searchInput').value = val;
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) searchInput.value = val;
             filterGames();
         }
 
         function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('mobileSearchInput').value = '';
+            const searchInput = document.getElementById('searchInput');
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            if (searchInput) searchInput.value = '';
+            if (mobileSearchInput) mobileSearchInput.value = '';
             filterGames();
         }
 
         function resetFilters() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('mobileSearchInput').value = '';
-            document.getElementById('genreSelect').value = 'ALL';
-            document.getElementById('sortSelect').value = 'popular';
+            const searchInput = document.getElementById('searchInput');
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            const genreSelect = document.getElementById('genreSelect');
+            const sortSelect = document.getElementById('sortSelect');
+
+            if (searchInput) searchInput.value = '';
+            if (mobileSearchInput) mobileSearchInput.value = '';
+            if (genreSelect) genreSelect.value = 'ALL';
+            if (sortSelect) sortSelect.value = 'popular';
             setPlatformFilter('ALL');
         }
 
@@ -1284,22 +1341,24 @@
 
         function updateCartUI() {
             const badge = document.getElementById('cartBadge');
-            badge.innerText = cart.length;
+            if (badge) badge.innerText = cart.length;
 
             const container = document.getElementById('cartItemsContainer');
             const emptyState = document.getElementById('cartEmptyState');
             const footer = document.getElementById('cartFooter');
             const totalPriceEl = document.getElementById('cartTotalPrice');
 
+            if (!container) return;
+
             if (cart.length === 0) {
                 container.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                footer.classList.add('hidden');
+                if (emptyState) emptyState.classList.remove('hidden');
+                if (footer) footer.classList.add('hidden');
                 return;
             }
 
-            emptyState.classList.add('hidden');
-            footer.classList.remove('hidden');
+            if (emptyState) emptyState.classList.add('hidden');
+            if (footer) footer.classList.remove('hidden');
 
             let total = 0;
             container.innerHTML = '';
@@ -1324,14 +1383,14 @@
                 container.appendChild(div);
             });
 
-            totalPriceEl.innerText = formatRupiah(total);
+            if (totalPriceEl) totalPriceEl.innerText = formatRupiah(total);
         }
 
         function sendCartToWhatsApp() {
             if (cart.length === 0) return;
 
-            const note = document.getElementById('customerNote').value.trim();
-            const mediaType = document.getElementById('mediaTypeSelect').value;
+            const note = document.getElementById('customerNote')?.value.trim() || '';
+            const mediaType = document.getElementById('mediaTypeSelect')?.value || '';
 
             let total = 0;
             let listText = "";
@@ -1359,28 +1418,55 @@
             else modal.classList.toggle('hidden');
         }
 
-        function toggleAdminModal() {
-            const modal = document.getElementById('adminModal');
-            modal.classList.toggle('hidden');
-            if (!modal.classList.contains('hidden')) {
-                switchAdminTab('manage');
-            }
-        }
-
         function openWhatsAppContact() {
             window.open(`https://wa.me/${storeConfig.waNumber}?text=Halo%20Admin%20${encodeURIComponent(storeConfig.storeName)},%20saya%20ingin%20bertanya%20seputar%20layanan%20pengisian%20game...`, '_blank');
         }
 
-        // Toast Helper
         function showToast(msg) {
             const toast = document.getElementById('toast');
-            document.getElementById('toastMessage').innerText = msg;
-            toast.classList.remove('translate-x-full');
-
-            setTimeout(() => {
-                toast.classList.add('translate-x-full');
-            }, 3000);
+            const toastMessage = document.getElementById('toastMessage');
+            if (toastMessage) toastMessage.innerText = msg;
+            if (toast) {
+                toast.classList.remove('translate-x-full');
+                setTimeout(() => {
+                    toast.classList.add('translate-x-full');
+                }, 3500);
+            }
         }
+
+        // Attach Functions to Window Object for Inline HTML Event Listeners
+        window.verifyAdminPin = verifyAdminPin;
+        window.logoutAdmin = logoutAdmin;
+        window.changeAdminPin = changeAdminPin;
+        window.toggleAdminModal = toggleAdminModal;
+        window.handleAdminHeaderClick = toggleAdminModal;
+        window.openAdminModalWithAuth = toggleAdminModal;
+        window.saveStoreSettings = saveStoreSettings;
+        window.setPlatformFilter = setPlatformFilter;
+        window.filterGames = filterGames;
+        window.openQuickView = openQuickView;
+        window.closeQuickView = closeQuickView;
+        window.handleModalImageUpload = handleModalImageUpload;
+        window.promptChangeImageURL = promptChangeImageURL;
+        window.switchAdminTab = switchAdminTab;
+        window.handleAdminListImageUpload = handleAdminListImageUpload;
+        window.openEditSingleGameModal = openEditSingleGameModal;
+        window.closeEditSingleGameModal = closeEditSingleGameModal;
+        window.handleEditGameImageUpload = handleEditGameImageUpload;
+        window.saveSingleGameChanges = saveSingleGameChanges;
+        window.deleteGame = deleteGame;
+        window.handleNewGameImageUpload = handleNewGameImageUpload;
+        window.addNewGame = addNewGame;
+        window.resetToInitialGames = resetToInitialGames;
+        window.syncMobileSearch = syncMobileSearch;
+        window.clearSearch = clearSearch;
+        window.resetFilters = resetFilters;
+        window.addToCart = addToCart;
+        window.removeFromCart = removeFromCart;
+        window.clearCart = clearCart;
+        window.sendCartToWhatsApp = sendCartToWhatsApp;
+        window.toggleCartModal = toggleCartModal;
+        window.openWhatsAppContact = openWhatsAppContact;
     </script>
 </body>
 </html>
