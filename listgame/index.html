@@ -662,23 +662,23 @@
 
     <!-- JavaScript Logic with Real-time Cloud Synchronization -->
     <script type="module">
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, updateDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAMgyJIkmgtkaebOs3UaOuJ93SGttkXs4c",
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'dza-gamestore-app';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' 
+            ? JSON.parse(__firebase_config) 
+            : {
+                 apiKey: "AIzaSyAMgyJIkmgtkaebOs3UaOuJ93SGttkXs4c",
   authDomain: "dza-gamestore-db.firebaseapp.com",
   projectId: "dza-gamestore-db",
   storageBucket: "dza-gamestore-db.firebasestorage.app",
   messagingSenderId: "120895796799",
   appId: "1:120895796799:web:532747a087955c3e97ea8a"
-};
+            };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+        const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
