@@ -92,11 +92,11 @@
                         <i class="fa-solid font-bold fa-gamepad text-lg"></i>
                     </div>
                     <div>
-                        <h1 class="text-base font-black tracking-wider text-white leading-tight flex items-center gap-1.5">
-                            DZA <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-cyan-400">STORE</span>
-                        </h1>
-                        <p class="text-[9px] text-gray-400 tracking-wider font-semibold uppercase">PS2 • PS3 • PS4 • PS5</p>
-                    </div>
+    <h1 class="text-base font-black tracking-wider text-white leading-tight flex items-center gap-1.5">
+        DZA <span class="text-brand-400">STORE</span>
+    </h1>
+    <p class="text-[9px] text-gray-400 tracking-wider font-semibold uppercase">PS2 • PS3 • PS4 • PS5</p>
+</div>
                 </div>
 
                 <div class="flex items-center gap-2">
@@ -186,7 +186,6 @@
                 <button onclick="resetFilters()" class="text-brand-400 underline">Atur Ulang</button>
             </div>
 
-            <!-- Game Cards Grid (2 columns tailored for phone screens) -->
             <div id="gameGrid" class="grid grid-cols-2 gap-3">
                 <!-- Dynamic cards injected here -->
             </div>
@@ -228,8 +227,10 @@
                 </div>
 
                 <div class="overflow-y-auto p-4 space-y-3">
-                    <div class="relative rounded-xl overflow-hidden border border-gray-800">
-                        <img id="modalImg" src="" alt="Cover" class="w-full h-52 object-cover" onerror="this.src='https://placehold.co/300x400/111827/ffffff?text=Game'">
+                    <!-- Updated Modal Image Container for Full Uncropped View with Aesthetic Blurred Background -->
+                    <div class="relative w-full h-72 rounded-xl overflow-hidden border border-gray-800 bg-black/60 flex items-center justify-center group">
+                        <div id="modalBgBlur" class="absolute inset-0 bg-cover bg-center opacity-30 filter blur-xl scale-110"></div>
+                        <img id="modalImg" src="" alt="Cover" class="relative z-10 max-h-full max-w-full object-contain p-2 drop-shadow-2xl" onerror="this.src='https://placehold.co/300x400/111827/ffffff?text=Game'">
                     </div>
 
                     <div>
@@ -346,38 +347,38 @@
         // Preloaded Game Catalog Data
         const gamesData = [
             // PS2 Games
-            { id: 'ps2-1', title: 'Grand Theft Auto: San Andreas', platform: 'PS2', price: 5000, size: '4.2 GB', genre: 'Action', isPopular: true, img: 'https://4.bp.blogspot.com/-B5xYmGrUpqk/XRclfRs0M8I/AAAAAAAABgs/27wJDpaMD_cpAxv6HMp-a8LeM2gnQBKLgCLcBGAs/s1600/706.jpg' },
-            { id: 'ps2-2', title: 'God of War II', platform: 'PS2', price: 5000, size: '7.9 GB', genre: 'Action', isPopular: true, img: 'https://placehold.co/400x550/002B66/ffffff?text=God+of+War+2+PS2' },
-            { id: 'ps2-3', title: 'Bully (Canis Canem Edit)', platform: 'PS2', price: 5000, size: '2.7 GB', genre: 'Action', isPopular: true, img: 'https://placehold.co/400x550/002B66/ffffff?text=Bully+PS2' },
-            { id: 'ps2-4', title: 'Need for Speed: Most Wanted', platform: 'PS2', price: 5000, size: '3.1 GB', genre: 'Racing', isPopular: true, img: 'https://placehold.co/400x550/002B66/ffffff?text=NFS+Most+Wanted+PS2' },
-            { id: 'ps2-5', title: 'Resident Evil 4', platform: 'PS2', price: 5000, size: '4.3 GB', genre: 'Horror', isPopular: true, img: 'https://placehold.co/400x550/002B66/ffffff?text=RE4+PS2' },
-            { id: 'ps2-6', title: 'Naruto Shippuden: Ultimate Ninja 5', platform: 'PS2', price: 5000, size: '3.8 GB', genre: 'Fighting', isPopular: false, img: 'https://placehold.co/400x550/002B66/ffffff?text=Naruto+UN5+PS2' },
-            { id: 'ps2-7', title: 'PES / Winning Eleven Terbaru (Patch PS2)', platform: 'PS2', price: 10000, size: '4.1 GB', genre: 'Sports', isPopular: true, img: 'https://placehold.co/400x550/002B66/ffffff?text=PES+Patch+PS2' },
-            { id: 'ps2-8', title: 'Downhill Domination', platform: 'PS2', price: 5000, size: '2.4 GB', genre: 'Racing', isPopular: false, img: 'https://placehold.co/400x550/002B66/ffffff?text=Downhill+PS2' },
+            { id: 'ps2-1', title: 'Grand Theft Auto: San Andreas', platform: 'PS2', price: 2000, size: '4.2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s' },
+            { id: 'ps2-2', title: 'God of War II', platform: 'PS2', price: 2000, size: '4 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1w_Brz_fFb1feGENZSFVhHzk731d1PlTvJNpEkmGw5A&s' },
+            { id: 'ps2-3', title: 'Bully (Canis Canem Edit)', platform: 'PS2', price: 2000, size: '2.7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlEiBxMc-I2DsWRxRNGrQEVTzK4WiWj2ROLT73sjmRFg&s=10' },
+            { id: 'ps2-4', title: 'Need for Speed: Most Wanted', platform: 'PS2', price: 5000, size: '3.1 GB', genre: 'Racing', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUBNpc_gdhMc46kjzks95uvcNZ7mcBoGtBMqBAOw-Arw&s=10' },
+            { id: 'ps2-5', title: 'Resident Evil 4', platform: 'PS2', price: 2000, size: '4.3 GB', genre: 'Horror', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxBIBmJxwZsClpy3qU06ZHwWe6-QSZQaYQ8K5nT5tluw&s=10' },
+            { id: 'ps2-6', title: 'Naruto Shippuden: Ultimate Ninja 5', platform: 'PS2', price: 2000, size: '3.8 GB', genre: 'Fighting', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMaxiD8pxhyc79mn6YmzdtGFYNz1JN61rwYhdh3HQF3Q&s=10' },
+            { id: 'ps2-7', title: 'PES / Winning Eleven Terbaru (Patch PS2)', platform: 'PS2', price: 2000, size: '4.1 GB', genre: 'Sports', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrHZ8UHmXMXsIxystoz-BpFjA1rEeD1aNcIxMQQcLuOg&s=10' },
+            { id: 'ps2-8', title: 'Downhill Domination', platform: 'PS2', price: 2000, size: '2.4 GB', genre: 'Racing', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNeXW4ivUjW-PJVLStvnZO1bexNQMGtIzNKqolb66v5A&s=10' },
 
             // PS3 Games
-            { id: 'ps3-1', title: 'Grand Theft Auto V (GTA 5)', platform: 'PS3', price: 15000, size: '18 GB', genre: 'Action', isPopular: true, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=GTA+V+PS3' },
-            { id: 'ps3-2', title: 'PES / eFootball Update Transfer Terbaru', platform: 'PS3', price: 20000, size: '10 GB', genre: 'Sports', isPopular: true, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=PES+Update+PS3' },
-            { id: 'ps3-3', title: 'The Last of Us', platform: 'PS3', price: 15000, size: '32 GB', genre: 'Action', isPopular: true, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=The+Last+of+Us+PS3' },
-            { id: 'ps3-4', title: 'God of War III', platform: 'PS3', price: 15000, size: '40 GB', genre: 'Action', isPopular: true, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=God+of+War+3+PS3' },
-            { id: 'ps3-5', title: 'Tekken 6', platform: 'PS3', price: 12000, size: '12 GB', genre: 'Fighting', isPopular: false, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=Tekken+6+PS3' },
-            { id: 'ps3-6', title: 'FIFA 19 Update Mod', platform: 'PS3', price: 15000, size: '9.5 GB', genre: 'Sports', isPopular: false, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=FIFA+19+PS3' },
-            { id: 'ps3-7', title: 'Red Dead Redemption', platform: 'PS3', price: 15000, size: '8.5 GB', genre: 'Action', isPopular: false, img: 'https://placehold.co/400x550/1A1A1A/ffffff?text=RDR+PS3' },
+            { id: 'ps3-1', title: 'Grand Theft Auto V (GTA 5)', platform: 'PS3', price: 10000, size: '18 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbupQmX1I83J6sLgZ3QXzRj6h6qBRQXrm4-useH3WEWA&s' },
+            { id: 'ps3-2', title: 'GEMBOX PATCH 2027', platform: 'PS3', price: 25000, size: '12 GB', genre: 'Sports', isPopular: true, img: 'https://lh3.googleusercontent.com/d/1H92iIpdD6X-haa6xgesnhWjPZZ7lvKoo' },
+            { id: 'ps3-3', title: 'The Last of Us', platform: 'PS3', price: 15000, size: '32 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQswrqiLec_a7oro1CMB2w7xCij6s4Q1C91MXXzqRIfA&s=10' },
+            { id: 'ps3-4', title: 'God of War III', platform: 'PS3', price: 15000, size: '40 GB', genre: 'Action', isPopular: false, img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGWQJxK9Hmv0znDTfiQFZAwNghdf_aS01fLc7rvDb8MyHsXmBlxdVNkrdUdp8oQjSETKpaiCNmwwgBYKAWvnC7QM3vjY58pO5HT_QjBgIcvtKVqboN5MoKKtsFpWLND3__a8N7KctU7ho/w340-h400/cover-23.jpg' },
+            { id: 'ps3-5', title: 'Tekken 6', platform: 'PS3', price: 10000, size: '12 GB', genre: 'Fighting', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqUKDWuAsXRlPNQ9OStd5EJcmu3jbKmjhM6IMncUJ-pw&s=10' },
+            { id: 'ps3-6', title: 'RDR undead zombie', platform: 'PS3', price: 10000, size: '9.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIGSMZ2eHJyXhXqcIJaa-BEHQraTy9GaEkYZy7QGo-7w&s=10' },
+            { id: 'ps3-7', title: 'Red Dead Redemption', platform: 'PS3', price: 10000, size: '8.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv2ybzX5Fgoo8FgNm33zaRd_tTbEYDN8jMbrESAd8p3w&s' },
 
             // PS4 Games
-            { id: 'ps4-1', title: 'EA Sports FC 24 / EA FC 25 (PS4 HEN/OFW)', platform: 'PS4', price: 30000, size: '45 GB', genre: 'Sports', isPopular: true, img: 'https://placehold.co/400x550/003791/ffffff?text=EA+FC+PS4' },
-            { id: 'ps4-2', title: 'God of War Ragnarök', platform: 'PS4', price: 25000, size: '84 GB', genre: 'Action', isPopular: true, img: 'https://placehold.co/400x550/003791/ffffff?text=GoW+Ragnarok+PS4' },
-            { id: 'ps4-3', title: "Marvel's Spider-Man: Miles Morales", platform: 'PS4', price: 25000, size: '52 GB', genre: 'Action', isPopular: true, img: 'https://placehold.co/400x550/003791/ffffff?text=Spider-Man+PS4' },
-            { id: 'ps4-4', title: 'Resident Evil 4 Remake', platform: 'PS4', price: 25000, size: '65 GB', genre: 'Horror', isPopular: true, img: 'https://placehold.co/400x550/003791/ffffff?text=RE4+Remake+PS4' },
-            { id: 'ps4-5', title: 'eFootball PES Patch Terupdate', platform: 'PS4', price: 25000, size: '42 GB', genre: 'Sports', isPopular: true, img: 'https://placehold.co/400x550/003791/ffffff?text=PES+Update+PS4' },
-            { id: 'ps4-6', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: 'https://placehold.co/400x550/003791/ffffff?text=Ghost+of+Tsushima+PS4' },
+            { id: 'ps4-1', title: 'FC 27', platform: 'PS4', price: 50000, size: '60 GB', genre: 'Sports', isPopular: true, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW4voGDXaJvwbVZ54wfDyCpJqtqDRAdZ5USDuyp7upLA&s=10' },
+            { id: 'ps4-2', title: 'God of War Ragnarök', platform: 'PS4', price: 35000, size: '128 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROx7RH4DFS2dI3UHIoIwXBQI2FpzWpBbA9Z3Gm-PJFcA&s' },
+            { id: 'ps4-3', title: "Marvel's Spider-Man: Miles Morales", platform: 'PS4', price: 25000, size: '52 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUWNGdGL3gf3_3IbztlzZiMKG5z9xXmvmmJPiQtmyxaA&s=10' },
+            { id: 'ps4-4', title: 'Resident Evil 4 Remake', platform: 'PS4', price: 25000, size: '65 GB', genre: 'Horror', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBP89plbWIs9omsS1RtVqiIpXSx6qhQXQUzz0xcdhykg&s' },
+            { id: 'ps4-5', title: 'ELEVEN PATCH 2027', platform: 'PS4', price: 50000, size: '90 GB', genre: 'Sports', isPopular: true, img: 'https://lh3.googleusercontent.com/d/1Qb4xKqIPCxyDAmqa34UFdJ8YVLmR_YPu' },
+            { id: 'ps4-6', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2-7EeyyciV-vtcpqAxv1zu8G0dy-wQQZtw7wjLeJzZw&s' },
 
             // PS5 Games
-            { id: 'ps5-1', title: 'Black Myth: Wukong', platform: 'PS5', price: 40000, size: '120 GB', genre: 'Action', isPopular: true, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Black+Myth+Wukong+PS5' },
-            { id: 'ps5-2', title: 'EA Sports FC 25 Digital / Sharing', platform: 'PS5', price: 40000, size: '55 GB', genre: 'Sports', isPopular: true, img: 'https://placehold.co/400x550/0070D1/ffffff?text=EA+FC+25+PS5' },
-            { id: 'ps5-3', title: "Marvel's Spider-Man 2", platform: 'PS5', price: 35000, size: '88 GB', genre: 'Action', isPopular: true, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Spider-Man+2+PS5' },
-            { id: 'ps5-4', title: 'Elden Ring + DLC Shadow of the Erdtree', platform: 'PS5', price: 35000, size: '70 GB', genre: 'RPG', isPopular: true, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Elden+Ring+PS5' },
-            { id: 'ps5-5', title: 'Tekken 8', platform: 'PS5', price: 35000, size: '80 GB', genre: 'Fighting', isPopular: false, img: 'https://placehold.co/400x550/0070D1/ffffff?text=Tekken+8+PS5' }
+			{ id: 'ps5-1', title: 'Black Myth: Wukong', platform: 'PS5', price: 50000, size: '120 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlnJx2jvS-eC_1IAYgMQllkJtINA_cFW56c_6fugZjmg&s' },
+            { id: 'ps5-2', title: 'EA Sports FC 27 Digital', platform: 'PS5', price: 50000, size: '55 GB', genre: 'Sports', isPopular: true, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8f8--loOoU8IDSsvYT-qmCAtxEEZQWoFjvA5NXteV-g&s=10' },
+            { id: 'ps5-3', title: "Marvel's Spider-Man 2", platform: 'PS5', price: 50000, size: '88 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkkicmyqFcy0n8kJrArKFwrxruuoPJVVRxAsVVmHBMOA&s=10' },
+            { id: 'ps5-4', title: 'Elden Ring + DLC Shadow of the Erdtree', platform: 'PS5', price: 50000, size: '70 GB', genre: 'RPG', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKTbIGkM_vqk-jgKXPU-UyWCax9QTijcrw3tFsF5fZew&s=10' },
+            { id: 'ps5-5', title: 'Grand Theft Auto 6', platform: 'PS5', price: 50000, size: '80 GB', genre: 'Fighting', isPopular: true, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqw4XLS6fw1EYK3MspvuE-5DZP8ghKIw016f1dgl4N9Q&s' }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -455,13 +456,16 @@
             filtered.forEach(game => {
                 const card = document.createElement('div');
                 card.className = "glass-panel rounded-2xl overflow-hidden border border-gray-800 flex flex-col justify-between group hover:border-brand-500/50 transition-all shadow-md";
+                
+                // Using object-contain combined with a sleek backdrop blur wrapper so full cover is shown beautifully without cropping or cutting off half
                 card.innerHTML = `
-                    <div class="relative cursor-pointer" onclick="openQuickView('${game.id}')">
-                        <img src="${game.img}" alt="${game.title}" class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x400/111827/ffffff?text=Game'">
-                        <span class="absolute top-2 left-2 px-2 py-0.5 rounded text-[9px] font-extrabold text-white bg-brand-600 shadow">
+                    <div class="relative cursor-pointer h-48 bg-gray-950/80 flex items-center justify-center overflow-hidden" onclick="openQuickView('${game.id}')">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-25 filter blur-md scale-110" style="background-image: url('${game.img}')"></div>
+                        <img src="${game.img}" alt="${game.title}" class="relative z-10 h-full w-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x400/111827/ffffff?text=Game'">
+                        <span class="absolute top-2 left-2 px-2 py-0.5 rounded text-[9px] font-extrabold text-white bg-brand-600 shadow z-20">
                             ${game.platform}
                         </span>
-                        ${game.isPopular ? '<span class="absolute top-2 right-2 bg-amber-500 text-black text-[9px] font-black px-1.5 py-0.5 rounded shadow">🔥 Hot</span>' : ''}
+                        ${game.isPopular ? '<span class="absolute top-2 right-2 bg-amber-500 text-black text-[9px] font-black px-1.5 py-0.5 rounded shadow z-20">🔥 Hot</span>' : ''}
                     </div>
                     <div class="p-2.5 flex-1 flex flex-col justify-between space-y-2">
                         <div class="cursor-pointer" onclick="openQuickView('${game.id}')">
@@ -504,6 +508,7 @@
 
             const badge = document.getElementById('modalPlatformBadge');
             const img = document.getElementById('modalImg');
+            const modalBgBlur = document.getElementById('modalBgBlur');
             const genre = document.getElementById('modalGenre');
             const title = document.getElementById('modalTitle');
             const price = document.getElementById('modalPrice');
@@ -511,6 +516,7 @@
 
             if (badge) badge.innerText = game.platform;
             if (img) img.src = game.img;
+            if (modalBgBlur) modalBgBlur.style.backgroundImage = `url('${game.img}')`;
             if (genre) genre.innerText = game.genre;
             if (size) size.innerText = game.size;
             if (title) title.innerText = game.title;
