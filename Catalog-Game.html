@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DZA GAMESTORE - GAME CATALOG</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 2px;
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.3);
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        /* Mobile Frame Simulation Container */
+        .phone-wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background-color: #0b0f19;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white">
+
+    <!-- Diubah pb-24 menjadi pb-20 agar ruang bawah tidak terlalu renggang -->
+    <div class="phone-wrapper pb-20">
+
+        <!-- Mobile App Status & Header -->
+        <header class="sticky top-0 z-40 glass-panel border-b border-gray-800 px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-cyan-400 flex items-center justify-center text-white shadow-md shadow-brand-500/30">
+                        <i class="fa-solid font-bold fa-gamepad text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-base font-black tracking-wider text-white leading-tight flex items-center gap-1.5">
+                            DZA <span class="text-brand-400">STORE</span>
+                        </h1>
+                        <p class="text-[9px] text-gray-400 tracking-wider font-semibold uppercase">PS2 • PS3 • PS4 • PS5</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleCartModal()" class="relative w-9 h-9 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 flex items-center justify-center border border-gray-700 text-xs">
+                        <i class="fa-solid fa-cart-shopping text-brand-400"></i>
+                        <span id="cartBadge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Bar Mobile -->
+            <div class="mt-3 relative">
+                <input type="text" id="searchInput" oninput="filterGames()" placeholder="Cari judul game (misal: GTA, PES, FIFA)..." 
+                    class="w-full bg-gray-900/90 text-xs text-gray-200 placeholder-gray-500 rounded-xl pl-9 pr-8 py-2.5 border border-gray-700/80 focus:outline-none focus:border-brand-500 transition-all">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white text-xs">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 px-4 py-3 space-y-4">
+            
+            <!-- Mini Promo Banner Carousel / Card -->
+            <div class="rounded-2xl bg-gradient-to-r from-brand-900/60 via-indigo-950 to-gray-900 border border-brand-500/20 p-3.5 relative overflow-hidden shadow-lg">
+                <div class="absolute right-0 bottom-0 opacity-10 translate-x-4 translate-y-4">
+                    <i class="fa-solid fa-gamepad text-8xl text-brand-400"></i>
+                </div>
+                <div class="relative z-10 space-y-1.5">
+                    <span class="inline-block px-2 py-0.5 bg-brand-500/20 text-brand-300 border border-brand-500/30 text-[10px] font-semibold rounded-full">
+                        ⚡ Isian Game Cepat & Bergaransi
+                    </span>
+                    <h2 class="text-sm font-extrabold text-white leading-snug">
+                        Katalog Game PS2, PS3, PS4 & PS5
+                    </h2>
+                    <p class="text-[11px] text-gray-400 leading-relaxed">
+                        Pilih game favoritmu, masukkan ke keranjang, lalu order, jika game pilihan kamu tidak ada langsung request via WhatsApp!
+                    </p>
+                    <div class="pt-1 flex items-center gap-2">
+                        <button onclick="openWhatsAppContact()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[11px] font-semibold flex items-center gap-1.5 shadow">
+                            <i class="fa-brands fa-whatsapp text-xs"></i> Tanya Admin via WA
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Tab Buttons -->
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+                <button onclick="setPlatformFilter('ALL')" id="btn-filter-ALL" class="platform-tab active px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-brand-600 text-white shadow-md">
+                    🎮 Semua (<span id="countAll">0</span>)
+                </button>
+                <button onclick="setPlatformFilter('PS2')" id="btn-filter-PS2" class="platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-800 text-gray-300 border border-gray-700">
+                    🟦 PS2
+                </button>
+                <button onclick="setPlatformFilter('PS3')" id="btn-filter-PS3" class="platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-800 text-gray-300 border border-gray-700">
+                    ⬛ PS3
+                </button>
+                <button onclick="setPlatformFilter('PS4')" id="btn-filter-PS4" class="platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-800 text-gray-300 border border-gray-700">
+                    🔷 PS4
+                </button>
+                <button onclick="setPlatformFilter('PS5')" id="btn-filter-PS5" class="platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-800 text-gray-300 border border-gray-700">
+                    ⚪ PS5
+                </button>
+            </div>
+
+            <!-- Genre & Sort Filters Row -->
+            <div class="flex items-center gap-2">
+                <select id="genreSelect" onchange="filterGames()" class="flex-1 bg-gray-800 text-gray-200 text-[11px] rounded-xl px-2.5 py-2 border border-gray-700 focus:outline-none focus:border-brand-500">
+                    <option value="ALL">Semua Genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Sports">Sports / Bola</option>
+                    <option value="Racing">Racing</option>
+                    <option value="RPG">RPG</option>
+                    <option value="Fighting">Fighting</option>
+                    <option value="Horror">Horror</option>
+                </select>
+
+                <select id="sortSelect" onchange="filterGames()" class="w-28 bg-gray-800 text-gray-200 text-[11px] rounded-xl px-2.5 py-2 border border-gray-700 focus:outline-none focus:border-brand-500">
+                    <option value="popular">Terpopuler</option>
+                    <option value="name-asc">Nama (A-Z)</option>
+                    <option value="price-asc">Termurah</option>
+                </select>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] text-gray-400 px-0.5">
+                <span>Menampilkan <strong id="displayedCount" class="text-white">0</strong> game</span>
+                <button onclick="resetFilters()" class="text-brand-400 underline">Atur Ulang</button>
+            </div>
+
+            <div id="gameGrid" class="grid grid-cols-2 gap-3">
+                <!-- Dynamic cards injected here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden py-12 text-center space-y-3">
+                <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mx-auto text-gray-500 text-xl">
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <h3 class="text-sm font-bold text-gray-300">Game Tidak Ditemukan</h3>
+                <p class="text-[11px] text-gray-500 max-w-xs mx-auto">Coba cari judul game lain atau ubah filter konsol.</p>
+                <button onclick="resetFilters()" class="px-3 py-1.5 bg-brand-600 text-white rounded-lg text-xs font-semibold">Atur Ulang Filter</button>
+            </div>
+        </main>
+
+        <nav class="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto glass-panel border-t border-gray-800 h-16 px-6 flex items-center justify-around z-40 shadow-2xl">
+            <button onclick="resetFilters()" class="flex flex-col items-center gap-1 text-brand-400">
+                <i class="fa-solid fa-house text-base"></i>
+                <span class="text-[10px] font-medium">Beranda</span>
+            </button>
+            <button onclick="openWhatsAppContact()" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                <span class="text-[10px] font-medium">Tanya WA</span>
+            </button>
+            <button onclick="toggleCartModal()" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white relative">
+                <i class="fa-solid fa-basket-shopping text-base"></i>
+                <span class="text-[10px] font-medium">Keranjang</span>
+            </button>
+        </nav>
+
+        <!-- QUICK VIEW MODAL -->
+        <div id="quickViewModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+            <div class="bg-gray-900 border-t sm:border border-gray-800 w-full max-w-md rounded-t-3xl sm:rounded-2xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col animate-slide-up">
+                <div class="p-4 border-b border-gray-800 flex items-center justify-between">
+                    <span id="modalPlatformBadge" class="px-2.5 py-0.5 rounded text-[10px] font-bold text-white bg-brand-600"></span>
+                    <button onclick="closeQuickView()" class="text-gray-400 hover:text-white w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center">
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                    </button>
+                </div>
+
+                <div class="overflow-y-auto p-4 space-y-3">
+                    <div class="relative w-full h-72 rounded-xl overflow-hidden border border-gray-800 bg-black/60 flex items-center justify-center group">
+                        <div id="modalBgBlur" class="absolute inset-0 bg-cover bg-center opacity-30 filter blur-xl scale-110"></div>
+                        <img id="modalImg" src="" alt="Cover" class="relative z-10 max-h-full max-w-full object-contain p-2 drop-shadow-2xl" onerror="this.src='https://placehold.co/300x400/111827/ffffff?text=Game'">
+                    </div>
+
+                    <div>
+                        <span id="modalGenre" class="text-[10px] uppercase font-semibold text-brand-400"></span>
+                        <h3 id="modalTitle" class="text-base font-bold text-white mt-0.5"></h3>
+                        <div class="mt-2 space-y-1 text-[11px] text-gray-300">
+                            <div>Ukuran: <strong id="modalSize" class="text-white"></strong></div>
+                            <div>Format: <strong class="text-white">Harddisk / Flashdisk / ISO / Digital</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-gray-400 block">Harga Isian:</span>
+                            <span id="modalPrice" class="text-base font-extrabold text-emerald-400"></span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <button id="modalAddToCartBtn" class="py-2.5 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-xl text-xs border border-gray-700 flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-cart-plus text-brand-400"></i> + Keranjang
+                        </button>
+                        <button id="modalDirectOrderBtn" class="py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Order WA
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SHOPPING CART MODAL -->
+        <div id="cartModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex justify-end">
+            <div class="bg-gray-900 border-l border-gray-800 w-full max-w-sm h-full flex flex-col justify-between p-4 shadow-2xl relative">
+                <div>
+                    <div class="flex items-center justify-between pb-3 border-b border-gray-800">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-cart-shopping text-brand-500 text-sm"></i>
+                            <h3 class="text-sm font-bold text-white">Keranjang Game</h3>
+                        </div>
+                        <button onclick="toggleCartModal()" class="text-gray-400 hover:text-white">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div id="cartItemsContainer" class="mt-3 space-y-2.5 max-h-[45vh] overflow-y-auto pr-1"></div>
+
+                    <div id="cartEmptyState" class="text-center py-12 text-gray-500 space-y-2">
+                        <i class="fa-solid fa-basket-shopping text-3xl mb-1 text-gray-700"></i>
+                        <p class="text-xs font-medium">Keranjang masih kosong</p>
+                    </div>
+                </div>
+
+                <div id="cartFooter" class="border-t border-gray-800 pt-3 space-y-3 hidden">
+                    <div class="space-y-1">
+                        <label class="text-[10px] text-gray-400 block font-medium">Nama / Tipe Console:</label>
+                        <input type="text" id="customerNote" placeholder="Contoh: Budi - PS3 Slim" class="w-full bg-gray-800 text-xs text-gray-200 rounded-xl px-3 py-2 border border-gray-700 focus:outline-none focus:border-brand-500">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[10px] text-gray-400 block font-medium">Media Isian Game:</label>
+                        <select id="mediaTypeSelect" class="w-full bg-gray-800 text-xs text-gray-200 rounded-xl px-3 py-2 border border-gray-700 focus:outline-none">
+                            <option value="Isi Langsung ke Console">Isi Langsung ke Toko</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-400">Total:</span>
+                        <span id="cartTotalPrice" class="text-sm font-extrabold text-emerald-400">Rp 0</span>
+                    </div>
+
+                    <button onclick="sendCartToWhatsApp()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Kirim Pesanan ke WhatsApp
+                    </button>
+                    <button onclick="clearCart()" class="w-full py-1 text-[11px] text-red-400 text-center">Kosongkan Keranjang</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLOATING BOTTOM CART NOTIFICATION BAR (Diubah dari translate-y-32 menjadi translate-y-48, dan posisinya diatur bottom-20 agar tepat berada di atas navbar bawah) -->
+        <div id="floatingCartNotif" class="fixed bottom-20 left-4 right-4 max-w-[448px] mx-auto z-40 transform translate-y-48 transition-transform duration-300 ease-out bg-brand-900/95 border border-brand-500/50 backdrop-blur-md rounded-2xl p-3 shadow-2xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-md relative">
+                    <i class="fa-solid fa-cart-shopping text-sm"></i>
+                    <span id="floatingCartCount" class="absolute -top-1 -right-1 bg-emerald-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow">0</span>
+                </div>
+                <div>
+                    <span class="text-[10px] text-brand-300 font-semibold uppercase block">Berhasil Ditambahkan!</span>
+                    <span id="floatingCartTotal" class="text-xs font-extrabold text-white">Rp 0</span>
+                </div>
+            </div>
+            <button onclick="toggleCartModal(true); hideFloatingNotif();" class="px-3.5 py-2 bg-white text-brand-900 font-bold rounded-xl text-xs hover:bg-gray-100 shadow flex items-center gap-1.5 transition-all">
+                <span>Lihat Keranjang</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+        </div>
+
+        <!-- Toast -->
+        <div id="toast" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 transform -translate-y-24 transition-transform duration-300 bg-gray-800 text-white border border-brand-500/40 px-3.5 py-2.5 rounded-xl shadow-2xl flex items-center gap-2 text-xs">
+            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            <span id="toastMessage">Berhasil</span>
+        </div>
+
+    </div>
+
+    <script>
+        const storeConfig = { waNumber: "6287878844020", storeName: "DZA GAMESTORE" };
+        let cart = [];
+        let currentPlatform = 'ALL';
+        let currentQuickViewGameId = null;
+        let floatingNotifTimer = null;
+
+        // Preloaded Game Catalog Data
+        const gamesData = [
+            // PS2 Games
+            { id: 'ps2-1', title: 'Grand Theft Auto: San Andreas', platform: 'PS2', price: 2000, size: '4.2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s' },
+            { id: 'ps2-2', title: 'God of War II', platform: 'PS2', price: 2000, size: '4 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1w_Brz_fFb1feGENZSFVhHzk731d1PlTvJNpEkmGw5A&s' },
+            { id: 'ps2-3', title: 'Bully (Canis Canem Edit)', platform: 'PS2', price: 2000, size: '2.7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlEiBxMc-I2DsWRxRNGrQEVTzK4WiWj2ROLT73sjmRFg&s=10' },
+            { id: 'ps2-4', title: 'Need for Speed: Most Wanted', platform: 'PS2', price: 5000, size: '3.1 GB', genre: 'Racing', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUBNpc_gdhMc46kjzks95uvcNZ7mcBoGtBMqBAOw-Arw&s=10' },
+            { id: 'ps2-5', title: 'Resident Evil 4', platform: 'PS2', price: 2000, size: '4.3 GB', genre: 'Horror', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxBIBmJxwZsClpy3qU06ZHwWe6-QSZQaYQ8K5nT5tluw&s=10' },
+            { id: 'ps2-6', title: 'Naruto Shippuden: Ultimate Ninja 5', platform: 'PS2', price: 2000, size: '3.8 GB', genre: 'Fighting', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMaxiD8pxhyc79mn6YmzdtGFYNz1JN61rwYhdh3HQF3Q&s=10' },
+            { id: 'ps2-7', title: 'PES / Winning Eleven Terbaru (Patch PS2)', platform: 'PS2', price: 2000, size: '4.1 GB', genre: 'Sports', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrHZ8UHmXMXsIxystoz-BpFjA1rEeD1aNcIxMQQcLuOg&s=10' },
+            { id: 'ps2-8', title: 'Downhill Domination', platform: 'PS2', price: 2000, size: '2.4 GB', genre: 'Racing', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNeXW4ivUjW-PJVLStvnZO1bexNQMGtIzNKqolb66v5A&s=10' },
+
+            // PS3 Games
+            { id: 'ps3-1', title: 'Grand Theft Auto V (GTA 5)', platform: 'PS3', price: 10000, size: '18 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbupQmX1I83J6sLgZ3QXzRj6h6qBRQXrm4-useH3WEWA&s' },
+            { id: 'ps3-2', title: 'GEMBOX PATCH 2027', platform: 'PS3', price: 25000, size: '12 GB', genre: 'Sports', isPopular: true, img: 'https://lh3.googleusercontent.com/d/1H92iIpdD6X-haa6xgesnhWjPZZ7lvKoo' },
+            { id: 'ps3-3', title: 'The Last of Us', platform: 'PS3', price: 15000, size: '32 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQswrqiLec_a7oro1CMB2w7xCij6s4Q1C91MXXzqRIfA&s=10' },
+            { id: 'ps3-4', title: 'God of War III', platform: 'PS3', price: 15000, size: '40 GB', genre: 'Action', isPopular: false, img: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGWQJxK9Hmv0znDTfiQFZAwNghdf_aS01fLc7rvDb8MyHsXmBlxdVNkrdUdp8oQjSETKpaiCNmwwgBYKAWvnC7QM3vjY58pO5HT_QjBgIcvtKVqboN5MoKKtsFpWLND3__a8N7KctU7ho/w340-h400/cover-23.jpg' },
+            { id: 'ps3-5', title: 'Tekken 6', platform: 'PS3', price: 10000, size: '12 GB', genre: 'Fighting', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqUKDWuAsXRlPNQ9OStd5EJcmu3jbKmjhM6IMncUJ-pw&s=10' },
+            { id: 'ps3-6', title: 'RDR undead zombie', platform: 'PS3', price: 10000, size: '9.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIGSMZ2eHJyXhXqcIJaa-BEHQraTy9GaEkYZy7QGo-7w&s=10' },
+            { id: 'ps3-7', title: 'Red Dead Redemption', platform: 'PS3', price: 10000, size: '8.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv2ybzX5Fgoo8FgNm33zaRd_tTbEYDN8jMbrESAd8p3w&s' },
+            { id: 'ps3-8', title: 'Angry Birds', platform: 'PS3', price: 10000, size: '1.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPL3rEbY0SNZZuEBKxgLVx6bljn6583J_6-QSKgVZARg&s=10' },
+            { id: 'ps3-9', title: 'Army of two the devil s cartel', platform: 'PS3', price: 10000, size: '7.2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQYw_od6zbBLVZ_7p600srEPG7Kng-eg9jOByFZyiKEw&s=10' },
+            { id: 'ps3-10', title: 'Assassins creed black flag', platform: 'PS3', price: 10000, size: '9.6 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcmcEWQuyBSMK198PbKvsOvcvolgcuPMw7UtLhuQ_AQg&s=10' },
+            { id: 'ps3-11', title: 'Assassins creed II', platform: 'PS3', price: 10000, size: '16.1 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRax88rAGJt762RZ_RsU2PYLLPdwos8_qQW9Y1JssA8pQ&s=10' },
+            { id: 'ps3-12', title: 'Assassins creed III', platform: 'PS3', price: 10000, size: '11.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTomjgOhiEdmdrhdUN0D3YjmSBegUkve_LmzqF9uGnqDA&s=10' },
+            { id: 'ps3-13', title: 'Assassins creed rogue', platform: 'PS3', price: 10000, size: '6.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtEac1ynl0_U3ZZNLqVd4rGSGh40li7yRhffhDyo2_3A&s=10' },
+            { id: 'ps3-14', title: 'Atack On Titan', platform: 'PS3', price: 10000, size: '13.7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1N5rJJY7dMc4TnPCIktw0UAtn97OodPhi4OUPcIyk0w&s=10' },
+            { id: 'ps3-15', title: 'Baja Edge Control', platform: 'PS3', price: 10000, size: '5.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFMexkdTJvnfBN_B2MBXDUqvA6ilaA17e3wWrxj21Q_A&s=10' },
+            { id: 'ps3-16', title: 'Call Of Duty Advanced Warvare', platform: 'PS3', price: 10000, size: '13.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSNFpzmDZZK7WB_01kf244dkOnGSw1-4YDtUCsa7CTEQ&s=10' },
+            { id: 'ps3-17', title: 'Bakugan Battle brawler', platform: 'PS3', price: 10000, size: '5.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0VVn6Ppu0NpFFroj_7GiigarTkl9P7UuUujLoFnlScg&s=10' },
+            { id: 'ps3-18', title: 'ben 10 cosmic destruction', platform: 'PS3', price: 10000, size: '3.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS99yPP39gXZouNDUN1A7ZMF_vZa7ljriP2aPdZthlN6w&s=10' },
+            { id: 'ps3-19', title: 'bladestrom the hundred years war', platform: 'PS3', price: 10000, size: '5.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFc9s8w3B84sDOne8K2nN0edk_MkwC63abdhopcaW_DQ&s=10' },
+            { id: 'ps3-20', title: 'blood drive', platform: 'PS3', price: 10000, size: '2.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi3olJH9CwWwAYWSAyBTSmVd-gWfUkeHwyY6avsBQI2g&s=10' },
+            { id: 'ps3-21', title: 'bloodbath', platform: 'PS3', price: 10000, size: '600 mb', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1n50eLe14pncY8Z1_8fiiEoxtZeUII8iSgO_vPCvubQ&s=10' },
+            { id: 'ps3-22', title: 'Call Of Duty Black Ops 1', platform: 'PS3', price: 10000, size: '17.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbSi3gJ-kVR5m5SEOKhx0zpheVSxzcvjorOElAHK1K9g&s=10' },
+            { id: 'ps3-23', title: 'Blur', platform: 'PS3', price: 10000, size: '6 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWTtzgCoYVgqv9Agbh3XvjgYdJotrq0lRQvuFNvP6a2Q&s=10' },
+            { id: 'ps3-24', title: 'Bloderlabdes the pre sequel', platform: 'PS3', price: 10000, size: '5.72 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTotFehOjSkhGDOplPEYKik9McqHqgwol139Pac2gnQzA&s=10' },
+            { id: 'ps3-25', title: 'Burnout Paradise', platform: 'PS3', price: 10000, size: '7.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DMOJLNWNoToDrjcQHWwr11W2kWL_tOomMUyAAqCCCg&s=10' },
+            { id: 'ps3-26', title: 'Call Of Duty 4 MW', platform: 'PS3', price: 10000, size: '5.21 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwJDTdMF9lAr5eV7irg5LAIc3zFChjM4u_jjVi6kdb7Q&s=10' },
+            { id: 'ps3-27', title: 'Call of Duty Black Ops II', platform: 'PS3', price: 10000, size: '19.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJC3sVVYdUTy1HmGvG84s6vNGAjI3usF415gpO7ea0GA&s=10' },
+            { id: 'ps3-28', title: 'Call of Duty Ghosts', platform: 'PS3', price: 10000, size: '10.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfPZ06e1NVnc7Bq9KYseOBnYMysJppDXosuKAY54JObA&s=10' },
+            { id: 'ps3-29', title: 'Call of Duty Modern Warfare 2', platform: 'PS3', price: 10000, size: '7.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo5qxyis5lmqribrIOPLkHYHNdlLyrdFcux5uqQFt7VA&s=10' },
+            { id: 'ps3-30', title: 'Call of Duty Modern Warfare 3', platform: 'PS3', price: 10000, size: '8.2GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBmuK8K_US3s0waByTFzi68ZxhDbe93HRLA9rgZPfQw&s=10' },
+            { id: 'ps3-31', title: 'Call of Duty World at War', platform: 'PS3', price: 10000, size: '6 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaYnXFgv5JobhubG-b4MXlBqY_ote-a7tV-5gshMZjzQ&s=10' },
+            { id: 'ps3-32', title: 'Captain America Super Soldier', platform: 'PS3', price: 10000, size: '6.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2QjZdxWNAGIgR-j8VcaGUBbzXeG9rJfzhk5acNfvl_Q&s=10' },
+            { id: 'ps3-33', title: 'Dark Souls II Scholar of the First Sin', platform: 'PS3', price: 10000, size: '8.3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2h19K8qQysNMGOUqWI3hfM0Gd2yhOicdjdjywxwhP5A&s=10' },
+            { id: 'ps3-34', title: 'Dead Island', platform: 'PS3', price: 10000, size: '3.2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdRoymG9uEzSZGjBYu9auKqGM3lsJAsIXdGpX6y9ghBw&s=10' },
+            { id: 'ps3-35', title: 'Dead or Alive 5 Last Round', platform: 'PS3', price: 10000, size: '8.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrVwik1Ju1iRiZugEjqX7eK9LIjyZMiIcMuc2jH8qJ2Q&s=10' },
+            { id: 'ps3-36', title: 'DeadPool', platform: 'PS3', price: 10000, size: '5.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI9D5ZNXhsK56SryCSDucRXzRPD9DBNQ0RwVRojfjAzQ&s=10' },
+            { id: 'ps3-37', title: 'DYNASTY WARRIORS 8', platform: 'PS3', price: 10000, size: '18.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZf7JVI7hIWRIBnX_w6zRs3Lmme9OaxLTdgcPVPQqtQg&s=10' },
+            { id: 'ps3-38', title: 'Fantastic Four Rise Silver Surfer', platform: 'PS3', price: 10000, size: '5.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF63Izhc1bAZRCbA8HtqX7u0ksKsVufyMUNzQFWxOQfw&s=10' },
+            { id: 'ps3-39', title: 'Far Cry 3', platform: 'PS3', price: 10000, size: '5.2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-fTAtAHjMtiJqzRBzgnJ-Q6Zmj2s62CSYWdVLL1umKA&s=10' },
+            { id: 'ps3-40', title: 'Fight Night Champion', platform: 'PS3', price: 10000, size: '5.3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR29CKBs1_sYa1YBwC7hAt_6pC2x_fa0UEcPK3lUU0Mgw&s=10' },
+            { id: 'ps3-41', title: 'Grand Theft Auto IV', platform: 'PS3', price: 10000, size: '10.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC1NN7gsrsEZ8CmQEWXd5kCT4RslGoIrbKTEg62-lmgw&s' },
+            { id: 'ps3-42', title: 'Grand Theft Auto IV Liberty', platform: 'PS3', price: 10000, size: '7.18 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-b_hrkFWvYlv9jpwrR8FGFSJbfXDyJzLnMGBjjbSeaw&s=10' },
+            { id: 'ps3-43', title: 'Grand Theft Auto San Andreas', platform: 'PS3', price: 10000, size: '2.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIu2E7vi8ZQOpzsexaaWm0RTQ_DgSm9x0N7FZ9cP0rpw&s=10' },
+            { id: 'ps3-44', title: 'Guitar Hero 3 Legends of Rock', platform: 'PS3', price: 10000, size: '5.6 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6KL48n3_JCJDhQ4ybME0_7agBSsjAk-xAy7qwjvgKDA&s=10' },
+            { id: 'ps3-45', title: 'Hot Wheels Worlds Best Driver', platform: 'PS3', price: 10000, size: '3.3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiJAOItiV5TS40hfocwNe96vUADpLL6vxGeL-m_zvuDg&s=10' },
+            { id: 'ps3-46', title: 'Ice Age 4 Continental Drift Arctic Games', platform: 'PS3', price: 10000, size: '3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMr0cEbPz0CsF8h4gxGwW9qS-kDRQ-aJ_vhxjKSGNIMQ&s=10' },
+            { id: 'ps3-47', title: 'Infamous ', platform: 'PS3', price: 10000, size: '6.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcrVvMuXxz_j6XOSYU7eb4Xzfr2Jlmu9X6c36RLwuWnw&s=10' },
+            { id: 'ps3-48', title: 'Infamous 2', platform: 'PS3', price: 10000, size: '14.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxbDEEQ_8Lc6txpVWu4o-0Sj7P6k-pwumnrJb1trFF1g&s=10' },
+            { id: 'ps3-49', title: 'Injustice Gods Among Us Ultimate Edition', platform: 'PS3', price: 10000, size: '9.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrAltwtz5Ec5Fyqk0LCrL-kdv5szVq39I-4M3wLGd4eg&s=10' },
+            { id: 'ps3-50', title: 'Iron Man 2', platform: 'PS3', price: 10000, size: '7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0GDCiHfSQRZ_MoCIEqm_HpwSA3J60BEWr1w6IpEOFiw&s=10' },
+{ id: 'ps3-51', title: 'Jak & Daxter Collection', platform: 'PS3', price: 10000, size: '7.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvfvs3s1KaQGPJI8plEgZPJPWsfMi56bWV4Q9E5ALuKw&s=10' },
+{ id: 'ps3-52', title: 'Jojo All Stars Battle', platform: 'PS3', price: 10000, size: '3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMDcfSNmJsUc9YT9MSzorD_q9F-jQgu8TpdXhhQpgP7w&s=10' },
+{ id: 'ps3-53', title: 'Kamen Rider Battleride War II', platform: 'PS3', price: 10000, size: '4 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv6XPdOnZjqHyhUJ5B5SePxvJGw1DGu5sYN-PzkQ-guQ&s=10' },
+{ id: 'ps3-54', title: 'Kung Fu Panda 2', platform: 'PS3', price: 10000, size: '1.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1sI28mojxUsE_OI5tYTPQmZJsmaAGEG9BYOno2Cw5jQ&s=10' },
+{ id: 'ps3-55', title: 'LEISURE SUIT LARRY', platform: 'PS3', price: 10000, size: '1 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBKxRh7HEg6z3mouqZCYSu0Y-mKR90HsvNBk30wT2bUw&s=10' },
+{ id: 'ps3-56', title: 'Madagascar 2 Escape Africa', platform: 'PS3', price: 10000, size: '7.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6CPujux6hU07w6XyGr3b0QFklB_rBL8s7FEiZ7U-3UQ&s=10' },
+{ id: 'ps3-57', title: 'Madagascar Kartz', platform: 'PS3', price: 10000, size: '1.1 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIeA2G02nLU_DqVv6ettbLQH-9_Y574cK7Fv96TJSVfQ&s=10' },
+{ id: 'ps3-58', title: 'Metro Last Light', platform: 'PS3', price: 10000, size: '6.3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJrL1XEuCozune27aWr1-txyd4-ZRCq31TDPb9kGL_SQ&s=10' },
+{ id: 'ps3-59', title: 'Mortal Kombat 9', platform: 'PS3', price: 10000, size: '9.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1FRm7fKwaJyUEtH1QrOYr36aWkwimMq9igwTHs3x-UQ&s=10' },
+{ id: 'ps3-60', title: 'Mortal Kombat vs Universe', platform: 'PS3', price: 10000, size: '6.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3YgZHBb6MrnGBPIh5yb22narwT-gA7l837ZPqZiM7Pg&s=10' },
+{ id: 'ps3-61', title: 'Moto GP 24', platform: 'PS3', price: 10000, size: '12.5 GB', genre: 'Racing', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHlzPKMC1dmehJNRnVa0zDp6SJ2wElZ2nhmjTL9U_icg&s=10' },
+{ id: 'ps3-62', title: 'MX vs ATV Alive', platform: 'PS3', price: 10000, size: '2,7 GB', genre: 'Racing', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUALg6W1f9RjqIPzKDT1s1b0NTm8fPPvl0u-QXy6SfFg&s' },
+{ id: 'ps3-63', title: 'Naruto Shippuden Ultimate Ninja Storm 3 Full Burst', platform: 'PS3', price: 10000, size: '6,9 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5IUZpzN63wJKjxeouw7tIAwdAP-FuNzLEPxvAGEsOwQ&s=10' },
+{ id: 'ps3-64', title: 'Naruto Shippuden Ultimate Ninja Storm Revolution', platform: 'PS3', price: 10000, size: '7,7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVoKJ8qa1wk7e7L_gQ2Ot1rYCOlzIFFYQbYi5Y1rsHKA&s=10' },
+{ id: 'ps3-65', title: 'NBA 2K18', platform: 'PS3', price: 10000, size: '8.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQin6rZyKAGed3nRW1cUNU_3NNmY8sI5F1oiq6BtZpo9A&s=10' },
+{ id: 'ps3-66', title: 'NBA Street Homecourt', platform: 'PS3', price: 10000, size: '5.7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLhxVle09mPx2wpRqEaDVK3fvwIYp9ET9TUuaExQ2uEw&s=10' },
+{ id: 'ps3-67', title: 'Need for Speed Carbon', platform: 'PS3', price: 10000, size: '11.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDNuAuhOyls2KMd8ADt8VLsOf7D3HeFgEOCETVaspd3Q&s=10' },
+{ id: 'ps3-68', title: 'Need for Speed Pro Street', platform: 'PS3', price: 10000, size: '5.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf8HWM8mw540kQN8_pRfRLGWZt1tK7zXAwdI7O4blLFw&s=10' },
+{ id: 'ps3-69', title: 'Need for Speed Rivals', platform: 'PS3', price: 10000, size: '6.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYCESQc-KLMwyFqZiF7nhiCrzQcZlW0bCZrUwi5Mwg3Q&s=10' },
+{ id: 'ps3-70', title: 'Need for Speed Undercover', platform: 'PS3', price: 10000, size: '3.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjhmwKS7TuxW6j5QomAzP0KCVCZQ9pDiGjWGy4TeY42w&s=10' },
+{ id: 'ps3-71', title: 'Pac Man And The Ghostly Adventures', platform: 'PS3', price: 10000, size: '2.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsMTJ_bgq4TWckz0evJ6gW93Fyt-G3HXWSt4DzY0q6sw&s=10' },
+{ id: 'ps3-72', title: 'Plant Vs Zombie', platform: 'PS3', price: 10000, size: '250 MB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaMwd6CaoNU9tyhEbcknxNoaJs3A6Kh_VnfMdmW2SJ4Q&s=10' },
+{ id: 'ps3-73', title: 'Prototype 2', platform: 'PS3', price: 10000, size: '12.3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF-G4kXCqsoNobLN8iOmMeks6HcX62v_t0pcb4z4Cm6Q&s' },
+{ id: 'ps3-74', title: 'Rapala Pro Bass Fishing', platform: 'PS3', price: 10000, size: '4.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMucyWVu97kHHjkJPs2WTUW2XbB_LMWcnLt-e_bSO4sQ&s=10' },
+{ id: 'ps3-75', title: 'Resident Evil 4 HD', platform: 'PS3', price: 10000, size: '3.2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqzW7lHX9vcqWtKuYQ9uAQW4oBvDNxdnDEVmi3gMAHgw&s=10' },
+{ id: 'ps3-76', title: 'Ride', platform: 'PS3', price: 10000, size: '7.3GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0g-dVa3MMKTMQnc6GJ2UQ55xsYrLlCIYj3VU5uE5KXg&s=10' },
+{ id: 'ps3-77', title: 'Ridge Racer Unbounded', platform: 'PS3', price: 10000, size: '1.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8T5DfKdfFMuPjfJL4_7Wcd3U-s-jLbyK-4Cl5MsKKqA&s=10' },
+{ id: 'ps3-78', title: 'Rio', platform: 'PS3', price: 10000, size: '1.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR46w6zJdjOJkuJ1CQ-oOE1kF_5Jk5mQ1SHo_DtdU0z9w&s=10' },
+{ id: 'ps3-79', title: 'Rise Of The Guardians', platform: 'PS3', price: 10000, size: '3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRCkX-eMOjPUgpIPjFNLADFzi6ZUdzDY8aolfHRJj7iw&s=10' },
+{ id: 'ps3-80', title: 'Saint Seiya Soldiers Soul', platform: 'PS3', price: 10000, size: '4.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl-q4R5XgHsaBhFgZYLxSMDZHYUZHQnnwtlBfwpCzJww&s=10' },
+{ id: 'ps3-81', title: 'SAW Saints Row II', platform: 'PS3', price: 10000, size: '1.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhQb5QcyXKBzPGQoeHNBq01i-8rFGD__YMZc5ssQnFfg&s=10' },
+{ id: 'ps3-82', title: 'Sniper Ghost Warrior', platform: 'PS3', price: 10000, size: '3.9 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlQgXQA71k-vd-qRJ6-CuqmPrqjt1tuZB28JbfUXeSmQ&s=10' },
+{ id: 'ps3-83', title: 'Sniper Ghost Warrior 2', platform: 'PS3', price: 10000, size: '3.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7VMaBsT60KH9VOoBmT4IW_BP954WpTgqevq9Tj_NaHw&s=10' },
+{ id: 'ps3-84', title: 'Spec Ops - The Line', platform: 'PS3', price: 10000, size: '5.7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa2MPU61GUvuO1M2oqLkZ7h1qnHqCqyR2QlVxCIf4afA&s=10' },
+{ id: 'ps3-85', title: 'SSX', platform: 'PS3', price: 10000, size: '3.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdl6q-woQunUazGzZNe5hjSdFxuV0AkgHKmpzlxVTfyw&s=10' },
+{ id: 'ps3-86', title: 'Teenage Mutant Ninja', platform: 'PS3', price: 10000, size: '5.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_QMvBJhFr8ohLOnkkYSzwimzzQ0wPuyDFTqph5RbH1g&s=10' },
+{ id: 'ps3-87', title: 'Tekken Tag Tournament 2', platform: 'PS3', price: 10000, size: '17.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTds1oTg-5FNe3ZQdmICxNTC6NP2DkCCUoxrE0YdyHEmw&s=10' },
+{ id: 'ps3-88', title: 'The Adventures Of Tintin', platform: 'PS3', price: 10000, size: '7.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS00i5XtHk1iFOjY8OIsTtwekNPQlkjQj86udZOJmgyIA&s=10' },
+{ id: 'ps3-89', title: 'The Elder Scrolls V Skyrim', platform: 'PS3', price: 10000, size: '8.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaAyH9MS9MPCs4FeUfFfWNHLMhhWhZ2y8K_GsmBMeT_A&s=10' },
+{ id: 'ps3-90', title: 'The Evil Within', platform: 'PS3', price: 10000, size: '7.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWupS3tGUW84x0_foKdOhJ8IX0v5vIIJkA0e76o4nZ3g&s' },
+{ id: 'ps3-91', title: 'The Incredible Hulk', platform: 'PS3', price: 10000, size: '4.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMbxrsHa83UC6TYu4EY1NePCMS23jGE996i6ON0IH8ng&s=10' },
+{ id: 'ps3-92', title: 'The Sims 3', platform: 'PS3', price: 10000, size: '6.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFNPpF7BOyLX0EyS_zv05SKODavKtHroLh79XhNqSJeA&s=10' },
+{ id: 'ps3-93', title: 'Transformers Rise Of The Dark Spark', platform: 'PS3', price: 10000, size: '1.6 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLWozC3HjWz_qQuV2IlCVx4lTeDEHkLL9Ky30s9cEmcQ&s=10' },
+{ id: 'ps3-94', title: 'UP', platform: 'PS3', price: 10000, size: '3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsZu4GaHHnpIglkIfymEh26eRpPU2kqynOUwqLybCdBw&s=10' },
+{ id: 'ps3-95', title: 'XMen Origins Wolverine', platform: 'PS3', price: 10000, size: '6.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPvYw-B8agWiWUipJX1qfVQCEAVlrYpl9y4Ti9FO3a6g&s=10' },
+{ id: 'ps3-96', title: 'Ace Combat Assault Horizon', platform: 'PS3', price: 10000, size: '7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBJaKp7ezIqUXCq4TSczbu3olGdGrbBl5OL20ztxB7lQ&s' },
+{ id: 'ps3-97', title: 'Air Conflicts Pacific Carriers', platform: 'PS3', price: 10000, size: '3.1 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe54sf1sD5GfgafCdDhJbzXOuBI9zqXRQAtUR3Zg7kxg&s=10' },
+{ id: 'ps3-98', title: 'Army of Two The 40th Day ', platform: 'PS3', price: 10000, size: '4.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZZuH-BGx3ezWyzqLfMWdyXk7wWd-8irL6Oa3gu87bdA&s=10' },
+{ id: 'ps3-99', title: 'Ben 10 Omniverse 2', platform: 'PS3', price: 10000, size: '2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV7V9NiouArSaeIHgbdhFTYHH-Byln8zFbHpJ4FHPueQ&s=10' },
+{ id: 'ps3-101', title: 'Cabelas Big Game Hunter Pro Hunts', platform: 'PS3', price: 10000, size: '2.7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvd7sfKcF_GBLfZv69qxx75T1G-0i3OLc6VXGybY3eoQ&s=10' },
+{ id: 'ps3-102', title: 'Captain Morgane and the Golden Turtle', platform: 'PS3', price: 10000, size: '1 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhX-lQaOQJf-F8nBvK5c6TbFAYbT0Q7lzVxQbp51-AUQ&s=10' },
+{ id: 'ps3-103', title: 'Cars 2', platform: 'PS3', price: 10000, size: '3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRemRWOpj1-XSkfovPKA7XzCx5t-DMQY_CIb65AE8MU3w&s=10' },
+{ id: 'ps3-104', title: 'Digimon All Star Rumble', platform: 'PS3', price: 10000, size: '649 MB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8irOvS58PZ7_K32AAi4vZY1dvWNvcKQoZualabD44lQ&s=10' },
+{ id: 'ps3-105', title: 'Disney Pixar Brave', platform: 'PS3', price: 10000, size: '2,6 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_KIi1Qec7xKw-eIZ8epnJd2b_aGYWtqQjldKWg3LVQQ&s=10' },
+{ id: 'ps3-106', title: 'EA Sports Grand Slam Tennis 2', platform: 'PS3', price: 10000, size: '2.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTohUvuSkf9gQT2_mXVF_k5_g751J8wc_IC4gqd0VhqYg&s=10' },
+{ id: 'ps3-107', title: 'El Chavo Kart', platform: 'PS3', price: 10000, size: '2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsZZzhG-lbjH8_kS29GtEyZ52fM7X_lg3fmv5or-bUqw&s' },
+{ id: 'ps3-108', title: 'Fast Furious Showdown', platform: 'PS3', price: 10000, size: '1.7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjyUul6Aj-ezTuU-5ltxoctgUNwSJPQ9iHUTmaNUNQ4g&s=10' },
+{ id: 'ps3-109', title: 'Heavenly Sword', platform: 'PS3', price: 10000, size: '18.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7_ifiXzPUQTCN6Bq7SMAKeQMCsQqYos4GMIiYM4hk7A&s=10' },
+{ id: 'ps3-110', title: 'Kung Fu Panda Showdown of Legendary Legends', platform: 'PS3', price: 10000, size: '1.5 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTOvvZMu-pgnMXbmbygnxYd5LfxIMtLsbWB1SjdEljnw&s=10' },
+{ id: 'ps3-111', title: 'Little Big Planet 3', platform: 'PS3', price: 10000, size: '7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu-a1QvEb8ffYbF4q0xoCxcyovIoqgVJg83L1muUmK3Q&s=10' },
+{ id: 'ps3-112', title: 'Madagascar 3', platform: 'PS3', price: 10000, size: '4 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtqNY-SEWMDnrtxer0F5vaCcXvdvz6Xs-nzk38qdxtCg&s=10' },
+{ id: 'ps3-113', title: 'Need for Speed Hot Persuit', platform: 'PS3', price: 10000, size: ' 4 GB', genre: 'Racing', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn2ErmrA8Oc5qZpAOVRJBTR5K7X461RUyxh9L3xhq7WA&s=10' },
+{ id: 'ps3-114', title: 'Resident Evil 5 Gold Edition', platform: 'PS3', price: 10000, size: ' 13 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn5Jd70l9yQR_Hv_S3qrY1o0MIDJBHpFc861VKt0nnw&s=10' },
+{ id: 'ps3-115', title: 'Resident Evil 6', platform: 'PS3', price: 10000, size: ' 10 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTru_JFaMeC7Ypro7HlnH412llxxjGTlmZJA_cDxgciqA&s' },
+{ id: 'ps3-116', title: 'Resident Evil Operation Raccoon City', platform: 'PS3', price: 10000, size: ' 4 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTceQO0LZarRVqnMTeyT7TNfbhTSBD6irRng4tbUFt9Mg&s=10' },
+{ id: 'ps3-117', title: 'Resident Evil Revelations 2', platform: 'PS3', price: 10000, size: ' 8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvHXVxy7-XZjjCO-_SAy5U6os7b3LSc9kde-OGBwf6Uw&s' },
+{ id: 'ps3-118', title: 'Resident Evil Revelations', platform: 'PS3', price: 10000, size: ' GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3wRpFsOLzDmOsxrijwfCqNBF-e092dPsmGVTPeanyAw&s' },
+{ id: 'ps3-119', title: 'SBK Generations', platform: 'PS3', price: 10000, size: ' GB', genre: 'Racing', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4B3E7RuDcmr-NfCRa5Hy9wgFGkxXb45hDa_ad2A-dwA&s=10' },
+{ id: 'ps3-120', title: 'SEGA Superstars Tennis', platform: 'PS3', price: 10000, size: '3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWcrDd7xBDLkjWc-RUb3Ldcbfx8E4tdA4IudJAb7QMzg&s=10' },
+{ id: 'ps3-121', title: 'Sengoku Basara 4 Sumeragi', platform: 'PS3', price: 10000, size: ' 17 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDI4kExlz83Esi9XtGEyXhHqRup6OMtl5xMrtNu9defQ&s=10' },
+{ id: 'ps3-122', title: 'Splinter Cell Double Agent', platform: 'PS3', price: 10000, size: ' 7 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlu5HwHquuEp8XrYfv7LTEICqpeVG0hzknARRga-Ww8A&s=10' },
+{ id: 'ps3-123', title: 'Street Fighter X Tekken Black Edition', platform: 'PS3', price: 10000, size: ' 12 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8Xs9HQw-x_mYLTswWYMTWfBmNyf1_WRCFU9LuPM4P_w&s=10' },
+{ id: 'ps3-124', title: 'Supremacy MMA', platform: 'PS3', price: 10000, size: ' 6 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7X8ft9eWAMU2O4IJ1rryGDiQjmg565_8PUlEqf4TrNA&s=10' },
+{ id: 'ps3-125', title: 'Teenage Mutant Ninja Turtles Danger of the Ooze', platform: 'PS3', price: 10000, size: '1.3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-G3RZ9UQXNkaQjSG_dmMn8JddK-MSyOPfNO6CRZMcg&s=10' },
+{ id: 'ps3-121', title: 'The King of Fighters XIII', platform: 'PS3', price: 10000, size: ' 2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw3liEmnJiDsBeEICd3Uair4tVJFqCrMd5NVQY3jNZmQ&s=10' },
+{ id: 'ps3-126', title: 'The Walking Dead Season 2', platform: 'PS3', price: 10000, size: ' 2.2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRryCykXrCqzy1hlD3EfHfk-i0ta00w36qcl3ccqHGp8w&s=10' },
+{ id: 'ps3-127', title: 'Tokyo Jungle', platform: 'PS3', price: 10000, size: '2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIlJ-OFVWOKSatBjNjTY_G1Fa7leDUEyb-5uh8-DgO4w&s=10' },
+{ id: 'ps3-128', title: 'Tony Hawks Pro Skater 5', platform: 'PS3', price: 10000, size: '1.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ3aFG1gkTQ4Q8VW1nymUYr8j3ExuDlkx6ujx77Oaq1w&s=10' },
+{ id: 'ps3-129', title: 'Toy Story 3', platform: 'PS3', price: 10000, size: '8.8 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcAsV0lHgVA7h75bEwfASDdUoweAlAdk3iKZcItGSJhg&s=10' },
+{ id: 'ps3-130', title: 'Toy Story Mania', platform: 'PS3', price: 10000, size: ' 2.9 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQemkt_dW2-zVQ43my0WtShz9wGtmWgLH5SM8cLjjinZg&s=10' },
+{ id: 'ps3-131', title: 'Transformers The Game', platform: 'PS3', price: 10000, size: ' 2.6 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfFSIjAYd8198L0vbbe0jXBv9gp6RZtpA4dRKaV9f5oQ&s=10' },
+{ id: 'ps3-132', title: 'Turbo Super Stunt Squad', platform: 'PS3', price: 10000, size: ' 2.4 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9zMT9JkGG43hvFFxz6mXy1h-kg5Wdk6Vh7pSaIe4jHQ&s' },
+{ id: 'ps3-133', title: 'UFC 2009 Undisputed', platform: 'PS3', price: 10000, size: '7.3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKwJxMlpbC8grggsJgNGKcDBAktXFkKqSG8Z5tQnyJXw&s=10' },
+{ id: 'ps3-134', title: 'Uncharted 3 Drake s Deception', platform: 'PS3', price: 15000, size: ' 40 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRrrGVFHgFxI6cPeZDhv98ESgHLOYvLeX4EP9GXoDlgA&s=10' },
+{ id: 'ps3-135', title: 'Urban Trial Freestyle ', platform: 'PS3', price: 10000, size: ' 700 MB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUN2nmsMwsJgY_eZqDb-i-RxTDjBpe3wDDyHlkHaIaoA&s=10' },
+{ id: 'ps3-136', title: 'Virtua Tennis 4', platform: 'PS3', price: 10000, size: ' 3 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg4ANwTdvrth0Fr9vMSKU75sClkxLEWsTMvqhhYSXvWg&s=10' },
+{ id: 'ps3-137', title: 'Wipeout 2', platform: 'PS3', price: 10000, size: ' 1.1 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhhybkb36vspDwwa9C_HBGMURxgx1I7tw5x64zg1nxQA&s=10' },
+{ id: 'ps3-138', title: 'Worms Collection', platform: 'PS3', price: 10000, size: ' 1.4 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzCkMCbj7TmHjKlJGJ4bufbKVr892zjuF0fm7XCIA0YQ&s=10' },
+{ id: 'ps3-139', title: 'Young Justice Legacy', platform: 'PS3', price: 10000, size: '2.2 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfbfLblX8eayEZNtH1lOgIlKaR09C8bsr1o5mIQJ_p_g&s=10' },
+{ id: 'ps3-140', title: 'z', platform: 'PS3', price: 10000, size: ' GB', genre: 'Action', isPopular: false, img: '' },
+
+            // PS4 Games
+            { id: 'ps4-1', title: 'FC 27', platform: 'PS4', price: 50000, size: '60 GB', genre: 'Sports', isPopular: true, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW4voGDXaJvwbVZ54wfDyCpJqtqDRAdZ5USDuyp7upLA&s=10' },
+            { id: 'ps4-2', title: 'God of War Ragnarök', platform: 'PS4', price: 35000, size: '128 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROx7RH4DFS2dI3UHIoIwXBQI2FpzWpBbA9Z3Gm-PJFcA&s' },
+            { id: 'ps4-3', title: "Marvel's Spider-Man: Miles Morales", platform: 'PS4', price: 25000, size: '52 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUWNGdGL3gf3_3IbztlzZiMKG5z9xXmvmmJPiQtmyxaA&s=10' },
+            { id: 'ps4-4', title: 'Resident Evil 4 Remake', platform: 'PS4', price: 25000, size: '65 GB', genre: 'Horror', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBP89plbWIs9omsS1RtVqiIpXSx6qhQXQUzz0xcdhykg&s' },
+            { id: 'ps4-5', title: 'ELEVEN PATCH 2027', platform: 'PS4', price: 50000, size: '90 GB', genre: 'Sports', isPopular: true, img: 'https://lh3.googleusercontent.com/d/1Qb4xKqIPCxyDAmqa34UFdJ8YVLmR_YPu' },
+            { id: 'ps4-6', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2-7EeyyciV-vtcpqAxv1zu8G0dy-wQQZtw7wjLeJzZw&s' },
+            { id: 'ps4-7', title: 'Mafia.III', platform: 'PS4', price: 25000, size: '57 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxp6UeDJPs4KyekF-rpESnetyE5ft_yMrMM3N4FCIluQ&s' },
+            { id: 'ps4-8', title: 'Metro Redux ', platform: 'PS4', price: 25000, size: '11 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL6ZIIhqG03oOVTgU5Xn9IQ8f3K67HBquh4ty9OYVD_w&s=10' },
+            { id: 'ps4-9', title: 'Metro Exodus Gold Edition', platform: 'PS4', price: 25000, size: '71 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTrJuIx2g0HzP8cFMBh17Z0iFiac_1hVNM30jFH4MidA&s=10' },
+            { id: 'ps4-10', title: 'WATCH DOGS', platform: 'PS4', price: 25000, size: '17 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZHhMZ6dOhKC4F8cClyUbLOuT3hWT2PTxIdA-JcYHD1Q&s' },
+            { id: 'ps4-11', title: 'NBA 2K26', platform: 'PS4', price: 35000, size: '119 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6bOIDA1AMnQL9-rWp_3v6_Pz_48TUyLL_-OHaXCpFSA&s=10' },
+{ id: 'ps4-12', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-13', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-14', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-15', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-16', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-17', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-18', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-19', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-20', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-21', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-22', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-23', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-24', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-25', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-26', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+{ id: 'ps4-27', title: 'Ghost of Tsushima', platform: 'PS4', price: 25000, size: '40 GB', genre: 'Action', isPopular: false, img: '' },
+
+            // PS5 Games
+			{ id: 'ps5-1', title: 'Black Myth: Wukong', platform: 'PS5', price: 50000, size: '120 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlnJx2jvS-eC_1IAYgMQllkJtINA_cFW56c_6fugZjmg&s' },
+            { id: 'ps5-2', title: 'EA Sports FC 27 Digital', platform: 'PS5', price: 50000, size: '55 GB', genre: 'Sports', isPopular: true, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8f8--loOoU8IDSsvYT-qmCAtxEEZQWoFjvA5NXteV-g&s=10' },
+            { id: 'ps5-3', title: "Marvel's Spider-Man 2", platform: 'PS5', price: 50000, size: '88 GB', genre: 'Action', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkkicmyqFcy0n8kJrArKFwrxruuoPJVVRxAsVVmHBMOA&s=10' },
+            { id: 'ps5-4', title: 'Elden Ring + DLC Shadow of the Erdtree', platform: 'PS5', price: 50000, size: '70 GB', genre: 'RPG', isPopular: false, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKTbIGkM_vqk-jgKXPU-UyWCax9QTijcrw3tFsF5fZew&s=10' },
+            { id: 'ps5-5', title: 'Grand Theft Auto 6', platform: 'PS5', price: 50000, size: '80 GB', genre: 'Fighting', isPopular: true, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqw4XLS6fw1EYK3MspvuE-5DZP8ghKIw016f1dgl4N9Q&s' }
+        ];
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGames();
+            updateCartUI();
+        });
+
+        function formatRupiah(amount) {
+            return 'Rp ' + amount.toLocaleString('id-ID');
+        }
+
+        function setPlatformFilter(platform) {
+            currentPlatform = platform;
+            document.querySelectorAll('.platform-tab').forEach(btn => {
+                btn.className = "platform-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-gray-800 text-gray-300 border border-gray-700";
+            });
+            const activeBtn = document.getElementById(`btn-filter-${platform}`);
+            if(activeBtn) {
+                activeBtn.className = "platform-tab active px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-brand-600 text-white shadow-md";
+            }
+            filterGames();
+        }
+
+        function renderGames() {
+            filterGames();
+        }
+
+        function filterGames() {
+            const searchInputEl = document.getElementById('searchInput');
+            const genreSelectEl = document.getElementById('genreSelect');
+            const sortSelectEl = document.getElementById('sortSelect');
+            const clearBtn = document.getElementById('clearSearchBtn');
+
+            const searchVal = searchInputEl ? searchInputEl.value.toLowerCase().trim() : '';
+            const genreVal = genreSelectEl ? genreSelectEl.value : 'ALL';
+            const sortVal = sortSelectEl ? sortSelectEl.value : 'popular';
+
+            if (clearBtn) {
+                if (searchVal.length > 0) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
+            }
+
+            let filtered = gamesData.filter(game => {
+                const matchPlatform = (currentPlatform === 'ALL' || game.platform === currentPlatform);
+                const matchGenre = (genreVal === 'ALL' || game.genre === genreVal);
+                const matchSearch = game.title.toLowerCase().includes(searchVal);
+                return matchPlatform && matchGenre && matchSearch;
+            });
+
+            if (sortVal === 'popular') {
+                filtered.sort((a, b) => (b.isPopular ? 1 : 0) - (a.isPopular ? 1 : 0));
+            } else if (sortVal === 'name-asc') {
+                filtered.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (sortVal === 'price-asc') {
+                filtered.sort((a, b) => a.price - b.price);
+            }
+
+            const countAllEl = document.getElementById('countAll');
+            const displayedCountEl = document.getElementById('displayedCount');
+            if (countAllEl) countAllEl.innerText = gamesData.length;
+            if (displayedCountEl) displayedCountEl.innerText = filtered.length;
+
+            const grid = document.getElementById('gameGrid');
+            const emptyState = document.getElementById('emptyState');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                if (emptyState) emptyState.classList.remove('hidden');
+                return;
+            }
+            if (emptyState) emptyState.classList.add('hidden');
+
+            filtered.forEach(game => {
+                const card = document.createElement('div');
+                card.className = "glass-panel rounded-2xl overflow-hidden border border-gray-800 flex flex-col justify-between group hover:border-brand-500/50 transition-all shadow-md";
+                
+                card.innerHTML = `
+                    <div class="relative cursor-pointer h-48 bg-gray-950/80 flex items-center justify-center overflow-hidden" onclick="openQuickView('${game.id}')">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-25 filter blur-md scale-110" style="background-image: url('${game.img}')"></div>
+                        <img src="${game.img}" alt="${game.title}" class="relative z-10 h-full w-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x400/111827/ffffff?text=Game'">
+                        <span class="absolute top-2 left-2 px-2 py-0.5 rounded text-[9px] font-extrabold text-white bg-brand-600 shadow z-20">
+                            ${game.platform}
+                        </span>
+                        ${game.isPopular ? '<span class="absolute top-2 right-2 bg-amber-500 text-black text-[9px] font-black px-1.5 py-0.5 rounded shadow z-20">🔥 Hot</span>' : ''}
+                    </div>
+                    <div class="p-2.5 flex-1 flex flex-col justify-between space-y-2">
+                        <div class="cursor-pointer" onclick="openQuickView('${game.id}')">
+                            <span class="text-[9px] text-brand-400 font-semibold uppercase">${game.genre} • ${game.size}</span>
+                            <h3 class="text-xs font-bold text-white line-clamp-1 mt-0.5">${game.title}</h3>
+                        </div>
+                        <div class="flex items-center justify-between pt-1 border-t border-gray-800/80">
+                            <span class="text-xs font-extrabold text-emerald-400">${formatRupiah(game.price)}</span>
+                            <button onclick="addToCart('${game.id}')" class="w-7 h-7 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-xs flex items-center justify-center shadow transition-all active:scale-95">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function clearSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) searchInput.value = '';
+            filterGames();
+        }
+
+        function resetFilters() {
+            currentPlatform = 'ALL';
+            const searchInput = document.getElementById('searchInput');
+            const genreSelect = document.getElementById('genreSelect');
+            const sortSelect = document.getElementById('sortSelect');
+            if (searchInput) searchInput.value = '';
+            if (genreSelect) genreSelect.value = 'ALL';
+            if (sortSelect) sortSelect.value = 'popular';
+            setPlatformFilter('ALL');
+        }
+
+        function openQuickView(gameId) {
+            const game = gamesData.find(g => g.id === gameId);
+            if (!game) return;
+            currentQuickViewGameId = gameId;
+
+            const badge = document.getElementById('modalPlatformBadge');
+            const img = document.getElementById('modalImg');
+            const modalBgBlur = document.getElementById('modalBgBlur');
+            const genre = document.getElementById('modalGenre');
+            const title = document.getElementById('modalTitle');
+            const price = document.getElementById('modalPrice');
+            const size = document.getElementById('modalSize');
+
+            if (badge) badge.innerText = game.platform;
+            if (img) img.src = game.img;
+            if (modalBgBlur) modalBgBlur.style.backgroundImage = `url('${game.img}')`;
+            if (genre) genre.innerText = game.genre;
+            if (size) size.innerText = game.size;
+            if (title) title.innerText = game.title;
+            if (price) price.innerText = formatRupiah(game.price);
+
+            const addToCartBtn = document.getElementById('modalAddToCartBtn');
+            if (addToCartBtn) {
+                addToCartBtn.onclick = function() {
+                    addToCart(game.id);
+                    closeQuickView();
+                };
+            }
+
+            const directOrderBtn = document.getElementById('modalDirectOrderBtn');
+            if (directOrderBtn) {
+                directOrderBtn.onclick = function() {
+                    const text = `Halo Admin ${storeConfig.storeName}, saya ingin order game:\n\n🎮 *${game.title}* [${game.platform}]\n💰 Harga: ${formatRupiah(game.price)}\n\nMohon bantuannya ya!`;
+                    window.open(`https://wa.me/${storeConfig.waNumber}?text=${encodeURIComponent(text)}`, '_blank');
+                };
+            }
+
+            const modal = document.getElementById('quickViewModal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quickViewModal');
+            if (modal) modal.classList.add('hidden');
+            currentQuickViewGameId = null;
+        }
+
+        function addToCart(gameId) {
+            const game = gamesData.find(g => g.id === gameId);
+            if (!game) return;
+            if (cart.some(item => item.id === gameId)) {
+                showToast("Game sudah ada di keranjang!");
+                showFloatingNotif();
+                return;
+            }
+            cart.push(game);
+            updateCartUI();
+            showToast("Berhasil ditambahkan ke keranjang!");
+            showFloatingNotif();
+        }
+
+        function removeFromCart(gameId) {
+            cart = cart.filter(item => item.id !== gameId);
+            updateCartUI();
+            if(cart.length === 0) hideFloatingNotif();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+            hideFloatingNotif();
+        }
+
+        function updateCartUI() {
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) cartBadge.innerText = cart.length;
+
+            const container = document.getElementById('cartItemsContainer');
+            const emptyState = document.getElementById('cartEmptyState');
+            const footer = document.getElementById('cartFooter');
+
+            let total = 0;
+            cart.forEach(item => { total += item.price; });
+
+            const floatingCount = document.getElementById('floatingCartCount');
+            const floatingTotal = document.getElementById('floatingCartTotal');
+            if (floatingCount) floatingCount.innerText = cart.length;
+            if (floatingTotal) floatingTotal.innerText = formatRupiah(total);
+
+            if (cart.length === 0) {
+                if (container) container.innerHTML = '';
+                if (emptyState) emptyState.classList.remove('hidden');
+                if (footer) footer.classList.add('hidden');
+                return;
+            }
+
+            if (emptyState) emptyState.classList.add('hidden');
+            if (footer) footer.classList.remove('hidden');
+
+            if (container) {
+                container.innerHTML = '';
+                cart.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = "flex items-center justify-between gap-2 bg-gray-800 p-2 rounded-xl border border-gray-700";
+                    div.innerHTML = `
+                        <div class="flex items-center gap-2 overflow-hidden">
+                            <img src="${item.img}" class="w-8 h-10 object-cover rounded" onerror="this.src='https://placehold.co/100x100/111827/ffffff?text=Img'">
+                            <div class="overflow-hidden">
+                                <span class="text-[8px] bg-brand-600 px-1 py-0.2 rounded text-white font-bold">${item.platform}</span>
+                                <h4 class="text-[11px] font-semibold text-white truncate">${item.title}</h4>
+                                <span class="text-[10px] text-emerald-400 font-bold">${formatRupiah(item.price)}</span>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart('${item.id}')" class="text-gray-400 hover:text-red-400 p-1"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            const cartTotalPrice = document.getElementById('cartTotalPrice');
+            if (cartTotalPrice) cartTotalPrice.innerText = formatRupiah(total);
+        }
+
+        function showFloatingNotif() {
+            const notif = document.getElementById('floatingCartNotif');
+            // Menghapus translate agar muncul ke posisi awal
+            if (notif) notif.classList.remove('translate-y-48');
+            
+            if (floatingNotifTimer) clearTimeout(floatingNotifTimer);
+            floatingNotifTimer = setTimeout(() => {
+                hideFloatingNotif();
+            }, 4000);
+        }
+
+        function hideFloatingNotif() {
+            const notif = document.getElementById('floatingCartNotif');
+            // Menyembunyikannya kembali ke bawah layar secara halus
+            if (notif) notif.classList.add('translate-y-48');
+        }
+
+        function sendCartToWhatsApp() {
+            if (cart.length === 0) return;
+            const noteEl = document.getElementById('customerNote');
+            const mediaTypeEl = document.getElementById('mediaTypeSelect');
+            
+            const note = noteEl ? noteEl.value.trim() : '';
+            const mediaType = mediaTypeEl ? mediaTypeEl.value : 'Harddisk / Flashdisk';
+            let total = 0, listText = "";
+
+            cart.forEach((item, idx) => {
+                total += item.price;
+                listText += `${idx + 1}. *${item.title}* [${item.platform}] - ${formatRupiah(item.price)}\n`;
+            });
+
+            let text = `*ORDER - ${storeConfig.storeName}*\n\n📋 *DAFTAR GAME:*\n${listText}\n💾 *Media:* ${mediaType}\n`;
+            if (note) text += `📝 *Catatan:* ${note}\n`;
+            text += `💰 *TOTAL:* *${formatRupiah(total)}*\n\nMohon konfirmasi pesanan ini. Terima kasih!`;
+            window.open(`https://wa.me/${storeConfig.waNumber}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function toggleCartModal(force = false) {
+            const m = document.getElementById('cartModal');
+            if (!m) return;
+            if (force === true) m.classList.remove('hidden');
+            else m.classList.toggle('hidden');
+        }
+
+        function openWhatsAppContact() {
+            window.open(`https://wa.me/${storeConfig.waNumber}?text=Halo%20Admin,%20saya%20ingin%20tanya%20isian%20game...`, '_blank');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            if (!toast || !toastMsg) return;
+            toastMsg.innerText = msg;
+            toast.classList.remove('-translate-y-24');
+            setTimeout(() => toast.classList.add('-translate-y-24'), 2500);
+        }
+    </script>
+</body>
+</html>
