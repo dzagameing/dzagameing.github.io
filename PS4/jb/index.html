@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZA - Exploit Host</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: #121212;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(0, 210, 255, .12), transparent 35%),
+                linear-gradient(135deg, #05070b 0%, #0a1018 48%, #030507 100%);
             color: #ffffff;
         }
         .card {
@@ -22,6 +29,7 @@
             text-align: center;
             max-width: 450px;
             width: 90%;
+            border: 1px solid rgba(0, 210, 255, .28);
         }
         .status {
             font-size: 1.2rem;
@@ -41,11 +49,24 @@
             border: 1px solid #333;
             text-align: left;
         }
+        .store-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: #00d9ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .store-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
     <div class="card">
+        <h2 style="margin-bottom: 5px; color: #00d9ff;">DZA GAMESTORE</h2>
+        <div style="font-size: 11px; color: #7293a4; letter-spacing: 2px; margin-bottom: 15px;">PASAR SENTRAL LIPPO CIKARANG</div>
         <div id="result" class="status info">Cek firmware...</div>
         <div id="user-agent" class="ua-box"></div>
     </div>
@@ -68,20 +89,18 @@
                     resultElement.innerText = `Terdeteksi PS4 (FW ${firmware.toFixed(2)})`;
 
                     if (firmware >= 5.00 && firmware <= 9.60) {
-                        resultElement.innerText += "";
                         setTimeout(() => {
                             window.location.href = "505_960/index.html";
                         }, 1000);
                     } 
                     else if (firmware >= 10.00 && firmware <= 11.02) {
-                        resultElement.innerText += "";
                         setTimeout(() => {
                             window.location.href = "1000_1102/index.html";
                         }, 1000);
                     } 
                     else {
                         resultElement.className = "status error";
-                        resultElement.innerText = `PS4 FW ${firmware.toFixed(2)} belum support, namun Anda bisa pakai BD-JB, beli di id.shp.ee/czwbVnLh`;
+                        resultElement.innerHTML = `PS4 FW ${firmware.toFixed(2)} belum support, namun Anda bisa pakai BD-JB, beli di <a class="store-link" href="https://id.shp.ee/czwbVnLh" target="_blank">id.shp.ee/czwbVnLh</a>`;
                     }
                 } else {
                     resultElement.className = "status error";
