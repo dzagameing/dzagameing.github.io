@@ -1,46 +1,200 @@
 <!DOCTYPE html>
-<html lang="en" manifest="cache.manifest">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DZA GAMESTORE</title>
-  <link rel="stylesheet" href="includes/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZA - Exploit Host | Pasar Sentral Lippo Cikarang</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        gamingDark: '#070d14',
+                        gamingCard: '#0f172a',
+                        gamingBorder: '#1e293b',
+                        accentCyan: '#00d9ff',
+                        accentBlue: '#0088ff',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #070d14;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(0, 217, 255, 0.12), transparent 45%),
+                linear-gradient(135deg, #05070b 0%, #0a1018 50%, #030507 100%);
+            min-height: 100vh;
+        }
+        .glow-card {
+            box-shadow: 0 0 35px rgba(0, 217, 255, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(16px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 217, 255, 0.3);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 217, 255, 0.6);
+        }
+    </style>
 </head>
-<body>
+<body class="text-white flex flex-col justify-between items-center min-h-screen p-4 md:p-6 antialiased selection:bg-cyan-400 selection:text-black">
 
-  <h1>DZA GAMESTORE Central Lippo Cikarang</h1>
-  <h1>Wa:0878-7884-4020</h1>
-  <h3 id="UA">Running on:</h3>
+    <header class="w-full max-w-3xl text-center mt-2 mb-4">
+        <div class="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 px-4 py-1.5 rounded-full text-xs font-semibold text-cyan-400 mb-3 shadow-md">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+            <span>DZA GameStore • Pasar Sentral Lippo Cikarang</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-1">
+            DZA <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">GAMESTORE</span>
+        </h1>
+        <p class="text-xs md:text-sm text-slate-400 font-medium tracking-wide">
+            <i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i> WhatsApp: <strong class="text-slate-200">0878-7884-4020</strong>
+        </p>
+    </header>
 
-  <hr>
+    <main class="w-full max-w-3xl glow-card bg-gamingCard/90 border border-cyan-500/20 rounded-3xl p-6 md:p-8 shadow-2xl mb-4">
+        
+        <!-- Device Info & Firmware Status -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div>
+                <span class="text-[11px] uppercase tracking-widest text-cyan-400 font-bold block mb-1">Informasi Perangkat</span>
+                <div id="UA" class="text-xs text-slate-300 font-mono">Mendeteksi perangkat...</div>
+            </div>
+            <div id="result" class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-xl text-xs font-bold text-cyan-300 whitespace-nowrap">
+                ⏳ Memeriksa...
+            </div>
+        </div>
 
-  <div class="btn-container">
-    <form id="kernel-options">
-      <input type="radio" name="kernel" id="netctrl-exploit" value="netctrl">
-      <label for="netctrl-exploit">NetCtrl</label>
-      <input type="radio" name="kernel" id="lapse-exploit" value="lapse">
-      <label for="lapse-exploit">Lapse</label>
-    </form>
-    <button id="jeilbrek">Jeilbrek</button>
-    <div class="autoJb">
-      <label for="autoJbInput" id="autoJbLabel">Otomatis Jailbreak</label>
-      <input class="mt-2" id="autoJbInput" type="checkbox">
-    </div>
-  </div>
+        <!-- Exploit Controls Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            
+            <!-- Kernel Options Selection -->
+            <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 flex flex-col justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-microchip text-cyan-400"></i> Pilih Kernel Exploit
+                </span>
+                
+                <form id="kernel-options" class="grid grid-cols-2 gap-3">
+                    <div>
+                        <input type="radio" name="kernel" id="netctrl-exploit" value="netctrl" class="peer hidden">
+                        <label for="netctrl-exploit" class="flex items-center justify-center p-3 rounded-xl border border-slate-700 bg-slate-800/50 text-xs font-semibold text-slate-300 cursor-pointer peer-checked:bg-cyan-500/20 peer-checked:border-cyan-400 peer-checked:text-cyan-300 transition-all">
+                            NetCtrl
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" name="kernel" id="lapse-exploit" value="lapse" class="peer hidden" checked>
+                        <label for="lapse-exploit" class="flex items-center justify-center p-3 rounded-xl border border-slate-700 bg-slate-800/50 text-xs font-semibold text-slate-300 cursor-pointer peer-checked:bg-cyan-500/20 peer-checked:border-cyan-400 peer-checked:text-cyan-300 transition-all">
+                            Lapse
+                        </label>
+                    </div>
+                </form>
 
-  <div class="main-layout">
-    <div class="media-box">
-      <img src="includes/cat.jpg" alt="A cat staring at you">
-    </div>
+                <!-- Auto Jailbreak Checkbox -->
+                <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+                    <label for="autoJbInput" id="autoJbLabel" class="text-xs text-slate-300 font-medium cursor-pointer">Otomatis Jailbreak</label>
+                    <input id="autoJbInput" type="checkbox" class="w-4 h-4 accent-cyan-400 rounded cursor-pointer">
+                </div>
+            </div>
 
-    <pre id="console">Siap. Menunggu eksekusi...
-  </pre>
+            <!-- Action Trigger Box -->
+            <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 flex flex-col justify-between items-center text-center">
+                <div class="w-full">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Mulai Eksekusi</span>
+                    <p class="text-[11px] text-slate-500">Pastikan firmware konsol Anda sesuai.</p>
+                </div>
+                
+                <button id="jeilbrek" class="w-full py-3.5 px-6 rounded-xl font-bold text-sm tracking-wide text-black bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 shadow-lg shadow-cyan-500/20 active:scale-[0.98] transition-all my-2 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bolt"></i> Jalankan Jailbreak
+                </button>
 
+                <a href="https://id.shp.ee/czwbVnLh" target="_blank" class="text-[11px] text-cyan-400 hover:underline flex items-center gap-1 mt-1">
+                    <i class="fa-solid fa-bag-shopping"></i> Beli BD-JB / Aksesoris di Shopee
+                </a>
+            </div>
 
-  </div>
+        </div>
 
-  <script src="src/main.js"></script>
-  <script src="includes/script.js"></script>
+        <!-- Terminal / Console Output & Media Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            
+            <!-- Console Box -->
+            <div class="lg:col-span-2 bg-black/70 border border-slate-800 rounded-2xl p-4 font-mono text-xs text-cyan-400 h-40 overflow-y-auto custom-scrollbar shadow-inner" id="console">
+                [SYSTEM] Siap. Menunggu eksekusi perintah...
+            </div>
+
+            <!-- Media / Cat Card -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-3 flex flex-col items-center justify-center text-center">
+                <div class="w-full h-32 rounded-xl overflow-hidden border border-slate-700/50 bg-black/40 relative">
+                    <img src="includes/cat.jpg" alt="DZA Host Preview" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-500" onerror="this.src='includes/cat.jpg'">
+                </div>
+                <span class="text-[10px] text-slate-500 mt-2 font-medium">DZA Exploit Host Environment</span>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="w-full max-w-3xl text-center text-slate-500 text-xs pb-2">
+        <p>&copy; 2026 DZA GameStore Cikarang. Seluruh hak cipta dilindungi.</p>
+    </footer>
+
+    <script>
+        function processDevice() {
+            const userAgent = navigator.userAgent;
+            const resultElement = document.getElementById('result');
+            const uaElement = document.getElementById('UA');
+            const consoleEl = document.getElementById('console');
+
+            uaElement.innerHTML = "<strong>User-Agent:</strong> " + userAgent;
+
+            const isPS4 = /PlayStation 4|PS4/i.test(userAgent);
+
+            if (isPS4) {
+                const fwMatch = userAgent.match(/(?:PlayStation 4|PS4)[\s\/]+([\d\.]+)/i);
+                if (fwMatch && fwMatch[1]) {
+                    const firmware = parseFloat(fwMatch[1]);
+                    resultElement.innerText = `Terdeteksi PS4 (FW ${firmware.toFixed(2)})`;
+                    consoleEl.innerHTML += `\n[INFO] Terdeteksi PS4 Firmware ${firmware.toFixed(2)}`;
+                } else {
+                    resultElement.innerText = "Terdeteksi PS4 (FW Tidak Diketahui)";
+                    consoleEl.innerHTML += `\n[WARN] PS4 terdeteksi tetapi versi FW spesifik tidak terbaca.`;
+                }
+            } else {
+                resultElement.innerText = "Bukan Perangkat PS4";
+                consoleEl.innerHTML += `\n[INFO] Perangkat standar atau browser PC/Mobile terdeteksi.`;
+            }
+        }
+
+        document.getElementById('jeilbrek').addEventListener('click', function() {
+            const consoleEl = document.getElementById('console');
+            const selectedKernel = document.querySelector('input[name="kernel"]:checked').value;
+            consoleEl.innerHTML += `\n[EXEC] Menjalankan kernel exploit: ${selectedKernel.toUpperCase()}...`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        });
+
+        window.onload = processDevice;
+    </script>
+
 </body>
-
 </html>
