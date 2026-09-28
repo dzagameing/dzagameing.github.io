@@ -3,6 +3,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DZA GameStore Cikarang - PS4 GoldHen Auto Exploit Portal</title>
+<script>
+      if (window.applicationCache.status === 0) {window.location.replace("cache.html");}
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -36,6 +39,8 @@
         animation: pulseGlow 3s infinite ease-in-out;
     }
 </style>
+<meta charset="utf-8">
+
 </head>
 <body class="min-h-screen flex flex-col justify-between relative bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950">
 
@@ -152,66 +157,52 @@
 <footer class="relative z-10 w-full py-6 border-t border-white/10 bg-slate-950/80 text-center text-xs text-slate-500">
     <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
         <p>&copy; 2026 DZA GameStore Cikarang. All Rights Reserved.</p>
-        <p class="text-slate-400">Alamat: Pasar Central Lippo Cikarang &bull; Telp / WA: 0878-7884-4020</p>
+        <p class="text-slate-400">Alamat: Ruko Cikarang Utama &bull; Telp / WA: 0878-7884-4020</p>
     </div>
 </footer>
-
+</body>
 <script>
 var outputConsole = document.getElementById("progress");
-var fwTitleElement = document.getElementById("fw-detected-title");
-var statusBadge = document.getElementById("exploit-status-badge");
-
 window.log = function (msg, color) {
-      if (color === undefined) color = "#22d3ee";
-      outputConsole.innerHTML = '<span style="color:' + color + '">' + msg + '</span>';
-      statusBadge.className = "inline-block mt-1 px-3 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-bold border border-cyan-500/30";
-      statusBadge.innerText = "Berjalan...";
+      if (color === undefined) color = "#cccccc";
+      outputConsole.innerHTML = '<span style="color:' + color + '">' + msg + '</span><br>';
 };
-
 window.logger = function (msg, color) {
-      if (color === undefined) color = "#22d3ee";
-      outputConsole.innerHTML = '<span style="color:' + color + '">' + msg + '</span>';
+      if (color === undefined) color = "#cccccc";
+      outputConsole.innerHTML = '<span style="color:' + color + '">' + msg + '</span><br>';
 };
-
 window.addEventListener('error', function (event) {
       var reason = event.error;
       var msg = 'Terjadi kesalahan sistem\n';
       if (reason) {
         msg += reason + '\n';
-        if (reason.sourceURL) msg += reason.sourceURL;
-        if (reason.line) msg += ':' + reason.line;
+        if (reason.sourceURL)
+          msg += reason.sourceURL;
+        if (reason.line)
+          msg += ':' + reason.line;
+        if (reason.column)
+          msg += ':' + reason.column;
+        if (reason.stack)
+          msg += '\n' + reason.stack;
       } else {
-        msg += 'Objek error tidak ditemukan';
+        msg += 'No error object';
       }
-      outputConsole.innerHTML = '<span style="color: #f87171">' + msg + '</span>';
-      statusBadge.className = "inline-block mt-1 px-3 py-1 rounded-lg bg-rose-500/20 text-rose-300 text-xs font-bold border border-rose-500/30";
-      statusBadge.innerText = "Error Terdeteksi";
+      alert(msg);
       return true;
 });
-
 var uaFull = navigator.userAgent;
 var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
 var isPS4 = match !== null;
 var fwVersion = isPS4 ? match[1] : "Simulasi / Browser Desktop";
 var fwNum = parseFloat(fwVersion);
 
-if (isPS4) {
-    fwTitleElement.innerText = "PS4 Firmware " + fwVersion;
-} else {
-    fwTitleElement.innerText = "Mode Preview (Bukan PS4)";
-}
-
 function onScriptError() {
-    outputConsole.innerHTML = "<span class='text-rose-400'>Payload tidak ditemukan! - Bersihkan Data Browser dan Install Ulang Cache...</span>";
-    statusBadge.className = "inline-block mt-1 px-3 py-1 rounded-lg bg-rose-500/20 text-rose-300 text-xs font-bold border border-rose-500/30";
-    statusBadge.innerText = "Gagal Memuat";
+    progress.innerHTML = "Payload tidak ditemukan! - Bersihkan Data Browser dan Install Ulang Cache ...";
 }
 
 if (!isPS4) {
     document.addEventListener("DOMContentLoaded", () => {
-        outputConsole.innerHTML = "<span class='text-amber-300'>Catatan: Halaman ini dioptimalkan khusus untuk konsol PS4 Firmware 5.05 hingga 13.52 di DZA Game Store Cikarang.</span>";
-        statusBadge.className = "inline-block mt-1 px-3 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 text-xs font-bold border border-indigo-500/30";
-        statusBadge.innerText = "Mode Simulasi";
+        progress.innerHTML = "Catatan: Halaman ini dioptimalkan khusus untuk konsol PS4 Firmware 5.05 hingga 13.52 di DZA Game Store Cikarang";
     });
 } else {
         if (fwNum == 5.05 || fwNum == 5.07) {
@@ -225,10 +216,10 @@ if (!isPS4) {
             script.src = "exploit7_9.js";
             script.onerror = onScriptError;
             document.head.appendChild(script);
-             setTimeout(function() { window.log("Memuat ulang sistem..."); try {
+             setTimeout(function() { window.log("Memuat ulang sistem...");try {
                  doJailBreak();
                 } catch (error) {
-                 window.log("Terjadi kendala saat eksploitasi: " + error, "#f87171");
+                 window.log("Terjadi kendala saat eksploitasi: " + error, "red");
                  }; }, 500);
              
         }
@@ -261,5 +252,5 @@ if (!isPS4) {
        }
     }
 </script>
-</body>
+
 </html>
