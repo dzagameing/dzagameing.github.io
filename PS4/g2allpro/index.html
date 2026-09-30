@@ -1,167 +1,166 @@
+<!DOCTYPE html>
 <html manifest="Cache.manifest">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DZA GameStore Cikarang - PS4 GoldHen Auto Exploit Portal</title>
-<script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZA Host Pro - Next-Gen PS4 Auto Exploit GoldHen</title>
+	 <script src="tailwind.ccs"></script>
+  <link rel="stylesheet" href="all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#090a0f',
+                        cardBg: '#13151f',
+                        neonYellow: '#facc15',
+                        neonCyan: '#22d3ee',
+                        neonPurple: '#c084fc',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #090a0f;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(192, 132, 252, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.08) 0px, transparent 50%);
+            color: #f3f4f6;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(19, 21, 31, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+        }
+
+        .glow-box {
+            box-shadow: 0 0 30px rgba(250, 204, 21, 0.2);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(250, 204, 21, 0.5);
+        }
+    </style>
+    <script>
       if (window.applicationCache.status === 0) {window.location.replace("cache.html");}
 </script>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-    body {
-        font-family: 'Outfit', sans-serif;
-        background-color: #0b0f19;
-        color: #f3f4f6;
-        overflow-x: hidden;
-    }
-    .mono {
-        font-family: 'JetBrains Mono', monospace;
-    }
-    .glow-cyan {
-        box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
-    }
-    .glow-purple {
-        box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
-    }
-    .glass-card {
-        background: rgba(17, 24, 39, 0.75);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    @keyframes pulseGlow {
-        0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); }
-        50% { box-shadow: 0 0 35px rgba(6, 182, 212, 0.7); }
-    }
-    .pulse-animation {
-        animation: pulseGlow 3s infinite ease-in-out;
-    }
-</style>
-<meta charset="utf-8">
-
 </head>
-<body class="min-h-screen flex flex-col justify-between relative bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950">
+<body class="min-h-screen flex flex-col justify-between p-4 md:p-8 select-none">
 
-<div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-600/20 rounded-full blur-[120px]"></div>
-    <div class="absolute top-1/2 -right-40 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px]"></div>
-    <div class="absolute bottom-0 left-1/3 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px]"></div>
-</div>
-
-<header class="relative z-10 w-full pt-6 pb-4 px-4 sm:px-8 border-b border-white/10 bg-slate-950/60 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center glow-cyan">
-                <i class="fa-solid fa-gamepad text-2xl text-white"></i>
-            </div>
-            <div>
-                <h1 class="text-2xl sm:text-3xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-sky-200 to-indigo-400 bg-clip-text text-transparent">
-                    DZA GAMESTORE
-                </h1>
-                <p class="text-xs tracking-widest text-cyan-400 font-semibold uppercase">Cikarang Official Jailbreak & Service Hub</p>
-            </div>
+    <header class="w-full max-w-5xl mx-auto text-center space-y-3 pt-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs md:text-sm font-semibold tracking-wider uppercase animate-pulse">
+            <i class="fa-solid fa-bolt"></i> Next-Gen Auto Exploit Host
         </div>
-        
-        <div class="flex items-center gap-3">
-            <span class="px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-medium flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                <span>GoldHen Active Server</span>
-            </span>
-            
-        </div>
-    </div>
-</header>
-
-<main class="relative z-10 max-w-4xl mx-auto px-4 py-8 flex-1 flex flex-col items-center justify-center w-full">
-    
-    <!-- Hero Title Card -->
-    <div class="text-center mb-8">
-        <span class="px-4 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-widest inline-block mb-3">
-            <i class="fa-solid fa-shield-halved mr-1"></i> Ultimate PS4 Auto Exploit Portal
-        </span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-2">
-            Firmware <span class="text-cyan-400">5.05</span> hingga <span class="text-purple-400">13.52</span>
-        </h2>
-        <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
-            Sistem otomatis pendeteksi firmware konsol PS4 Anda. Aman, cepat, dan stabil.
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white glow-text">
+            DZA GAMESTOR <span class="text-yellow-400">HOST PRO</span>
+        </h1>
+        <p class="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
+           Payload Loader GoldHen Auto Jailbreak untuk Firmware PS4 <span class="text-yellow-400 font-semibold">5.05 - 13.52</span>
         </p>
-    </div>
+    </header>
 
-    <!-- Interactive Status & Exploit Card -->
-    <div class="w-full glass-card rounded-2xl p-6 sm:p-8 shadow-2xl pulse-animation border border-cyan-500/30 mb-8">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pb-6 border-b border-white/10">
-            <div class="flex items-center gap-4 text-left">
-                <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-2xl flex-shrink-0">
-                    <i class="fa-solid fa-microchip"></i>
+    <main class="w-full max-w-4xl mx-auto my-8 space-y-6">
+        
+        <!-- Status & Progress Dashboard Card -->
+        <div class="glass-panel rounded-3xl p-6 md:p-8 relative overflow-hidden glow-box transition-all duration-300">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- System Icon / Radar animation -->
+                <div class="relative flex items-center justify-center w-24 h-24 rounded-2xl bg-black/40 border border-white/10 shadow-inner">
+                    <div class="absolute inset-0 rounded-2xl border border-yellow-400/30 animate-ping opacity-20"></div>
+                    <i class="fa-brands fa-playstation text-4xl text-yellow-400 animate-float"></i>
                 </div>
-                <div>
-                    <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Deteksi Konsol</span>
-                    <h3 id="fw-detected-title" class="text-xl font-bold text-white mono">Memeriksa Perangkat...</h3>
+
+                <!-- Status details -->
+                <div class="flex-1 text-center md:text-left space-y-2">
+                    <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-gray-400">
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse"></span>
+                        <span id="fw-display">Mendeteksi firmware sistem......</span>
+                    </div>
+                    <h2 id="progress" class="text-xl md:text-2xl font-bold text-white tracking-wide">
+                        Menginisialisasi lingkungan jailbreak...
+                    </h2>
+                    <p class="text-xs text-gray-400 font-mono">Harap jangan menutup jendela ini atau mematikan konsol Anda selama proses berlangsung.</p>
+                </div>
+
+                <!-- Action / Refresh indicator -->
+                <div class="flex flex-col gap-2">
+                    <button onclick="window.location.reload();" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold tracking-wider text-gray-300 hover:text-white transition-all duration-200 flex items-center gap-2">
+                        <i class="fa-solid fa-rotate-right"></i> Reboot Script
+                    </button>
                 </div>
             </div>
-            <div class="text-right sm:text-right w-full sm:w-auto">
-                <span class="text-xs uppercase tracking-wider text-slate-400 block">Status Eksploitasi</span>
-                <span id="exploit-status-badge" class="inline-block mt-1 px-3 py-1 rounded-lg bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">
-                    Menyiapkan Payload...
-                </span>
-            </div>
-        </div>
 
-        <!-- Terminal Console View -->
-        <div class="mt-6">
-            <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-mono text-slate-400 flex items-center gap-2">
-                    <i class="fa-solid fa-terminal text-cyan-400"></i> PS4_SYSTEM_CONSOLE
-                </span>
-                <span id="timer-display" class="text-xs font-mono text-slate-500">Siap</span>
-            </div>
-            <div class="w-full bg-slate-950/80 border border-white/10 rounded-xl p-4 sm:p-5 text-left mono text-sm sm:text-base shadow-inner min-h-[90px] flex items-center">
-                <div id="progress" class="text-cyan-300 font-medium leading-relaxed">
-                    Menghubungkan ke server ...
+            <!-- Terminal Console Box -->
+            <div class="mt-6 pt-6 border-t border-white/10">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-mono text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
+                        <i class="fa-solid fa-terminal text-yellow-400"></i> Execution Log
+                    </span>
+                    <span id="status-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">TERTUNDA</span>
+                </div>
+                <div id="terminal-output" class="w-full h-28 bg-black/60 rounded-xl p-4 font-mono text-xs text-cyan-300 overflow-y-auto border border-white/5 shadow-inner space-y-1">
+                    <div>[+] Initializing browser payload environment...</div>
+                    <div>[+] Checking user agent compatibility...</div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Store Info & Credits Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-        <div class="glass-card rounded-xl p-5 border border-white/10 flex items-start gap-4">
-            <div class="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg flex-shrink-0">
-                <i class="fa-solid fa-store"></i>
-            </div>
-            <div>
-                <h4 class="text-sm font-bold text-white mb-1">DZA GameStore Cikarang</h4>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Pusat Jual Beli, Service, dan Isi Game PS3, PS4, PS5 & Nintendo Switch terpercaya di Cikarang dan sekitarnya.
-                </p>
-            </div>
-        </div>
+    </main>
 
-        <div class="glass-card rounded-xl p-5 border border-white/10 flex items-start gap-4">
-            <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 text-lg flex-shrink-0">
-                <i class="fa-solid fa-code-merge"></i>
+    <footer class="w-full max-w-5xl mx-auto text-center space-y-4 py-4 border-t border-white/5">
+        <div class="flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+            <div class="flex items-center gap-2">
+                <span class="text-yellow-400 font-semibold">Dirancang & Disusun oleh:</span>
+                <span class="px-3 py-1 rounded-lg bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-bold tracking-wide">Karo Sharifi</span>
             </div>
-            <div>
-                <h4 class="text-sm font-bold text-white mb-1">Kredit & Kontributor</h4>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Host asli dirancang oleh <span class="text-cyan-300 font-medium">Karo Sharifi</span> dengan apresiasi khusus untuk Sleirsgoevy, Al Azif, ChendoChap, SiSTRo, & Specter.
-                </p>
+            <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-gray-500">
+                <span class="text-gray-400 font-medium">Special Thanks:</span>
+                <span class="hover:text-gray-300 transition-colors">Sleirsgoevy</span> &bull;
+                <span class="hover:text-gray-300 transition-colors">Al Azif</span> &bull;
+                <span class="hover:text-gray-300 transition-colors">ChendoChap</span> &bull;
+                <span class="hover:text-gray-300 transition-colors">SiSTRo</span> &bull;
+                <span class="hover:text-gray-300 transition-colors">Specter</span> &bull;
+                <span class="hover:text-gray-300 transition-colors">Znullptr</span>
             </div>
         </div>
-    </div>
+    </footer>
 
-</main>
-
-<footer class="relative z-10 w-full py-6 border-t border-white/10 bg-slate-950/80 text-center text-xs text-slate-500">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p>&copy; 2026 DZA GameStore Cikarang. All Rights Reserved.</p>
-        <p class="text-slate-400">Alamat: Ruko Cikarang Utama &bull; Telp / WA: 0878-7884-4020</p>
-    </div>
-</footer>
-</body>
-<script>
+   <script>
 var outputConsole = document.getElementById("progress");
 window.log = function (msg, color) {
       if (color === undefined) color = "#cccccc";
@@ -173,7 +172,7 @@ window.logger = function (msg, color) {
 };
 window.addEventListener('error', function (event) {
       var reason = event.error;
-      var msg = 'Terjadi kesalahan sistem\n';
+      var msg = 'Unhandled error\n';
       if (reason) {
         msg += reason + '\n';
         if (reason.sourceURL)
@@ -193,16 +192,16 @@ window.addEventListener('error', function (event) {
 var uaFull = navigator.userAgent;
 var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
 var isPS4 = match !== null;
-var fwVersion = isPS4 ? match[1] : "Simulasi / Browser Desktop";
+var fwVersion = isPS4 ? match[1] : "Unknown";
 var fwNum = parseFloat(fwVersion);
 
 function onScriptError() {
-    progress.innerHTML = "Payload tidak ditemukan! - Bersihkan Data Browser dan Install Ulang Cache ...";
+    progress.innerHTML = "CKonten tidak ditemukan! - Hapus data browser dan muat ulang cache...";
 }
 
 if (!isPS4) {
     document.addEventListener("DOMContentLoaded", () => {
-        progress.innerHTML = "Catatan: Halaman ini dioptimalkan khusus untuk konsol PS4 Firmware 5.05 hingga 13.52 di DZA Game Store Cikarang";
+        progress.innerHTML = "Hanya untuk PS4 dengan Firmware 5.05 hingga 13.52";
     });
 } else {
         if (fwNum == 5.05 || fwNum == 5.07) {
@@ -216,10 +215,10 @@ if (!isPS4) {
             script.src = "exploit7_9.js";
             script.onerror = onScriptError;
             document.head.appendChild(script);
-             setTimeout(function() { window.log("Memuat ulang sistem...");try {
+             setTimeout(function() { window.log("Reloading...");try {
                  doJailBreak();
                 } catch (error) {
-                 window.log("Terjadi kendala saat eksploitasi: " + error, "red");
+                 window.log("An error occured during exploit: " + error, "red");
                  }; }, 500);
              
         }
@@ -252,5 +251,5 @@ if (!isPS4) {
        }
     }
 </script>
-
+</body>
 </html>

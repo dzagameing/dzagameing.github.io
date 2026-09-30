@@ -11,6 +11,8 @@ index.html
 payload.bin
 rpc_worker.js
 worker.js
+all.min.css
+tailwind.ccs
 
 NETWORK: 
 * 
