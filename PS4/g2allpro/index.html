@@ -81,7 +81,7 @@
 
     <header class="w-full max-w-5xl mx-auto text-center space-y-3 pt-4">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs md:text-sm font-semibold tracking-wider uppercase animate-pulse">
-            <i class="fa-solid fa-bolt"></i> Next-Gen Auto Exploit Host
+            <i class=""></i> Next-Gen Auto Exploit Host
         </div>
         <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white glow-text">
             DZA GAMESTOR <span class="text-yellow-400">HOST PRO</span>
@@ -102,43 +102,28 @@
                 <!-- System Icon / Radar animation -->
                 <div class="relative flex items-center justify-center w-24 h-24 rounded-2xl bg-black/40 border border-white/10 shadow-inner">
                     <div class="absolute inset-0 rounded-2xl border border-yellow-400/30 animate-ping opacity-20"></div>
-                    <i class="fa-brands fa-playstation text-4xl text-yellow-400 animate-float"></i>
-                </div>
+                 <div id="brand"><img src="images.png" alt="" width="150" height="100"></div>
+ </div>
 
                 <!-- Status details -->
                 <div class="flex-1 text-center md:text-left space-y-2">
+				
                     <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-gray-400">
+					
                         <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse"></span>
-                        <span id="fw-display">Mendeteksi firmware sistem......</span>
-                    </div>
+                       
+                    
+					<p class="text-xs text-gray-400 font-mono">Harap jangan menutup jendela ini atau mematikan konsol Anda selama proses berlangsung.</p>
+               </div>
                     <h2 id="progress" class="text-xl md:text-2xl font-bold text-white tracking-wide">
                         Menginisialisasi lingkungan jailbreak...
                     </h2>
-                    <p class="text-xs text-gray-400 font-mono">Harap jangan menutup jendela ini atau mematikan konsol Anda selama proses berlangsung.</p>
-                </div>
+                     </div>
 
                 <!-- Action / Refresh indicator -->
-                <div class="flex flex-col gap-2">
-                    <button onclick="window.location.reload();" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold tracking-wider text-gray-300 hover:text-white transition-all duration-200 flex items-center gap-2">
-                        <i class="fa-solid fa-rotate-right"></i> Reboot Script
-                    </button>
-                </div>
-            </div>
+              
 
-            <!-- Terminal Console Box -->
-            <div class="mt-6 pt-6 border-t border-white/10">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-mono text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
-                        <i class="fa-solid fa-terminal text-yellow-400"></i> Execution Log
-                    </span>
-                    <span id="status-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">TERTUNDA</span>
-                </div>
-                <div id="terminal-output" class="w-full h-28 bg-black/60 rounded-xl p-4 font-mono text-xs text-cyan-300 overflow-y-auto border border-white/5 shadow-inner space-y-1">
-                    <div>[+] Initializing browser payload environment...</div>
-                    <div>[+] Checking user agent compatibility...</div>
-                </div>
-            </div>
-        </div>
+           
 
     </main>
 
