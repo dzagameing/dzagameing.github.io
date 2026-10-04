@@ -203,10 +203,15 @@
         </main>
 
         <nav class="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto glass-panel border-t border-gray-800 h-16 px-6 flex items-center justify-around z-40 shadow-2xl">
-            <button onclick="resetFilters()" class="flex flex-col items-center gap-1 text-brand-400">
-                <i class="fa-solid fa-house text-base"></i>
-                <span class="text-[10px] font-medium">Beranda</span>
-            </button>
+           <!-- Panggil library ikon FontAwesome di bagian <head> atau langsung di atas kode ini -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Tombol Scroll ke Atas dengan Logo Home -->
+<a href="#" style="text-decoration: none;">
+    <button style="padding: 10px 15px; cursor: pointer;">
+        <i class="fa-solid fa-house"></i>
+    </button>
+</a>
             <button onclick="openWhatsAppContact()" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white">
                 <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
                 <span class="text-[10px] font-medium">Tanya WA</span>
@@ -252,11 +257,11 @@
                     <div class="p-3 bg-red-950/30 border border-red-500/30 rounded-xl space-y-1.5">
                         <div class="flex items-center justify-between">
                             <span class="text-xs font-bold text-red-400 flex items-center gap-1.5">
-                                <i class="fa-brands fa-youtube text-sm"></i> Review Video YouTube
+                                <i class="fa-brands fa-youtube text-sm"></i> Review Gameplay
                             </span>
                             <span class="text-[9px] bg-red-500/20 text-red-300 px-2 py-0.5 rounded-full font-medium">Gameplay & Review</span>
                         </div>
-                        <p class="text-[11px] text-gray-400">Tonton cuplikan gameplay dan review video di YouTube:</p>
+                        <p class="text-[11px] text-gray-400">Tonton cuplikan gameplay dan review:</p>
                         <a id="modalYoutubeLink" href="#" target="_blank" class="mt-1 inline-flex items-center gap-1.5 text-xs font-bold text-red-400 hover:text-red-300 underline">
                             <span>Buka Tautan Video YouTube</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
@@ -8141,9 +8146,9 @@
         platform: "PS4",
         price: 25000,
         size: "22.0 GB",
-        genre: "Sports Fighting",
+        genre: "Fighting",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ19AVR0YjoeJVWa7HWRAZRL38lM_9WBeCu-8Ly8kpfbA&s=10",
         description: "Rasakan pertarungan bebas mixed martial arts paling realistis di dalam octagon UFC.",
         youtubeUrl: "https://www.youtube.com/results?search_query=ufc+4+ps4+gameplay"
     },
@@ -8153,9 +8158,9 @@
         platform: "PS4",
         price: 25000,
         size: "50.0 GB",
-        genre: "Action Adventure",
+        genre: "Action",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbrlK4kWeEy6iKCcgAqtTnz1HvPEBC1X7ERWh3dhsUXg&s=10",
         description: "Petualangan penutup epik Nathan Drake memburu harta karun bajak laut legendaris Libertalia.",
         youtubeUrl: "https://www.youtube.com/results?search_query=uncharted+4+a+thiefs+end+ps4+gameplay"
     },
@@ -8165,9 +8170,9 @@
         platform: "PS4",
         price: 25000,
         size: "45.0 GB",
-        genre: "Action Adventure",
+        genre: "Action",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYEixVGh9CeCGjQizxRt7mPbnHjhd8EOQ_DbTdjPKd3A&s=10",
         description: "Aksi mendebarkan Chloe Frazer dan Nadine Ross menjelajahi pegunungan India demi Gading Ganesha.",
         youtubeUrl: "https://www.youtube.com/results?search_query=uncharted+the+lost+legacy+ps4+gameplay"
     },
@@ -8177,9 +8182,9 @@
         platform: "PS4",
         price: 25000,
         size: "40.0 GB",
-        genre: "Action Adventure",
+        genre: "Action",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgs9gwfgS1D3NylZiFHmlpid5E_SD4mKoWxhQ4L2oc_g&s=10",
         description: "Kompilasi tiga petualangan klasik pertama Nathan Drake dengan peningkatan grafis HD memukau.",
         youtubeUrl: "https://www.youtube.com/results?search_query=uncharted+nathan+drake+collection+ps4+gameplay"
     },
@@ -8191,7 +8196,7 @@
         size: "3.0 GB",
         genre: "Puzzle Platformer",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO0x3aeyE4n5K_LWX9T3ZVUHx8rMncTIQXaMHvbRtIeg&s=10",
         description: "Petualangan mempesona dua makhluk benang Yarny yang saling terikat dalam teka-teki kerja sama.",
         youtubeUrl: "https://www.youtube.com/results?search_query=unravel+two+ps4+gameplay"
     },
@@ -8201,9 +8206,9 @@
         platform: "PS4",
         price: 25000,
         size: "45.0 GB",
-        genre: "Interactive Drama Horror",
+        genre: "Horror",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9tRaSp2SmNhqy7DKosRYWArtnKjUYjmi3i2N16TFaAw&s=10",
         description: "Setiap keputusan Anda menentukan hidup atau mati sekelompok remaja di kabin gunung terpencil.",
         youtubeUrl: "https://www.youtube.com/results?search_query=until+dawn+ps4+gameplay"
     },
@@ -8215,7 +8220,7 @@
         size: "5.0 GB",
         genre: "Adventure",
         isPopular: false,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpfjCpSM-0ikk6u589NaNX0_NQqm36lS8ZhN2JGCp8TQ&s=10",
         description: "Jelajahi dunia ceria Kampung Durian Runtuh bersama si kembar Upin dan Ipin.",
         youtubeUrl: "https://www.youtube.com/results?search_query=upin+and+ipin+universe+ps4+gameplay"
     },
@@ -8225,7 +8230,7 @@
         platform: "PS4",
         price: 25000,
         size: "50.0 GB",
-        genre: "Action RPG Open World",
+        genre: "Action",
         isPopular: true,
         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqVTM9CgSshWYdwQuPzLv-j-ouCj1dMrNsR0yGw3v3kw&s=10",
         description: "Jadilah penyihir di sekolah sihir Hogwarts abad ke-18 dan tulis kisah magis Anda sendiri.",
@@ -8237,9 +8242,9 @@
         platform: "PS4",
         price: 25000,
         size: "50.0 GB",
-        genre: "Sports Simulation",
+        genre: "Sports",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdemPUPwC4rBdgOv_eW2NLdarTKHtjMa4brfHbHqo4pg&s=10",
         description: "Game simulasi sepak bola Amerika resmi dengan pembaruan musim dan fitur permainan teranyar.",
         youtubeUrl: "https://www.youtube.com/results?search_query=madden+nfl+25+ps4+gameplay"
     },
@@ -8249,9 +8254,9 @@
         platform: "PS4",
         price: 25000,
         size: "20.0 GB",
-        genre: "Racing Simulation",
+        genre: "Racing",
         isPopular: false,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAAu7UrxaQWXZVfmDO18IIo2NxARt8DoAy7lFwmx7aJw&s=10",
         description: "Rayakan karier legendaris pebalap VR46 lewat berbagai jenis balap motor trek dan reli.",
         youtubeUrl: "https://www.youtube.com/results?search_query=valentino+rossi+the+game+ps4+gameplay"
     },
@@ -8261,9 +8266,9 @@
         platform: "PS4",
         price: 25000,
         size: "20.0 GB",
-        genre: "Action RPG",
+        genre: "Action",
         isPopular: false,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUOAkXztSy7dJzHq3NciVOWzOAgnq8KeNEX3GKfanPZQ&s=10",
         description: "Pertempuran hack-and-slash penuh aksi di dunia fantasi gelap Warhammer melawan gerombolan Chaos.",
         youtubeUrl: "https://www.youtube.com/results?search_query=warhammer+chaosbane+ps4+gameplay"
     },
@@ -8273,9 +8278,9 @@
         platform: "PS4",
         price: 25000,
         size: "40.0 GB",
-        genre: "Action Open World",
+        genre: "Action",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHbhHxw_NcbYxkudn6DcD1xwCXi033Xxv4l1g7r52FHA&s=10",
         description: "Bergabunglah dengan kelompok hacker DedSec meretas sistem pengawas kota San Francisco.",
         youtubeUrl: "https://www.youtube.com/results?search_query=watch+dogs+2+gold+edition+ps4+gameplay"
     },
@@ -8285,9 +8290,9 @@
         platform: "PS4",
         price: 25000,
         size: "35.0 GB",
-        genre: "Action Open World",
+        genre: "Action",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjt0w306-iFAVtkmLXUux58kGWl5PAnc1E_yaVRrkyAA&s=10",
         description: "Rekrut siapa saja warga London menjadi anggota perlawanan untuk membebaskan kota dari cengkeraman tirani.",
         youtubeUrl: "https://www.youtube.com/results?search_query=watch+dogs+legion+ps4+gameplay"
     },
@@ -8297,9 +8302,9 @@
         platform: "PS4",
         price: 25000,
         size: "25.0 GB",
-        genre: "Action Open World",
+        genre: "Action",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1s5kL56QB13pB0k8F4HXH7LY7Rl3V5gqMSV6cqFoY9g&s=10",
         description: "Kendalikan kota Chicago lewat smartphone Anda sebagai hacker jenjang pembalas dendam Aiden Pearce.",
         youtubeUrl: "https://www.youtube.com/results?search_query=watch+dogs+ps4+gameplay"
     },
@@ -8311,7 +8316,7 @@
         size: "3.0 GB",
         genre: "Open World Physics Sandbox",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR56It3pfovBO6qPa5--hYcKvGTX6LS_erpsrheVoZNpA&s=10",
         description: "Game sandbox berbasis fisika yang seru, kocak, dan penuh pekerjaan unik untuk dimainkan bersama.",
         youtubeUrl: "https://www.youtube.com/results?search_query=wobbly+life+ps4+gameplay"
     },
@@ -8323,7 +8328,7 @@
         size: "25.0 GB",
         genre: "Co-op Third-Person Shooter",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnihTu_2AbJzcCw2NWVs8GMW3bHQ3h-YJJ0hEcY7oteg&s=10",
         description: "Bertahan hidup dari ribuan zombi cepat yang merayap menumpuk dalam aksi tembak kooperatif.",
         youtubeUrl: "https://www.youtube.com/results?search_query=world+war+z+ps4+gameplay"
     },
@@ -8333,9 +8338,9 @@
         platform: "PS4",
         price: 25000,
         size: "18.0 GB",
-        genre: "Racing Simulation",
+        genre: "Racing",
         isPopular: false,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: " Simulation",
         description: "Simulasi balap reli resmi dengan sistem cuaca dinamis baru dan tantangan lintasan ekstrem.",
         youtubeUrl: "https://www.youtube.com/results?search_query=wrc+8+ps4+gameplay"
     },
@@ -8345,9 +8350,9 @@
         platform: "PS4",
         price: 25000,
         size: "50.0 GB",
-        genre: "Sports Fighting",
+        genre: "Fighting",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0uBdXmgahrpyqxzJyff3lBuJk1OlDSCR-4x3Uw7Sizg&s=10",
         description: "Aksi gulat profesional paling seru dengan daftar pegulat WWE legendaris dan masa kini.",
         youtubeUrl: "https://www.youtube.com/results?search_query=wwe+2k25+ps4+gameplay"
     },
@@ -8357,9 +8362,9 @@
         platform: "PS4",
         price: 25000,
         size: "35.0 GB",
-        genre: "Action Adventure",
+        genre: "Action",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg7NPFFCh-4kKF1NrahuGGdol6x2wM1xO-KlvPGLYx4Q&s=10",
         description: "Babak akhir perjalanan hidup Kazuma Kiryu di distrik Kamurocho dan Onomichi.",
         youtubeUrl: "https://www.youtube.com/results?search_query=yakuza+6+the+song+of+life+ps4+gameplay"
     },
@@ -8371,7 +8376,7 @@
         size: "2.0 GB",
         genre: "Card Strategy",
         isPopular: true,
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspNKKXBFQDAB1Vz0AZtpuzDUs-qtNgkhZE4tmkoJafQ&s",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQICvaGhZM5iUuktN8oNTcm_hEmlG4F0VY8oQweHvp4qA&s=10",
         description: "Bangun deck kartu impian Anda dan duel melawan para karakter ikonik dari seluruh seri anime Yu-Gi-Oh!.",
         youtubeUrl: "https://www.youtube.com/results?search_query=yugioh+legacy+of+the+duelist+ps4+gameplay"
     },
